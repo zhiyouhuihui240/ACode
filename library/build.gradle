@@ -22,12 +22,13 @@ if (publishMaven) {
     apply plugin: 'com.gradle.plugin-publish'
 
     group = 'io.github.qq549631030'
-    version = VERSION_NAME
+    version = "1.2.0"
 
     gradlePlugin {
         plugins {
             androidJunkCode {
-                id = 'io.github.qq549631030.android-junk-code'
+//                id = 'io.github.qq549631030.android-junk-code'
+                id = 'com.github.zhiyouhuihui240.ACode.android-junk-code'
                 implementationClass = 'cn.hx.plugin.junkcode.plugin.AndroidJunkCodePlugin'
                 displayName = 'AndroidJunkCode plugin'
                 description = POM_DESCRIPTION
