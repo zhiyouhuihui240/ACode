@@ -21,8 +21,9 @@ if (publishMaven) {
 //    apply plugin: 'signing'
     apply plugin: 'com.gradle.plugin-publish'
 
-    group = 'io.github.qq549631030'
-    version = "1.2.0"
+//    group = 'io.github.qq549631030'
+    group = 'com.github.zhiyouhuihui240'
+    version = "1.3.0"
 
     gradlePlugin {
         plugins {
