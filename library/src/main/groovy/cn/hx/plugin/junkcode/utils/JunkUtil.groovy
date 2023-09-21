@@ -333,12 +333,14 @@ class JunkUtil {
      * @param manifestFile
      * @param activityList
      */
+
     static void generateManifest(File manifestFile, List<String> activityList) {
         StringBuilder sb = new StringBuilder()
         sb.append("<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">\n")
+//        sb.append("<uses-permission android:name=\"android.permission.INTERNET\" />\n")
         sb.append("    <application>\n")
         for (i in 0..<activityList.size()) {
-            sb.append("        <activity android:name=\"${activityList.get(i)}\"/>\n")
+            sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
         }
         sb.append("    </application>\n")
         sb.append("</manifest>")
