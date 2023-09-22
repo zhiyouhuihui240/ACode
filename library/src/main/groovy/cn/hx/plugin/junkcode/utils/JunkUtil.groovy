@@ -159,7 +159,7 @@ class JunkUtil {
                         } else {
                             methodName = generateName(j)
                         }
-                        stringList.add(methodName)
+
                         def methodBuilder = MethodSpec.methodBuilder(methodName)
                         if (config.methodGenerator) {
                             config.methodGenerator.execute(methodBuilder)
@@ -167,6 +167,7 @@ class JunkUtil {
                             generateMethods(methodBuilder)
                         }
                         typeBuilder.addMethod(methodBuilder.build())
+                        stringList.add(methodBuilder.build().name)
                     }
                 }
 
@@ -213,15 +214,14 @@ class JunkUtil {
 
     static Integer generateRandomNum() {
         def sb = new StringBuilder()
-        for (i in 0..1) {
+//        for (i in 0..1) {
             sb.append(num[random.nextInt(num.size())])
-        }
+//        }
         return sb.toInteger()
     }
 
     static String getRandomMethod(){
         def unm = generateRandomNum()
-
         def num = stringList.size()
         if (unm >= num) {
             unm = 0
