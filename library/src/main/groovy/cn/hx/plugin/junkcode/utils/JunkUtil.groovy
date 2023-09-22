@@ -63,10 +63,16 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
+                        .addStatement("${myList.toString()}")
                         .endControlFlow()
                 break
             case 1:
-                methodBuilder.addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+                methodBuilder
+                        .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+                        .addStatement("${otherClassMethodsNameList.toString()}")
+                        .addStatement(otherClassMethodsNameList.toString())
+                        .addStatement("${myList.toString()}")
+                        .addStatement("${otherClassMethodsNameList.toString()}")
                 break
             case 2:
                 methodBuilder.beginControlFlow("try")
@@ -286,20 +292,6 @@ class JunkUtil {
                     otherClassMethodsNameList.add(methodBuilder.build().name)
                 }
 
-                myList['key2'] = ['value4', 'value5', 'value6']
-                typeBuilder.addMethod(otherClassNameList[0])
-                typeBuilder.addMethod(otherClassNameList[1])
-                typeBuilder.addMethod(otherClassNameList[2])
-                typeBuilder.addMethod(otherClassNameList[3])
-                typeBuilder.addMethod(otherClassNameList[4])
-                typeBuilder.addMethod(otherClassMethodsNameList[0])
-                typeBuilder.addMethod(otherClassMethodsNameList[1])
-                typeBuilder.addMethod(otherClassMethodsNameList[2])
-                typeBuilder.addMethod(otherClassMethodsNameList[3])
-                typeBuilder.addMethod(otherClassMethodsNameList[4])
-                typeBuilder.addMethod(myList.toString())
-                typeBuilder.addMethod(otherClassNameList.toString())
-                typeBuilder.addMethod(otherClassMethodsNameList.toString())
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
             otherClassNameList.add(packageName)
