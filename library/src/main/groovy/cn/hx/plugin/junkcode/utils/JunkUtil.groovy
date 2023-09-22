@@ -55,10 +55,12 @@ class JunkUtil {
      * @param methodBuilder
      */
     static void generateMethods(MethodSpec.Builder methodBuilder) {
-        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
+
+        otherClassMethodsNameList.add(0,methodBuilder.name)
+//        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
         firstNum += 1
         def str = 0
-        if (otherClassMethodsNameList.size()> 1 ) {
+        if (otherClassMethodsNameList.size()> 0 ) {
             str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
             otherClassMethodsNameList.removeLast()
         }
@@ -317,7 +319,7 @@ class JunkUtil {
                         generateMethods(methodBuilder)
                     }
                     typeBuilder.addMethod(methodBuilder.build())
-                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
+//                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
