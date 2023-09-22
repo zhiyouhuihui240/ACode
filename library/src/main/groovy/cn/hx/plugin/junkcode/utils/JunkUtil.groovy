@@ -59,7 +59,6 @@ class JunkUtil {
         firstNum += 1
         switch (random.nextInt(5)) {
             case 0:
-
                 otherClassMethodsAccessList.add("void")
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
@@ -72,13 +71,14 @@ class JunkUtil {
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
+                def str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
+                otherClassMethodsNameList.removeLast()
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
-                        .addStatement("${otherClassMethodsNameList.toString()}")    // 方法名列表
-                        .addStatement(otherClassNameList.toString())    // 缺少类名
-                        .addStatement(otherClassNameList1.toString())   // 缺少类名
-                        .addStatement("${myList.toString()}")   // 不正确
-                        .addStatement("${otherClassMethodsAccessList.toString()}") // 正确
+                        .addStatement("${str}")    // 方法名列表
+//                        .addStatement(otherClassNameList.toString())    // 缺少类名
+//                        .addStatement("${myList.toString()}")   // 不正确
+//                        .addStatement("${otherClassMethodsAccessList.toString()}") // 正确
                 break
             case 2:
                 otherClassMethodsAccessList.add("void")
@@ -276,6 +276,7 @@ class JunkUtil {
     // 生成其他类文件
     static void generateJava(File javaDir, String packageName, JunkCodeConfig config) {
 //        otherClassNameList.clear()
+        // config.otherCountPerPackage 获取设置的类数目大小
         for (int i = 0; i < config.otherCountPerPackage; i++) {
             def className
             if (config.classNameCreator) {

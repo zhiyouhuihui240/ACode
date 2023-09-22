@@ -35,8 +35,8 @@ abstract class AndroidJunkCodeTask extends DefaultTask {
     void generateJunkCode() {
         javaOutDir.deleteDir()
         resOutDir.deleteDir()
-
-        if (config.javaGenerator) {//自定义生成java逻辑
+        //自定义生成java逻辑
+        if (config.javaGenerator) {
             config.javaGenerator.execute(javaOutDir)
         } else {
             for (int i = 0; i < config.packageCount; i++) {
