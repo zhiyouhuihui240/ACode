@@ -317,13 +317,13 @@ class JunkUtil {
                         generateMethods(methodBuilder)
                     }
                     typeBuilder.addMethod(methodBuilder.build())
-                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
+                    otherClassMethodsNameList.add(methodBuilder.build().name)
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherClassNameList.add(0, javaFile.packageName)
-            otherClassNameList1.add(0, javaFile.fileComment)
+            otherClassNameList.add( javaFile.packageName)
+            otherClassNameList1.add(javaFile.fileComment)
             writeJavaToFile(javaDir, javaFile)
         }
     }
