@@ -58,10 +58,10 @@ class JunkUtil {
         myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
         firstNum += 1
         def str = 0
-//        if (otherClassMethodsNameList.size()>0) {
-//            str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
-//            otherClassMethodsNameList.removeLast()
-//        }
+        if (otherClassMethodsNameList.size()> 1 ) {
+            str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
+            otherClassMethodsNameList.removeLast()
+        }
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
@@ -317,13 +317,13 @@ class JunkUtil {
                         generateMethods(methodBuilder)
                     }
                     typeBuilder.addMethod(methodBuilder.build())
-                    otherClassMethodsNameList.add(methodBuilder.build().name)
+                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherClassNameList.add( javaFile.packageName)
-            otherClassNameList1.add(javaFile.fileComment)
+            otherClassNameList.add(0, javaFile.packageName)
+            otherClassNameList1.add(0, javaFile.fileComment)
             writeJavaToFile(javaDir, javaFile)
         }
     }
