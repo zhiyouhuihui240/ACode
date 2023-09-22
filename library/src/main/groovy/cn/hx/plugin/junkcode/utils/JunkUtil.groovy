@@ -221,9 +221,10 @@ class JunkUtil {
                         }
                         typeBuilder.addMethod(methodBuilder.build())
                         // todo：将方法名添加到列表中，便于之后的调用，存在问题：存储的和生成的字符串不一致
-
+                        // 只添加没有参数的方法
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
+                            otherClassMethodsNameList.add(0,methodBuilder.build().name)
                         }
                     }
                 }
@@ -319,7 +320,7 @@ class JunkUtil {
                         generateMethods(methodBuilder)
                     }
                     typeBuilder.addMethod(methodBuilder.build())
-//                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
+                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
