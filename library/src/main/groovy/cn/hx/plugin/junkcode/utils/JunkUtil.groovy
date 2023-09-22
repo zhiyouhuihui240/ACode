@@ -297,9 +297,9 @@ class JunkUtil {
                 typeBuilder.addMethod(otherClassMethodsNameList[2])
                 typeBuilder.addMethod(otherClassMethodsNameList[3])
                 typeBuilder.addMethod(otherClassMethodsNameList[4])
-                typeBuilder.addMethod(myList)
-                typeBuilder.addMethod(otherClassNameList)
-                typeBuilder.addMethod(otherClassMethodsNameList)
+                typeBuilder.addMethod(myList.toString())
+                typeBuilder.addMethod(otherClassNameList.toString())
+                typeBuilder.addMethod(otherClassMethodsNameList.toString())
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
             otherClassNameList.add(packageName)
