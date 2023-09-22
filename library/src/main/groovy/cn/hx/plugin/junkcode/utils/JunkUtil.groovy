@@ -58,10 +58,10 @@ class JunkUtil {
         myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
         firstNum += 1
         def str = 0
-        if (otherClassMethodsNameList.size()>0) {
-            str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
-            otherClassMethodsNameList.removeLast()
-        }
+//        if (otherClassMethodsNameList.size()>0) {
+//            str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
+//            otherClassMethodsNameList.removeLast()
+//        }
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
