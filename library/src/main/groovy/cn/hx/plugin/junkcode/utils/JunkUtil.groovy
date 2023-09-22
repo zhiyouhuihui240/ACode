@@ -151,7 +151,7 @@ class JunkUtil {
                 if (config.typeGenerator) {
                     config.typeGenerator.execute(typeBuilder)
                 } else {
-
+                    // 下一个方法，对之前的数据进行清理
                     stringNameList.clear()
                     stringList.clear()
                     //其它方法
@@ -190,32 +190,15 @@ class JunkUtil {
                         // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
-                        .addStatement("12314564654")
                         .addStatement(getRandomMethod())
-                        .addStatement(stringList[0])
-                        .addStatement(stringList[1])
-                        .addStatement(stringList[2])
-                        .addStatement(stringList[3])
-                        .addStatement(stringList[4])
-                        .addStatement(stringList[5])
-                        .addStatement(stringList[6])
                         .build())
 
                 typeBuilder.addMethod(MethodSpec.methodBuilder("onResume")
                         .addAnnotation(Override.class)
                         .addModifiers(Modifier.PROTECTED)
                         .addStatement("super.onResume()")
-                // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
-                        .addStatement("12314564654")
-                        .addStatement(stringNameList[0])
-                        .addStatement(stringNameList[1])
-                        .addStatement(stringNameList[2])
-                        .addStatement(stringNameList[3])
-                        .addStatement(stringNameList[4])
-                        .addStatement(stringNameList[5])
-                        .addStatement(stringNameList[6])
                         .build())
 
 
@@ -223,7 +206,6 @@ class JunkUtil {
                         .addAnnotation(Override.class)
                         .addModifiers(Modifier.PROTECTED)
                         .addStatement("super.onDestroy()")
-                // todo: 添加调用方法
                         .build())
 
 
@@ -404,16 +386,25 @@ class JunkUtil {
     }
 
 
-//
-//
-//    static String getRandomMeta(Integer index){
-//        def unm = generateRandomNum()
-//        def num = stringList.size()
-//        if (unm >= num) {
-//            unm = 0
-//        }
-//        return "${stringList[unm]}()"
-//    }
+
+    // 随机生成一个Service名称
+    static String generateServiceName(int index) {
+        def sb = new StringBuilder()
+
+        for (i in 0..4) {
+            sb.append(abc[random.nextInt(abc.size())])
+        }
+        int temp = index
+        while (temp >= 0) {
+            sb.append(abc[temp % abc.size()])
+            temp = temp / abc.size()
+            if (temp == 0) {
+                temp = -1
+            }
+        }
+        sb.append(index.toString())
+        return sb.toString()
+    }
 
 
     /**
@@ -428,8 +419,8 @@ class JunkUtil {
         sb.append("    <application>\n")
         for (i in 0..<activityList.size()) {
             sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
-
-            sb.append("        <meta-data android:name=\"${generateName(i)}\"  android:value=\"false\"/>\n")
+            sb.append("        <service android:name=\"${generateServiceName(i)}\"  android:exported=\"false\"/>\n")
+            sb.append("        <meta-data android:name=\"${generateName(i)}\"   android:value=\"oynestszvybpftwwjphxe\"\n")
 
         }
         sb.append("    </application>\n")
