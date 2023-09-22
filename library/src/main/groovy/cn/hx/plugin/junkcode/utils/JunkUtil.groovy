@@ -21,6 +21,7 @@ class JunkUtil {
     static color = "0123456789abcdef".toCharArray()
     static num = "0123456789".toCharArray()
     static List<String> stringList = new ArrayList<>();
+    static List<String> stringNameList = new ArrayList<>();
 
     // 随机生成一个activity名称
     static String generateName(int index) {
@@ -161,6 +162,7 @@ class JunkUtil {
                             methodName = generateName(j)
                         }
 
+                        stringNameList.add(methodName)
                         def methodBuilder = MethodSpec.methodBuilder(methodName)
                         if (config.methodGenerator) {
                             config.methodGenerator.execute(methodBuilder)
@@ -189,6 +191,9 @@ class JunkUtil {
                         .addStatement(stringList[1])
                         .addStatement(stringList[2])
                         .addStatement(stringList[3])
+                        .addStatement(stringList[4])
+                        .addStatement(stringList[5])
+                        .addStatement(stringList[6])
                         .build())
 
                 typeBuilder.addMethod(MethodSpec.methodBuilder("onResume")
@@ -198,6 +203,13 @@ class JunkUtil {
                 // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
+                        .addStatement(stringNameList(0))
+                        .addStatement(stringNameList(1))
+                        .addStatement(stringNameList(2))
+                        .addStatement(stringNameList(3))
+                        .addStatement(stringNameList(4))
+                        .addStatement(stringNameList(5))
+                        .addStatement(stringNameList(6))
                         .build())
 
 
