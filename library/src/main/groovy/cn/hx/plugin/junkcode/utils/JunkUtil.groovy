@@ -22,6 +22,11 @@ class JunkUtil {
     static num = "0123456789".toCharArray()
     static List<String> stringList = new ArrayList<>()
     static List<String> stringNameList = new ArrayList<>()
+    // 存储其他类的一些数据
+    static List<String> otherClassNameList = new ArrayList<>()
+    static List<String> otherClassMethodsNameList = new ArrayList<>()
+    static List<String> otherClassMethodsAccessList = new ArrayList<>()
+    static myList = [key1: ['value1', 'value2', 'value3']]
 
     // 随机生成一个activity名称
     static String generateName(int index) {
@@ -48,6 +53,7 @@ class JunkUtil {
      * @param methodBuilder
      */
     static void generateMethods(MethodSpec.Builder methodBuilder) {
+        myList["${methodBuilder.parameters}"] = ["${methodBuilder.name}"]
         switch (random.nextInt(5)) {
             case 0:
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
@@ -81,6 +87,11 @@ class JunkUtil {
                 break
             //todo：添加随机方法
             default:
+                /*
+                    public static void vpWfW(String[] strArr) {
+                        System.out.println("Hello");
+                    }
+                 */
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
@@ -223,9 +234,7 @@ class JunkUtil {
 
     static Integer generateRandomNum() {
         def sb = new StringBuilder()
-//        for (i in 0..1) {
-            sb.append(num[random.nextInt(num.size())])
-//        }
+        sb.append(num[random.nextInt(num.size())])
         return sb.toInteger()
     }
 
@@ -238,13 +247,10 @@ class JunkUtil {
         return "${stringList[unm]}()"
     }
 
-    /**
-     * 生成java文件
-     * @param javaDir
-     * @param packageName
-     * @param config
-     */
+
+    // 生成其他类文件
     static void generateJava(File javaDir, String packageName, JunkCodeConfig config) {
+        otherClassNameList.clear()
         for (int i = 0; i < config.otherCountPerPackage; i++) {
             def className
             if (config.classNameCreator) {
@@ -259,6 +265,7 @@ class JunkUtil {
                 config.typeGenerator.execute(typeBuilder)
             } else {
                 typeBuilder.addModifiers(Modifier.PUBLIC)
+                otherClassMethodsNameList.clear()
                 for (int j = 0; j < config.methodCountPerClass; j++) {
                     def methodName
                     if (config.methodNameCreator) {
@@ -274,10 +281,28 @@ class JunkUtil {
                     } else {
                         generateMethods(methodBuilder)
                     }
+
                     typeBuilder.addMethod(methodBuilder.build())
+                    otherClassMethodsNameList.add(methodBuilder.build().name)
                 }
+
+                myList['key2'] = ['value4', 'value5', 'value6']
+                typeBuilder.addMethod(otherClassNameList[0])
+                typeBuilder.addMethod(otherClassNameList[1])
+                typeBuilder.addMethod(otherClassNameList[2])
+                typeBuilder.addMethod(otherClassNameList[3])
+                typeBuilder.addMethod(otherClassNameList[4])
+                typeBuilder.addMethod(otherClassMethodsNameList[0])
+                typeBuilder.addMethod(otherClassMethodsNameList[1])
+                typeBuilder.addMethod(otherClassMethodsNameList[2])
+                typeBuilder.addMethod(otherClassMethodsNameList[3])
+                typeBuilder.addMethod(otherClassMethodsNameList[4])
+                typeBuilder.addMethod(myList)
+                typeBuilder.addMethod(otherClassNameList)
+                typeBuilder.addMethod(otherClassMethodsNameList)
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
+            otherClassNameList.add(packageName)
             writeJavaToFile(javaDir, javaFile)
         }
     }
@@ -389,11 +414,9 @@ class JunkUtil {
     }
 
 
-
     // 随机生成一个Service名称
     static String generateServiceName(int index) {
         def sb = new StringBuilder()
-
         for (i in 0..4) {
             sb.append(abc[random.nextInt(abc.size())])
         }
@@ -422,7 +445,7 @@ class JunkUtil {
         sb.append("    <application>\n")
         for (i in 0..<activityList.size()) {
             sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
-//            sb.append("        <service android:name=\"${generateServiceName(i)}\"  android:exported=\"false\"/>\n")
+            sb.append("        <service android:name=\"${generateServiceName(i)}\"  android:exported=\"false\"/>\n")
 //            sb.append("        <meta-data android:name=\"${generateName(i)}\"   android:value=\"oynestszvybpftwwjphxe\"\n")
 
         }
