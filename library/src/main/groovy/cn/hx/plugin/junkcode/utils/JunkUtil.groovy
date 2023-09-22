@@ -24,9 +24,11 @@ class JunkUtil {
     static List<String> stringNameList = new ArrayList<>()
     // 存储其他类的一些数据
     static List<String> otherClassNameList = new ArrayList<>()
+    static List<String> otherClassNameList1 = new ArrayList<>()
     static List<String> otherClassMethodsNameList = new ArrayList<>()
     static List<String> otherClassMethodsAccessList = new ArrayList<>()
     static myList = [key1: ['value1', 'value2', 'value3']]
+    static firstNum = -1
 
     // 随机生成一个activity名称
     static String generateName(int index) {
@@ -53,9 +55,11 @@ class JunkUtil {
      * @param methodBuilder
      */
     static void generateMethods(MethodSpec.Builder methodBuilder) {
-        myList["${methodBuilder.parameters.toString()}"] = ["${methodBuilder.name}"]
+        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
+        firstNum += 1
         switch (random.nextInt(5)) {
             case 0:
+
                 otherClassMethodsAccessList.add("void")
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
@@ -70,10 +74,11 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("void")
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
-                        .addStatement("${otherClassMethodsNameList.toString()}")
-                        .addStatement(otherClassNameList.toString())
-                        .addStatement("${myList.toString()}")
-                        .addStatement("${otherClassMethodsAccessList.toString()}")
+                        .addStatement("${otherClassMethodsNameList.toString()}")    // 方法名列表
+                        .addStatement(otherClassNameList.toString())    // 缺少类名
+                        .addStatement(otherClassNameList1.toString())   // 缺少类名
+                        .addStatement("${myList.toString()}")   // 不正确
+                        .addStatement("${otherClassMethodsAccessList.toString()}") // 正确
                 break
             case 2:
                 otherClassMethodsAccessList.add("void")
@@ -302,12 +307,13 @@ class JunkUtil {
                         generateMethods(methodBuilder)
                     }
                     typeBuilder.addMethod(methodBuilder.build())
-                    otherClassMethodsNameList.add(methodBuilder.build().name)
+                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherClassNameList.add(packageName)
+            otherClassNameList.add(0, javaFile.packageName)
+            otherClassNameList1.add(0, javaFile.fileComment)
             writeJavaToFile(javaDir, javaFile)
         }
     }
