@@ -199,8 +199,6 @@ class JunkUtil {
                         .addModifiers(Modifier.PROTECTED)
                         .addStatement("super.onDestroy()")
                 // todo: 添加调用方法
-                        .addStatement(getRandomMethod())
-                        .addStatement(getRandomMethod())
                         .build())
 
 
@@ -222,8 +220,12 @@ class JunkUtil {
     }
 
     static String getRandomMethod(){
-
         def unm = generateRandomNum()
+
+        def num = stringList.size()
+        if (unm >= num) {
+            unm = 0
+        }
         return "${stringList[unm]}()"
     }
 
