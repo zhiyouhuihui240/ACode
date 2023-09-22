@@ -78,6 +78,7 @@ class JunkUtil {
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
                 break
+            //todo：添加随机方法
             default:
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
@@ -167,6 +168,7 @@ class JunkUtil {
                             generateMethods(methodBuilder)
                         }
                         typeBuilder.addMethod(methodBuilder.build())
+                        // todo：将方法名添加到列表中，便于之后的调用，存在问题：存储的和生成的字符串不一致
                         stringList.add(methodBuilder.build().name)
                     }
                 }
@@ -183,6 +185,10 @@ class JunkUtil {
                         // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
+                        .addStatement(stringList[0])
+                        .addStatement(stringList[1])
+                        .addStatement(stringList[2])
+                        .addStatement(stringList[3])
                         .build())
 
                 typeBuilder.addMethod(MethodSpec.methodBuilder("onResume")
