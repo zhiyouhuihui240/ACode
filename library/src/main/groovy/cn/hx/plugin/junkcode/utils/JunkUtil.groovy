@@ -151,6 +151,9 @@ class JunkUtil {
                 if (config.typeGenerator) {
                     config.typeGenerator.execute(typeBuilder)
                 } else {
+
+                    stringNameList.clear()
+                    stringList.clear()
                     //其它方法
                     for (int j = 0; j < config.methodCountPerClass; j++) {
                         def methodName
@@ -162,7 +165,6 @@ class JunkUtil {
                             methodName = generateName(j)
                         }
 
-                        stringNameList.clear()
                         stringNameList.add(methodName)
                         def methodBuilder = MethodSpec.methodBuilder(methodName)
                         if (config.methodGenerator) {
@@ -172,7 +174,6 @@ class JunkUtil {
                         }
                         typeBuilder.addMethod(methodBuilder.build())
                         // todo：将方法名添加到列表中，便于之后的调用，存在问题：存储的和生成的字符串不一致
-                        stringList.clear()
                         stringList.add(methodBuilder.build().name)
                     }
                 }
