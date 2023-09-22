@@ -56,12 +56,16 @@ class JunkUtil {
      */
     static void generateMethods(MethodSpec.Builder methodBuilder) {
 
-        otherClassMethodsNameList.add(0,methodBuilder.name)
+//        otherClassMethodsNameList.add(0,methodBuilder.name)
 //        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
         firstNum += 1
         def str = 0
         if (otherClassMethodsNameList.size()> 0 ) {
             str = otherClassMethodsNameList[otherClassMethodsNameList.size() -1]
+            otherClassMethodsNameList.removeLast()
+        }
+        if (str == 0) {
+            str = "Log.d(\"TAG\",\"log ccn,werm\");"
         }
         switch (random.nextInt(5)) {
             case 0:
@@ -132,7 +136,6 @@ class JunkUtil {
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
         }
-        otherClassMethodsNameList.removeLast()
     }
 
     /**
