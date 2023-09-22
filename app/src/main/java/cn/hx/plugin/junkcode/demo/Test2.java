@@ -18,6 +18,9 @@ public class Test2 {
 
         // private static 方法, 无法引用，只能内部调用
 
+        // void 方法，默认为 public 所以可以
+        test.ddd();
+
         return new Date();
     }
 }

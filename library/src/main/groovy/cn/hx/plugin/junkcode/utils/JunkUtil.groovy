@@ -53,9 +53,10 @@ class JunkUtil {
      * @param methodBuilder
      */
     static void generateMethods(MethodSpec.Builder methodBuilder) {
-        myList["${methodBuilder.parameters}"] = ["${methodBuilder.name}"]
+        myList["${methodBuilder.parameters.toString()}"] = ["${methodBuilder.name}"]
         switch (random.nextInt(5)) {
             case 0:
+                otherClassMethodsAccessList.add("void")
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
                         .addStatement("\$T.out.println(\$S)", System.class, "Time travelling, woo hoo!")
@@ -63,18 +64,19 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("${myList.toString()}")
                         .endControlFlow()
                 break
             case 1:
+                otherClassMethodsAccessList.add("void")
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                         .addStatement("${otherClassMethodsNameList.toString()}")
-                        .addStatement(otherClassMethodsNameList.toString())
+                        .addStatement(otherClassNameList.toString())
                         .addStatement("${myList.toString()}")
-                        .addStatement("${otherClassMethodsNameList.toString()}")
+                        .addStatement("${otherClassMethodsAccessList.toString()}")
                 break
             case 2:
+                otherClassMethodsAccessList.add("void")
                 methodBuilder.beginControlFlow("try")
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
@@ -82,10 +84,21 @@ class JunkUtil {
                         .endControlFlow()
                 break
             case 3:
+                /*
+                  Date ZWLUL() {
+                    return new Date();
+                  }
+                 */
                 methodBuilder.returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
             case 4:
+                /*
+                 public static void nsIbm(String[] args) {
+                    System.out.println("Hello");
+                 }
+                 */
+                otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
@@ -98,6 +111,7 @@ class JunkUtil {
                         System.out.println("Hello");
                     }
                  */
+                otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
@@ -256,7 +270,7 @@ class JunkUtil {
 
     // 生成其他类文件
     static void generateJava(File javaDir, String packageName, JunkCodeConfig config) {
-        otherClassNameList.clear()
+//        otherClassNameList.clear()
         for (int i = 0; i < config.otherCountPerPackage; i++) {
             def className
             if (config.classNameCreator) {
@@ -271,7 +285,7 @@ class JunkUtil {
                 config.typeGenerator.execute(typeBuilder)
             } else {
                 typeBuilder.addModifiers(Modifier.PUBLIC)
-                otherClassMethodsNameList.clear()
+//                otherClassMethodsNameList.clear()
                 for (int j = 0; j < config.methodCountPerClass; j++) {
                     def methodName
                     if (config.methodNameCreator) {
@@ -287,11 +301,10 @@ class JunkUtil {
                     } else {
                         generateMethods(methodBuilder)
                     }
-
                     typeBuilder.addMethod(methodBuilder.build())
                     otherClassMethodsNameList.add(methodBuilder.build().name)
+//                    otherClassMethodsNameList.removeLast()
                 }
-
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
             otherClassNameList.add(packageName)

@@ -14,4 +14,8 @@ public class Test1 {
     private static void ccc(){
 
     }
+
+    void ddd (){
+
+    }
 }
