@@ -419,8 +419,8 @@ class JunkUtil {
         sb.append("    <application>\n")
         for (i in 0..<activityList.size()) {
             sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
-            sb.append("        <service android:name=\"${generateServiceName(i)}\"  android:exported=\"false\"/>\n")
-            sb.append("        <meta-data android:name=\"${generateName(i)}\"   android:value=\"oynestszvybpftwwjphxe\"\n")
+//            sb.append("        <service android:name=\"${generateServiceName(i)}\"  android:exported=\"false\"/>\n")
+//            sb.append("        <meta-data android:name=\"${generateName(i)}\"   android:value=\"oynestszvybpftwwjphxe\"\n")
 
         }
         sb.append("    </application>\n")
