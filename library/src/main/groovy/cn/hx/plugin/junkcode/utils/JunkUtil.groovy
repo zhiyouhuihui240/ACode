@@ -20,8 +20,8 @@ class JunkUtil {
     static abc = "abcdefghijklmnopqrstuvwxyz".toCharArray()
     static color = "0123456789abcdef".toCharArray()
     static num = "0123456789".toCharArray()
-    static List<String> stringList = new ArrayList<>();
-    static List<String> stringNameList = new ArrayList<>();
+    static List<String> stringList = new ArrayList<>()
+    static List<String> stringNameList = new ArrayList<>()
 
     // 随机生成一个activity名称
     static String generateName(int index) {
@@ -187,6 +187,8 @@ class JunkUtil {
                         // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
+                        .addStatement("12314564654")
+                        .addStatement(getRandomMethod())
                         .addStatement(stringList[0])
                         .addStatement(stringList[1])
                         .addStatement(stringList[2])
@@ -203,13 +205,14 @@ class JunkUtil {
                 // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
-                        .addStatement(stringNameList(0))
-                        .addStatement(stringNameList(1))
-                        .addStatement(stringNameList(2))
-                        .addStatement(stringNameList(3))
-                        .addStatement(stringNameList(4))
-                        .addStatement(stringNameList(5))
-                        .addStatement(stringNameList(6))
+                        .addStatement("12314564654")
+                        .addStatement(stringNameList[0])
+                        .addStatement(stringNameList[1])
+                        .addStatement(stringNameList[2])
+                        .addStatement(stringNameList[3])
+                        .addStatement(stringNameList[4])
+                        .addStatement(stringNameList[5])
+                        .addStatement(stringNameList[6])
                         .build())
 
 
@@ -397,12 +400,24 @@ class JunkUtil {
         writeStringToFile(keepFile, keepContent)
     }
 
+
+//
+//
+//    static String getRandomMeta(Integer index){
+//        def unm = generateRandomNum()
+//        def num = stringList.size()
+//        if (unm >= num) {
+//            unm = 0
+//        }
+//        return "${stringList[unm]}()"
+//    }
+
+
     /**
      * 生成AndroidManifest.xml
      * @param manifestFile
      * @param activityList
      */
-
     static void generateManifest(File manifestFile, List<String> activityList) {
         StringBuilder sb = new StringBuilder()
         sb.append("<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">\n")
@@ -410,6 +425,9 @@ class JunkUtil {
         sb.append("    <application>\n")
         for (i in 0..<activityList.size()) {
             sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
+
+            sb.append("        <meta-data android:name=\"${generateName(i)}\"  android:value=\"false\"/>\n")
+
         }
         sb.append("    </application>\n")
         sb.append("</manifest>")
@@ -419,7 +437,6 @@ class JunkUtil {
 
     /**
      * 生成proguard-rules.pro
-     *
      * @param manifestFile
      * @param activityList
      */
