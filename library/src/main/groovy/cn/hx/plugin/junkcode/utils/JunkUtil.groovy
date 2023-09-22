@@ -57,6 +57,11 @@ class JunkUtil {
     static void generateMethods(MethodSpec.Builder methodBuilder) {
         myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
         firstNum += 1
+        def str = 0
+        if (otherClassMethodsNameList.size()>0) {
+            str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
+            otherClassMethodsNameList.removeLast()
+        }
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
@@ -67,12 +72,11 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
+                        .addStatement("${str}")    // 方法名列表
                         .endControlFlow()
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
-                def str = otherClassMethodsNameList(otherClassMethodsNameList.size() -1 )
-                otherClassMethodsNameList.removeLast()
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                         .addStatement("${str}")    // 方法名列表
@@ -86,6 +90,7 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
+                        .addStatement("${str}")    // 方法名列表
                         .endControlFlow()
                 break
             case 3:
@@ -94,7 +99,9 @@ class JunkUtil {
                     return new Date();
                   }
                  */
-                methodBuilder.returns(Date.class)
+                methodBuilder
+                        .addStatement("${str}")    // 方法名列表
+                        .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
             case 4:
@@ -105,6 +112,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .addStatement("${str}")    // 方法名列表
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -118,6 +126,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .addStatement("${str}")    // 方法名列表
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
