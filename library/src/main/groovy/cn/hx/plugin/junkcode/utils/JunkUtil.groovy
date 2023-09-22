@@ -62,7 +62,6 @@ class JunkUtil {
         def str = 0
         if (otherClassMethodsNameList.size()> 0 ) {
             str = otherClassMethodsNameList[otherClassMethodsNameList.size() -1]
-            otherClassMethodsNameList.removeLast()
         }
         switch (random.nextInt(5)) {
             case 0:
@@ -133,6 +132,7 @@ class JunkUtil {
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
         }
+        otherClassMethodsNameList.removeLast()
     }
 
     /**
