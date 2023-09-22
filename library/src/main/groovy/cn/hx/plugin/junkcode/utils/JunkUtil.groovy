@@ -7,6 +7,7 @@ import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeSpec
 import org.gradle.api.Project
+import sun.rmi.runtime.Log
 
 import javax.lang.model.element.Modifier
 import java.nio.file.Files
@@ -18,14 +19,13 @@ class JunkUtil {
 
     static abc = "abcdefghijklmnopqrstuvwxyz".toCharArray()
     static color = "0123456789abcdef".toCharArray()
+    static num = "0123456789".toCharArray()
+    static List<String> stringList = new ArrayList<>();
 
-    /**
-     * 生成名称
-     * @param index
-     * @return
-     */
+    // 随机生成一个activity名称
     static String generateName(int index) {
         def sb = new StringBuilder()
+
         for (i in 0..4) {
             sb.append(abc[random.nextInt(abc.size())])
         }
@@ -98,6 +98,9 @@ class JunkUtil {
         }
         return sb.toString()
     }
+
+
+
     /**
      * 生成id代码
      * @return
@@ -137,17 +140,12 @@ class JunkUtil {
             }
             if (!config.excludeActivityJavaFile) {
                 def typeBuilder = TypeSpec.classBuilder(className)
-                typeBuilder.superclass(ClassName.get("android.app", "Activity"))
+                // todo:   activity的继承父类更改为AppCompatActivity
+//                typeBuilder.superclass(ClassName.get("android.app", "Activity"))
+                typeBuilder.superclass(ClassName.get("androidx.appcompat.app", "AppCompatActivity"))
+
                 typeBuilder.addModifiers(Modifier.PUBLIC)
-                //onCreate方法
-                def bundleClassName = ClassName.get("android.os", "Bundle")
-                typeBuilder.addMethod(MethodSpec.methodBuilder("onCreate")
-                        .addAnnotation(Override.class)
-                        .addModifiers(Modifier.PROTECTED)
-                        .addParameter(bundleClassName, "savedInstanceState")
-                        .addStatement("super.onCreate(savedInstanceState)")
-                        .addStatement("setContentView(\$T.layout.${layoutName})", ClassName.get(namespace, "R"))
-                        .build())
+
                 if (config.typeGenerator) {
                     config.typeGenerator.execute(typeBuilder)
                 } else {
@@ -161,6 +159,7 @@ class JunkUtil {
                         } else {
                             methodName = generateName(j)
                         }
+                        stringList.add(methodName)
                         def methodBuilder = MethodSpec.methodBuilder(methodName)
                         if (config.methodGenerator) {
                             config.methodGenerator.execute(methodBuilder)
@@ -170,12 +169,62 @@ class JunkUtil {
                         typeBuilder.addMethod(methodBuilder.build())
                     }
                 }
+
+                //onCreate方法
+                def bundleClassName = ClassName.get("android.os", "Bundle")
+
+                typeBuilder.addMethod(MethodSpec.methodBuilder("onCreate")
+                        .addAnnotation(Override.class)
+                        .addModifiers(Modifier.PROTECTED)
+                        .addParameter(bundleClassName, "savedInstanceState")
+                        .addStatement("super.onCreate(savedInstanceState)")
+                        .addStatement("setContentView(\$T.layout.${layoutName})", ClassName.get(namespace, "R"))
+                        // todo: 添加调用方法
+                        .addStatement(getRandomMethod())
+                        .addStatement(getRandomMethod())
+                        .build())
+
+                typeBuilder.addMethod(MethodSpec.methodBuilder("onResume")
+                        .addAnnotation(Override.class)
+                        .addModifiers(Modifier.PROTECTED)
+                        .addStatement("super.onResume()")
+                // todo: 添加调用方法
+                        .addStatement(getRandomMethod())
+                        .addStatement(getRandomMethod())
+                        .build())
+
+
+                typeBuilder.addMethod(MethodSpec.methodBuilder("onDestroy")
+                        .addAnnotation(Override.class)
+                        .addModifiers(Modifier.PROTECTED)
+                        .addStatement("super.onDestroy()")
+                // todo: 添加调用方法
+                        .addStatement(getRandomMethod())
+                        .addStatement(getRandomMethod())
+                        .build())
+
+
                 def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
                 writeJavaToFile(javaDir, javaFile)
                 activityList.add(packageName + "." + className)
             }
         }
         return activityList
+    }
+
+
+    static Integer generateRandomNum() {
+        def sb = new StringBuilder()
+        for (i in 0..1) {
+            sb.append(num[random.nextInt(num.size())])
+        }
+        return sb.toInteger()
+    }
+
+    static String getRandomMethod(){
+
+        def unm = generateRandomNum()
+        return "${stringList[unm]}()"
     }
 
     /**

@@ -6,6 +6,98 @@ if (PLUGIN_ENABLE.toBoolean()) {
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'kotlin-kapt'
 
+
+
+
+import java.security.SecureRandom
+
+static def randomStringUn(int length) {
+    SecureRandom secureRandom = new SecureRandom()
+    // 使用可打印的 ASCII 字符作为生成字符串的字符集合
+    String characters = ('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]|\'"\\:;<>,.?/-=')
+    // 用 StringBuilder 保存生成的字符串
+    StringBuilder sb = new StringBuilder()
+
+    // 循环生成指定长度的随机字符串
+    for (int i = 0; i < length; i++) {
+        // 从字符集合中随机选择一个字符
+        int randomIndex = secureRandom.nextInt(characters.length())
+        char randomChar = characters.charAt(randomIndex)
+        // 将选择的字符添加到字符串中
+        sb.append(randomChar)
+    }
+
+    // 返回生成的随机字符串
+    return sb.toString()
+}
+
+// 定义生成随机字符串的函数
+static def randomString(int length) {
+// 首先定义一个随机数生成器
+    SecureRandom secureRandom = new SecureRandom()
+    // 使用可打印的 ASCII 字符作为生成字符串的字符集合
+    String characters = ('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    // 用 StringBuilder 保存生成的字符串
+    StringBuilder sb = new StringBuilder()
+
+    // 循环生成指定长度的随机字符串
+    for (int i = 0; i < length; i++) {
+        // 从字符集合中随机选择一个字符
+        int randomIndex = secureRandom.nextInt(characters.length())
+        char randomChar = characters.charAt(randomIndex)
+        // 将选择的字符添加到字符串中
+        sb.append(randomChar)
+    }
+
+    // 返回生成的随机字符串
+    return sb.toString()
+}
+
+// 定义生成随机字符串的函数
+static def randomLowerString(int length) {
+// 首先定义一个随机数生成器
+    SecureRandom secureRandom = new SecureRandom()
+    // 使用可打印的 ASCII 字符作为生成字符串的字符集合
+    String characters = ('abcdefghijklmnopqrstuvwxyz')
+    // 用 StringBuilder 保存生成的字符串
+    StringBuilder sb = new StringBuilder()
+
+    // 循环生成指定长度的随机字符串
+    for (int i = 0; i < length; i++) {
+        // 从字符集合中随机选择一个字符
+        int randomIndex = secureRandom.nextInt(characters.length())
+        char randomChar = characters.charAt(randomIndex)
+        // 将选择的字符添加到字符串中
+        sb.append(randomChar)
+    }
+
+    // 返回生成的随机字符串
+    return sb.toString()
+}
+
+// 定义生成随机字符串的函数
+static def randomInt(int length) {
+// 首先定义一个随机数生成器
+    SecureRandom secureRandom = new SecureRandom()
+    // 使用可打印的 ASCII 字符作为生成字符串的字符集合
+    String characters = ('0123456789')
+    // 用 StringBuilder 保存生成的字符串
+    StringBuilder sb = new StringBuilder()
+
+    // 循环生成指定长度的随机字符串
+//    for (int i = 0; i < 1; i++) {
+    // 从字符集合中随机选择一个字符
+    int randomIndex = secureRandom.nextInt(characters.length())
+    char randomChar = characters.charAt(randomIndex)
+    // 将选择的字符添加到字符串中
+    sb.append(randomChar)
+//    }
+
+    // 返回生成的随机字符串
+    return sb.toInteger()
+}
+
+
 android {
     compileSdkVersion 33
 
@@ -36,36 +128,190 @@ android {
 }
 
 if (PLUGIN_ENABLE.toBoolean()) {
+//
+//    androidJunkCode {
+//        debug true
+//        /**
+//         * 生成逻辑由插件完成
+//         */
+//        def config = {
+//            packageBase = "cn.hx.plugin.ui"
+//            packageCount = 30
+//            activityCountPerPackage = 30
+//            excludeActivityJavaFile = false
+//            otherCountPerPackage = 50
+//            methodCountPerClass = 20
+//            resPrefix = "junk_"
+//            drawableCount = 300
+//            stringCount = 300
+//        }
+//
+//        /**
+//         * 生成逻辑自定义
+//         */
+//        def partCustomConfig = {
+//            packageBase = "cn.hx.plugin.ui"
+//            packageCount = 3
+//            activityCountPerPackage = 30
+//            excludeActivityJavaFile = false
+//            otherCountPerPackage = 50
+//            methodCountPerClass = 20
+//            resPrefix = "junk_"
+//            drawableCount = 300
+//            stringCount = 300
+//
+//            //自定义生成包名(设置此项后packageBase将无效)
+//            //注意，要把生成的包名加入混淆文件
+//            packageCreator = { tuple2 ->
+//                //int:下标 [0,packageCount)
+//                def index = tuple2.first
+//                //StringBuilder: 生成包名格式xx.xx.xx
+//                def packageNameBuilder = tuple2.second
+//                packageNameBuilder.append("cn.hx.package" + index)
+//            }
+//
+//            /**
+//             * 自定义生成Activity
+//             */
+//            activityCreator = { tuple4 ->
+//                //int:下标 [0,activityCountPerPackage)
+//                def index = tuple4.first
+//                //StringBuilder: 生成Activity文件名
+//                def activityNameBuilder = tuple4.second
+//                //StringBuilder: 生成layout文件名
+//                def layoutNameBuilder = tuple4.third
+//                //StringBuilder: 生成layout内容
+//                def layoutContentBuilder = tuple4.fourth
+//
+//                //例
+//                activityNameBuilder.append("Activity${index}")
+//                layoutNameBuilder.append("activity_${index}")
+//                layoutContentBuilder.append('''<?xml version="1.0" encoding="utf-8"?>
+//<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+//    android:layout_width="match_parent"
+//    android:layout_height="match_parent"
+//    android:orientation="vertical">
+//
+//    <TextView
+//        android:layout_width="wrap_content"
+//        android:layout_height="wrap_content"
+//        android:layout_gravity="center" />
+//</LinearLayout>''')
+//            }
+//
+//            //自定义生成类名（Activity除外）
+//            classNameCreator = { tuple2 ->
+//                //int:下标 [0,otherCountPerPackage)
+//                def index = tuple2.first
+//                //StringBuilder: 生成Java文件名
+//                def classNameBuilder = tuple2.second
+//
+//                //例
+//                classNameBuilder.append("Class${index}")
+//            }
+//
+//            //自定义生成方法名
+//            methodNameCreator = { tuple2 ->
+//                //int:下标 [0,methodCountPerClass)
+//                def index = tuple2.first
+//                //StringBuilder: 生成的方法名
+//                def classNameBuilder = tuple2.second
+//
+//                //例
+//                classNameBuilder.append("method${index}")
+//            }
+//
+//            //自定义生成drawable（只支持xml）
+//            drawableCreator = { tuple3 ->
+//                //int:下标 [0,drawableCount)
+//                def index = tuple3.first
+//                //StringBuilder: 生成drawable文件名
+//                def fileNameBuilder = tuple3.second
+//                //StringBuilder: 生成drawable文件内容
+//                def contentBuilder = tuple3.third
+//
+//                //例
+//                fileNameBuilder.append("drawable${index}")
+//                contentBuilder.append('''<?xml version="1.0" encoding="utf-8"?>
+//<shape xmlns:android="http://schemas.android.com/apk/res/android">
+//    <corners android:radius="4dp" />
+//    <stroke
+//        android:width="1dp"
+//        android:color="#333333" />
+//</shape>
+//''')
+//            }
+//
+//            //自定义生成 string
+//            stringCreator = { tuple3 ->
+//                //int:下标 [0,drawableCount)
+//                def index = tuple3.first
+//                //StringBuilder: 生成string名
+//                def keyBuilder = tuple3.second
+//                //StringBuilder: 生成string值
+//                def valueBuilder = tuple3.third
+//
+//                //例
+//                keyBuilder.append("string${index}")
+//                valueBuilder.append("value${index}")
+//            }
+//
+//            //自定义生成keep.xm
+//            keepCreator = { tuple2 ->
+//                //StringBuilder:生成文件名
+//                def fileNameBuilder = tuple2.first
+//                //StringBuilder: 生成的文件内容
+//                def contentBuilder = tuple2.second
+//
+//                //例
+//                fileNameBuilder.append("android_junk_code_keep")
+//                contentBuilder.append("<resources xmlns:tools=\"http://schemas.android.com/tools\"\n" +
+//                        "    tools:keep=\"@layout/activity_*, @drawable/drawable*\" />\n")
+//            }
+//
+//            //自定义类实现（类名已经实现随机，Activity类已经实现了onCreate，其它自己实现随机）
+//            //注意设置了此实现将忽略 methodGenerator,methodCountPerClass
+//            //TypeSpec.Builder用法请参考(https://github.com/square/javapoet)
+////            typeGenerator = { typeBuilder ->
+////                //例
+////                for (i in 0..<10) {
+////                    typeBuilder.addMethod(MethodSpec.methodBuilder("method" + i)
+////                            .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+////                            .build())
+////                }
+////            }
+//
+//            //自定义方法实现（方法名已经实现随机，其它自己实现随机）
+//            //MethodSpec.Builder用法请参考(https://github.com/square/javapoet)
+////            methodGenerator = { methodBuilder ->
+////               //例
+////                methodBuilder.addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+////            }
+//        }
+//
+//        variantConfig {
+//            debug config
+//            release partCustomConfig
+//        }
+//    }
+
+
     androidJunkCode {
         debug true
-        /**
-         * 生成逻辑由插件完成
-         */
-        def config = {
-            packageBase = "cn.hx.plugin.ui"
-            packageCount = 30
-            activityCountPerPackage = 30
-            excludeActivityJavaFile = false
-            otherCountPerPackage = 50
-            methodCountPerClass = 20
-            resPrefix = "junk_"
-            drawableCount = 300
-            stringCount = 300
-        }
 
-        /**
-         * 生成逻辑自定义
-         */
-        def partCustomConfig = {
-            packageBase = "cn.hx.plugin.ui"
-            packageCount = 3
-            activityCountPerPackage = 30
-            excludeActivityJavaFile = false
-            otherCountPerPackage = 50
-            methodCountPerClass = 20
-            resPrefix = "junk_"
-            drawableCount = 300
-            stringCount = 300
+        def debugConfig =  {
+//注意：这里的release是变体名称，如果没有设置productFlavors就是buildType名称，如果有设置productFlavors就是flavor+buildType，例如（freeRelease、proRelease）
+            packageBase = "com.vds.fk.ui"  //生成java类根包名
+            packageCount = 10 //生成包数量
+            activityCountPerPackage = 3 //每个包下生成Activity类数量
+            excludeActivityJavaFile = false // 是否将生成的activity写入到AndroidManifest.xml文件中
+            //是否排除生成Activity的Java文件,默认false(layout和写入AndroidManifest.xml还会执行)，主要用于处理类似神策全埋点编译过慢问题
+            otherCountPerPackage = 30  //每个包下生成其它类的数量
+            methodCountPerClass = 20  //每个类下生成方法数量
+            resPrefix = "img"  //生成的layout、drawable、string等资源名前缀
+            drawableCount = 194  //生成drawable资源数量
+            stringCount = 300  //生成string数量
+
 
             //自定义生成包名(设置此项后packageBase将无效)
             //注意，要把生成的包名加入混淆文件
@@ -74,8 +320,71 @@ if (PLUGIN_ENABLE.toBoolean()) {
                 def index = tuple2.first
                 //StringBuilder: 生成包名格式xx.xx.xx
                 def packageNameBuilder = tuple2.second
-                packageNameBuilder.append("cn.hx.package" + index)
+
+                switch (randomInt(10)) {
+                    case 0:
+                        activityCountPerPackage = 3 //每个包下生成Activity类数量
+                        otherCountPerPackage = 11  //每个包下生成其它类的数量
+                        methodCountPerClass = 20  //每个类下生成方法数量
+                        packageNameBuilder.append("asdq.hsdx.dkjfd")
+                        break
+                    case 1:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 7  //每个包下生成其它类的数量
+                        methodCountPerClass = 6  //每个类下生成方法数量
+                        packageNameBuilder.append("dfger.wer.cxv")
+                        break
+                    case 2:
+                        activityCountPerPackage = 5 //每个包下生成Activity类数量
+                        otherCountPerPackage = 7  //每个包下生成其它类的数量
+                        methodCountPerClass = 11  //每个类下生成方法数量
+                        packageNameBuilder.append("ngfsdd.wq.fs")
+                        break
+                    case 3:
+                        activityCountPerPackage = 4 //每个包下生成Activity类数量
+                        otherCountPerPackage = 5  //每个包下生成其它类的数量
+                        methodCountPerClass = 12  //每个类下生成方法数量
+                        packageNameBuilder.append("werw.gfgfr.ccv")
+                        break
+                    case 4:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 6  //每个包下生成其它类的数量
+                        methodCountPerClass = 7  //每个类下生成方法数量
+                        packageNameBuilder.append("sgdf.fd.wsb")
+                        break
+                    case 5:
+                        activityCountPerPackage = 1 //每个包下生成Activity类数量
+                        otherCountPerPackage = 12  //每个包下生成其它类的数量
+                        methodCountPerClass = 7  //每个类下生成方法数量
+                        packageNameBuilder.append("ervc.redf.dkjfd")
+                        break
+                    case 6:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 13  //每个包下生成其它类的数量
+                        methodCountPerClass = 20  //每个类下生成方法数量
+                        packageNameBuilder.append("dgfg.df.erw")
+                        break
+                    case 7:
+                        activityCountPerPackage = 1 //每个包下生成Activity类数量
+                        otherCountPerPackage = 11  //每个包下生成其它类的数量
+                        methodCountPerClass = 5  //每个类下生成方法数量
+                        packageNameBuilder.append("admob.df.erw")
+                        break
+                    case 8:
+                        activityCountPerPackage = 1 //每个包下生成Activity类数量
+                        otherCountPerPackage = 16  //每个包下生成其它类的数量
+                        methodCountPerClass = 10  //每个类下生成方法数量
+                        packageNameBuilder.append("sdk.df.erw")
+                        break
+                    default:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 7  //每个包下生成其它类的数量
+                        methodCountPerClass = 7  //每个类下生成方法数量
+                        packageNameBuilder.append("ertc.hsdx.dkjfd")
+                        break
+                }
             }
+
 
             /**
              * 自定义生成Activity
@@ -90,21 +399,361 @@ if (PLUGIN_ENABLE.toBoolean()) {
                 //StringBuilder: 生成layout内容
                 def layoutContentBuilder = tuple4.fourth
 
-                //例
-                activityNameBuilder.append("Activity${index}")
-                layoutNameBuilder.append("activity_${index}")
-                layoutContentBuilder.append('''<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                activityNameBuilder.append("${randomString(7)}")
+//                -------------------------------------
+//                activityNameBuilder.append("dsDssss")
+//                *************************************
+                layoutNameBuilder.append("${randomLowerString(5)}")
 
-    <TextView
+
+                def randomLayout = ""
+                randomLayout = '''<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">'''
+                switch (randomInt(10)) {
+                    case 0:
+                        randomLayout += '''
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bottomsheet_action_expand_halfway"
+            android:textAlignment="center"
+            android:textColor="#00D2EB"
+            android:textSize="15sp"/>
+    </LinearLayout>'''
+                        break
+                    case 1:
+                        randomLayout += '''
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>'''
+                        break
+                    case 2:
+                        randomLayout +='''
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crop_xiaozhen"
+            android:textSize="23sp"
+            android:textColor="#FFE7E7"
+            android:textAlignment="center"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_i_agree"/>
+        
+    </androidx.cardview.widget.CardView>
+'''
+                        break
+                    case 3:
+                        randomLayout +='''
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-</LinearLayout>''')
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+'''
+                        break
+                    case 4:
+                        randomLayout +='''
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="5dp"
+        android:background="#2E2E2E" />
+
+    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/particle_21"
+        app:layout_constraintEnd_toEndOf="parent" />
+'''
+                        break
+                    case 5:
+                        randomLayout +='''
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="5dp"
+            android:background="#000000" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bottomsheet_action_expand_halfway"
+            android:textAlignment="center"
+            android:textColor="#1B8895"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_7"/>
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="25dp"/>
+        </LinearLayout>
+    </LinearLayout>
+'''
+                        break
+                    case 6:
+                        randomLayout +='''        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_7"/>
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="25dp"/>
+        </LinearLayout>
+'''
+                        break
+                    case 7:
+                        randomLayout +='''
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sug_thks"
+                android:textSize="10sp"/>
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_15"/>
+        </LinearLayout>
+'''
+                        break
+                    case 8:
+                        randomLayout +='''
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+       
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_i_agree" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_16"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+'''
+                        break
+                    default :
+                        randomLayout +='''
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_22"/>
+    </FrameLayout>
+'''
+                }
+
+                switch (randomInt(10)){
+                    case 0:
+                        randomLayout += '''
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="132354"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 1:
+                        randomLayout += '''
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_21"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 2:
+                        randomLayout += '''
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="45dp" />
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 3:
+                        randomLayout += '''
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_22" />
+    </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 4:
+                        randomLayout += '''
+      
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_7"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 5:
+                        randomLayout += '''
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 6:
+                        randomLayout += '''
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 7:
+                        randomLayout += '''
+        
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="#272727"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 8:
+                        randomLayout += '''
+        
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_i_agree" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_22" />
+    </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    default :
+                        randomLayout += '''
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_21"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                }
+
+                layoutContentBuilder.append(randomLayout)
+
             }
+
 
             //自定义生成类名（Activity除外）
             classNameCreator = { tuple2 ->
@@ -114,7 +763,8 @@ if (PLUGIN_ENABLE.toBoolean()) {
                 def classNameBuilder = tuple2.second
 
                 //例
-                classNameBuilder.append("Class${index}")
+                classNameBuilder.append("${randomString(3)}")
+                classNameBuilder.append("${randomString(4)}")
             }
 
             //自定义生成方法名
@@ -125,8 +775,9 @@ if (PLUGIN_ENABLE.toBoolean()) {
                 def classNameBuilder = tuple2.second
 
                 //例
-                classNameBuilder.append("method${index}")
+                classNameBuilder.append("${randomString(5)}")
             }
+
 
             //自定义生成drawable（只支持xml）
             drawableCreator = { tuple3 ->
@@ -137,43 +788,1136 @@ if (PLUGIN_ENABLE.toBoolean()) {
                 //StringBuilder: 生成drawable文件内容
                 def contentBuilder = tuple3.third
 
-                //例
-                fileNameBuilder.append("drawable${index}")
-                contentBuilder.append('''<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="4dp" />
-    <stroke
+                // 自定义 Drawable 资源文件
+                fileNameBuilder.append("${randomLowerString(6)}")
+                def drawableStr = '''<?xml version="1.0" encoding="utf-8"?>\n'''
+
+                def drawableIndex = randomInt(10)
+
+                switch (randomInt(10)) {
+                    case 0:
+                        drawableStr += '''<selector xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</selector>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</selector>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</selector>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</selector>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</selector>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</selector>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</selector>'''
+                                break
+
+                            default : drawableStr +='''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+</selector>'''
+                        }
+                        break
+                    case 1:
+                        drawableStr += '''<layer-list xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</layer-list>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</layer-list>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</layer-list>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</layer-list>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</layer-list>'''
+                                break
+                            default:  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</layer-list>'''
+                        }
+                        break
+                    case 2:
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" />
+        </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/></shape> '''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
         android:width="1dp"
-        android:color="#333333" />
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" /> </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" /> 
+        </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /></shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /></shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
 </shape>
-''')
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/></shape>'''
+                        }
+                        break
+
+                    case 3:
+                        drawableStr += '''<selector xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</selector>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</selector>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</selector>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</selector>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</selector>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</selector>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</selector>'''
+                                break
+                            default :  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</selector>'''
+                        }
+                        break
+                    case 4:
+                        drawableStr += '''<layer-list xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</layer-list>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</layer-list>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</layer-list>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</layer-list>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</layer-list>'''
+                                break
+                            default:  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</layer-list>'''
+                        }
+                        break
+                    case 5:
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" />
+        </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/></shape> '''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
+        android:width="1dp"
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" /> </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" /> 
+        </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /></shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /></shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
+</shape>
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/></shape>'''
+                        }
+                        break
+
+
+                    case 6:
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" /> </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/> </shape>'''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
+        android:width="1dp"
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" />  </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" />     </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /> </shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /> </shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
+</shape>
+
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/> </shape>'''
+                        }
+                        break
+
+                    case 7:
+                        drawableStr += '''<selector xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</selector>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</selector>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</selector>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</selector>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</selector>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</selector>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</selector>'''
+                                break
+                            default :  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</selector>'''
+                        }
+                        break
+                    case 8:
+                        drawableStr += '''<layer-list xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</layer-list>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</layer-list>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</layer-list>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</layer-list>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</layer-list>'''
+                                break
+                            default: drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</layer-list>'''
+                        }
+                        break  //
+                    default :
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" />
+        </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/></shape> '''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
+        android:width="1dp"
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" /> </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" /> </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /></shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /></shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
+</shape>
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/></shape>'''
+
+                        }
+                }
+                contentBuilder.append(drawableStr)
             }
 
+
+            ///
             //自定义生成 string
-            stringCreator = { tuple3 ->
+            stringCreator = { tuple5 ->
                 //int:下标 [0,drawableCount)
-                def index = tuple3.first
                 //StringBuilder: 生成string名
-                def keyBuilder = tuple3.second
+                def keyBuilder = tuple5.second
                 //StringBuilder: 生成string值
-                def valueBuilder = tuple3.third
-
-                //例
-                keyBuilder.append("string${index}")
-                valueBuilder.append("value${index}")
-            }
-
-            //自定义生成keep.xm
-            keepCreator = { tuple2 ->
-                //StringBuilder:生成文件名
-                def fileNameBuilder = tuple2.first
-                //StringBuilder: 生成的文件内容
-                def contentBuilder = tuple2.second
-
-                //例
-                fileNameBuilder.append("android_junk_code_keep")
-                contentBuilder.append("<resources xmlns:tools=\"http://schemas.android.com/tools\"\n" +
-                        "    tools:keep=\"@layout/activity_*, @drawable/drawable*\" />\n")
+                def valueBuilder = tuple5.third
+//                keyBuilder.append("SDFDSF")
+//                valueBuilder.append("TYUYTHTFGHFH}")
+                keyBuilder.append("${randomString(6)}")
+                valueBuilder.append("${randomString(10)}")
             }
 
             //自定义类实现（类名已经实现随机，Activity类已经实现了onCreate，其它自己实现随机）
@@ -187,20 +1931,1663 @@ if (PLUGIN_ENABLE.toBoolean()) {
 //                            .build())
 //                }
 //            }
-
+//
             //自定义方法实现（方法名已经实现随机，其它自己实现随机）
             //MethodSpec.Builder用法请参考(https://github.com/square/javapoet)
 //            methodGenerator = { methodBuilder ->
 //               //例
 //                methodBuilder.addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
 //            }
+
+        }
+        def releaseConfig =  {
+//注意：这里的release是变体名称，如果没有设置productFlavors就是buildType名称，如果有设置productFlavors就是flavor+buildType，例如（freeRelease、proRelease）
+            packageBase = "com.vds.fk.ui"  //生成java类根包名
+            packageCount = 10 //生成包数量
+            activityCountPerPackage = 3 //每个包下生成Activity类数量
+            excludeActivityJavaFile = false // 是否将生成的activity写入到AndroidManifest.xml文件中
+            //是否排除生成Activity的Java文件,默认false(layout和写入AndroidManifest.xml还会执行)，主要用于处理类似神策全埋点编译过慢问题
+            otherCountPerPackage = 30  //每个包下生成其它类的数量
+            methodCountPerClass = 20  //每个类下生成方法数量
+            resPrefix = "img"  //生成的layout、drawable、string等资源名前缀
+            drawableCount = 194  //生成drawable资源数量
+            stringCount = 300  //生成string数量
+
+
+            //自定义生成包名(设置此项后packageBase将无效)
+            //注意，要把生成的包名加入混淆文件
+            packageCreator = { tuple2 ->
+                //int:下标 [0,packageCount)
+                def index = tuple2.first
+                //StringBuilder: 生成包名格式xx.xx.xx
+                def packageNameBuilder = tuple2.second
+
+                switch (randomInt(10)) {
+                    case 0:
+                        activityCountPerPackage = 3 //每个包下生成Activity类数量
+                        otherCountPerPackage = 11  //每个包下生成其它类的数量
+                        methodCountPerClass = 20  //每个类下生成方法数量
+                        packageNameBuilder.append("asdq.hsdx.dkjfd")
+                        break
+                    case 1:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 7  //每个包下生成其它类的数量
+                        methodCountPerClass = 6  //每个类下生成方法数量
+                        packageNameBuilder.append("dfger.wer.cxv")
+                        break
+                    case 2:
+                        activityCountPerPackage = 5 //每个包下生成Activity类数量
+                        otherCountPerPackage = 7  //每个包下生成其它类的数量
+                        methodCountPerClass = 11  //每个类下生成方法数量
+                        packageNameBuilder.append("ngfsdd.wq.fs")
+                        break
+                    case 3:
+                        activityCountPerPackage = 4 //每个包下生成Activity类数量
+                        otherCountPerPackage = 5  //每个包下生成其它类的数量
+                        methodCountPerClass = 12  //每个类下生成方法数量
+                        packageNameBuilder.append("werw.gfgfr.ccv")
+                        break
+                    case 4:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 6  //每个包下生成其它类的数量
+                        methodCountPerClass = 7  //每个类下生成方法数量
+                        packageNameBuilder.append("sgdf.fd.wsb")
+                        break
+                    case 5:
+                        activityCountPerPackage = 1 //每个包下生成Activity类数量
+                        otherCountPerPackage = 12  //每个包下生成其它类的数量
+                        methodCountPerClass = 7  //每个类下生成方法数量
+                        packageNameBuilder.append("ervc.redf.dkjfd")
+                        break
+                    case 6:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 13  //每个包下生成其它类的数量
+                        methodCountPerClass = 20  //每个类下生成方法数量
+                        packageNameBuilder.append("dgfg.df.erw")
+                        break
+                    case 7:
+                        activityCountPerPackage = 1 //每个包下生成Activity类数量
+                        otherCountPerPackage = 11  //每个包下生成其它类的数量
+                        methodCountPerClass = 5  //每个类下生成方法数量
+                        packageNameBuilder.append("admob.df.erw")
+                        break
+                    case 8:
+                        activityCountPerPackage = 1 //每个包下生成Activity类数量
+                        otherCountPerPackage = 16  //每个包下生成其它类的数量
+                        methodCountPerClass = 10  //每个类下生成方法数量
+                        packageNameBuilder.append("sdk.df.erw")
+                        break
+                    default:
+                        activityCountPerPackage = 2 //每个包下生成Activity类数量
+                        otherCountPerPackage = 7  //每个包下生成其它类的数量
+                        methodCountPerClass = 7  //每个类下生成方法数量
+                        packageNameBuilder.append("ertc.hsdx.dkjfd")
+                        break
+                }
+            }
+
+
+            /**
+             * 自定义生成Activity
+             */
+            activityCreator = { tuple4 ->
+                //int:下标 [0,activityCountPerPackage)
+                def index = tuple4.first
+                //StringBuilder: 生成Activity文件名
+                def activityNameBuilder = tuple4.second
+                //StringBuilder: 生成layout文件名
+                def layoutNameBuilder = tuple4.third
+                //StringBuilder: 生成layout内容
+                def layoutContentBuilder = tuple4.fourth
+
+                activityNameBuilder.append("${randomString(7)}")
+//                -------------------------------------
+//                activityNameBuilder.append("dsDssss")
+//                *************************************
+                layoutNameBuilder.append("${randomLowerString(5)}")
+
+
+                def randomLayout = ""
+                randomLayout = '''<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">'''
+                switch (randomInt(10)) {
+                    case 0:
+                        randomLayout += '''
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bottomsheet_action_expand_halfway"
+            android:textAlignment="center"
+            android:textColor="#64D5E3"
+            android:textSize="15sp"/>
+    </LinearLayout>'''
+                        break
+                    case 1:
+                        randomLayout += '''
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>'''
+                        break
+                    case 2:
+                        randomLayout +='''
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crop_xiaozhen"
+            android:textSize="23sp"
+            android:textColor="#FF0000"
+            android:textAlignment="center"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_i_agree"/>
+        
+    </androidx.cardview.widget.CardView>
+'''
+                        break
+                    case 3:
+                        randomLayout +='''
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+'''
+                        break
+                    case 4:
+                        randomLayout +='''
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="5dp"
+        android:background="#763B3B" />
+
+    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/particle_21"
+        app:layout_constraintEnd_toEndOf="parent" />
+'''
+                        break
+                    case 5:
+                        randomLayout +='''
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="5dp"
+            android:background="#A17070" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bottomsheet_action_expand_halfway"
+            android:textAlignment="center"
+            android:textColor="#4A848B"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_7"/>
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="25dp"/>
+        </LinearLayout>
+    </LinearLayout>
+'''
+                        break
+                    case 6:
+                        randomLayout +='''        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_7"/>
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="25dp"/>
+        </LinearLayout>
+'''
+                        break
+                    case 7:
+                        randomLayout +='''
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sug_thks"
+                android:textSize="10sp"/>
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_15"/>
+        </LinearLayout>
+'''
+                        break
+                    case 8:
+                        randomLayout +='''
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+       
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_i_agree" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_16"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+'''
+                        break
+                    default :
+                        randomLayout +='''
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_22"/>
+    </FrameLayout>
+'''
+                }
+
+                switch (randomInt(10)){
+                    case 0:
+                        randomLayout += '''
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="132354"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 1:
+                        randomLayout += '''
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_21"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 2:
+                        randomLayout += '''
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="45dp" />
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 3:
+                        randomLayout += '''
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_22" />
+    </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 4:
+                        randomLayout += '''
+      
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/particle_7"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 5:
+                        randomLayout += '''
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 6:
+                        randomLayout += '''
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 7:
+                        randomLayout += '''
+        
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="#173A3E"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    case 8:
+                        randomLayout += '''
+        
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_i_agree" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_22" />
+    </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                        break
+                    default :
+                        randomLayout += '''
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/particle_21"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </androidx.constraintlayout.widget.ConstraintLayout>'''
+                }
+
+                layoutContentBuilder.append(randomLayout)
+
+            }
+
+
+            //自定义生成类名（Activity除外）
+            classNameCreator = { tuple2 ->
+                //int:下标 [0,otherCountPerPackage)
+                def index = tuple2.first
+                //StringBuilder: 生成Java文件名
+                def classNameBuilder = tuple2.second
+
+                //例
+                classNameBuilder.append("${randomString(3)}")
+                classNameBuilder.append("${randomString(4)}")
+            }
+
+            //自定义生成方法名
+            methodNameCreator = { tuple2 ->
+                //int:下标 [0,methodCountPerClass)
+                def index = tuple2.first
+                //StringBuilder: 生成的方法名
+                def classNameBuilder = tuple2.second
+
+                //例
+                classNameBuilder.append("${randomString(5)}")
+            }
+
+
+            //自定义生成drawable（只支持xml）
+            drawableCreator = { tuple3 ->
+                //int:下标 [0,drawableCount)
+                def index = tuple3.first
+                //StringBuilder: 生成drawable文件名
+                def fileNameBuilder = tuple3.second
+                //StringBuilder: 生成drawable文件内容
+                def contentBuilder = tuple3.third
+
+                // 自定义 Drawable 资源文件
+                fileNameBuilder.append("${randomLowerString(6)}")
+                def drawableStr = '''<?xml version="1.0" encoding="utf-8"?>\n'''
+
+                def drawableIndex = randomInt(10)
+
+                switch (randomInt(10)) {
+                    case 0:
+                        drawableStr += '''<selector xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</selector>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</selector>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</selector>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</selector>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</selector>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</selector>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</selector>'''
+                                break
+
+                            default : drawableStr +='''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+</selector>'''
+                        }
+                        break
+                    case 1:
+                        drawableStr += '''<layer-list xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</layer-list>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</layer-list>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</layer-list>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</layer-list>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</layer-list>'''
+                                break
+                            default:  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</layer-list>'''
+                        }
+                        break
+                    case 2:
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" />
+        </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/></shape> '''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
+        android:width="1dp"
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" /> </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" /> 
+        </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /></shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /></shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
+</shape>
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/></shape>'''
+                        }
+                        break
+
+                    case 3:
+                        drawableStr += '''<selector xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</selector>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</selector>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</selector>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</selector>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</selector>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</selector>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</selector>'''
+                                break
+                            default :  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</selector>'''
+                        }
+                        break
+                    case 4:
+                        drawableStr += '''<layer-list xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</layer-list>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</layer-list>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</layer-list>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</layer-list>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</layer-list>'''
+                                break
+                            default:  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</layer-list>'''
+                        }
+                        break
+                    case 5:
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" />
+        </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/></shape> '''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
+        android:width="1dp"
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" /> </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" /> 
+        </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /></shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /></shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
+</shape>
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/></shape>'''
+                        }
+                        break
+
+
+                    case 6:
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" /> </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/> </shape>'''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
+        android:width="1dp"
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" />  </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" />     </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /> </shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /> </shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
+</shape>
+
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/> </shape>'''
+                        }
+                        break
+
+                    case 7:
+                        drawableStr += '''<selector xmlns:android="http://schemas.android.com/apk/res/android">'''
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</selector>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</selector>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</selector>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</selector>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</selector>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</selector>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</selector>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</selector>'''
+                                break
+                            default :  drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</selector>'''
+                        }
+                        break
+                    case 8:
+                        drawableStr += '''<layer-list xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0: drawableStr += '''<item android:state_focused="true"
+        android:color="#ff0000ff"/> 
+    <item android:color="#ff000000"/> 
+</layer-list>'''
+                                break
+                            case 1: drawableStr += '''
+    <item android:color="#A23B3B" android:state_pressed="true"/>
+    <item android:color="#A23B3B" />
+</layer-list>'''
+                                break
+                            case 2: drawableStr += '''<item  android:state_pressed="true" >
+        <shape >
+            <corners android:radius="5dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#3B4DA2"
+                android:dashGap="10dp" />
+            <gradient
+                android:centerColor="#153BEC"
+                android:endColor="#959595" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 3: drawableStr += '''<item>
+        <shape>
+            <corners android:radius="10dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#0531FF" />
+        </shape>
+    </item>
+</layer-list>'''
+                                break
+                            case 4: drawableStr += '''<item android:color="#FFFF00" android:state_selected="true"/>
+    <item android:color="#FFFF00" android:state_pressed="true" />
+    <item android:color="#FFFF00" android:state_checked="true"/>
+    <item android:color="#FFFF00" android:state_focused="true"/>
+    <item android:color="#888888"/>
+</layer-list>'''
+                                break
+                            case 5: drawableStr += '''
+<item android:drawable="@mipmap/ic_launcher" android:state_selected="true"/>
+android:state_focused="true" />
+    <item >
+        <animated-rotate
+            android:drawable="@drawable/ic_five_stars"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true" />
+    </item>
+</layer-list>'''
+                                break
+                            case 6: drawableStr += ''' 
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <clip
+            android:drawable="@drawable/ic_checked"
+            android:clipOrientation="horizontal"
+            android:gravity="center"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 7: drawableStr += '''  
+<item android:drawable="@drawable/ic_checked" android:state_selected="true"/>
+    <item >
+        <scale
+            android:drawable="@drawable/ic_checked"
+            android:scaleGravity="center"
+            android:level="1"
+            android:useIntrinsicSizeAsMinimum="false"
+            android:scaleHeight="100%"
+            android:scaleWidth="100%"/>
+    </item>
+</layer-list>'''
+                                break
+                            case 8: drawableStr += ''' 
+<item android:drawable="@drawable/ucrop_ic_angle" android:state_selected="true"/>
+    <item >
+        <rotate
+            android:drawable="@drawable/ucrop_ic_angle"
+            android:fromDegrees="0"
+            android:toDegrees="180"
+            android:pivotX="250"
+            android:pivotY="250"
+            android:visible="true"/>
+    </item>
+</layer-list>'''
+                                break
+                            default: drawableStr += '''
+<item android:state_selected="true">
+        <ripple
+            android:color="#EF0202"
+            android:radius="10px">
+            <item android:drawable="@drawable/md_nav_back"/>
+        </ripple>
+    </item>
+    <item android:drawable="@drawable/cpv_ic_arrow_right_black_24dp"/>
+
+</layer-list>'''
+                        }
+                        break  //
+                    default :
+                        drawableStr += '''<shape xmlns:android="http://schemas.android.com/apk/res/android">'''
+
+                        switch (randomInt(10)) {
+                            case 0:
+                                drawableStr += '''  <corners 
+
+        android:radius="20dp" 
+
+        android:topLeftRadius="10dp" 
+
+        android:topRightRadius="10dp" 
+
+        android:bottomLeftRadius="10dp" 
+
+        android:bottomRightRadius="10dp" />
+        </shape>
+'''
+                                break
+                            case 1:
+                                drawableStr += '''
+    <solid android:color="#f66"/></shape> '''
+                                break
+                            case 2:
+                                drawableStr += '''<gradient
+
+        android:angle="90" 
+
+        android:centerX="0.5" 
+
+        android:centerY="0.5" 
+
+        android:startColor="#24e9f2" 
+
+        android:centerColor="#2564ef"
+
+        android:endColor="#25f1ef" 
+
+        android:gradientRadius="5dp" 
+
+        android:useLevel="false" /> </shape>
+'''
+                                break
+                            case 3:
+                                drawableStr += ''' <stroke
+        android:width="1dp"
+        android:color="#ff0000" 
+        android:dashWidth="1dp"
+        android:dashGap="1dp" /> </shape>
+'''
+                                break
+                            case 4:
+                                drawableStr += ''' <padding
+
+        android:left="10dp"
+
+        android:top="10dp" 
+
+        android:right="10dp" 
+
+        android:bottom="10dp" /> </shape>
+'''
+                                break
+                            case 5:
+                                drawableStr += '''
+    <solid android:color="#E10C0C" /></shape>
+'''
+                                break
+                            case 6:
+                                drawableStr += '''
+    <size
+        android:width="50dp" 
+        android:height="50dp" /></shape>
+'''
+                                break
+                            case 7:
+                                drawableStr += '''
+    <solid android:color="#D41313" />
+    <size android:height="100dp" android:width="100dp" /></shape>
+'''
+                                break
+                            case 8:
+                                drawableStr += '''  <stroke
+        android:width="1dp"
+        android:color="#3E2828"
+        android:dashGap="3dp"
+        android:dashWidth="4dp" /> 
+    <size android:height="3dp" />
+</shape>
+'''
+                                break
+
+                            default :
+                                drawableStr += '''    <stroke android:width="5px" android:color="#CDCCCC" />
+    <gradient
+        android:angle="90"
+        android:endColor="#2E2121"
+        android:startColor="#FF0000"/>
+    <padding
+        android:left="20dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="20dp"/></shape>'''
+
+                        }
+                }
+                contentBuilder.append(drawableStr)
+            }
+
+
+            ///
+            //自定义生成 string
+            stringCreator = { tuple5 ->
+                //int:下标 [0,drawableCount)
+                //StringBuilder: 生成string名
+                def keyBuilder = tuple5.second
+                //StringBuilder: 生成string值
+                def valueBuilder = tuple5.third
+//                keyBuilder.append("SDFDSF")
+//                valueBuilder.append("TYUYTHTFGHFH}")
+                keyBuilder.append("${randomString(6)}")
+                valueBuilder.append("${randomString(10)}")
+            }
+
+            //自定义类实现（类名已经实现随机，Activity类已经实现了onCreate，其它自己实现随机）
+            //注意设置了此实现将忽略 methodGenerator,methodCountPerClass
+            //TypeSpec.Builder用法请参考(https://github.com/square/javapoet)
+//            typeGenerator = { typeBuilder ->
+//                //例
+//                for (i in 0..<10) {
+//                    typeBuilder.addMethod(MethodSpec.methodBuilder("method" + i)
+//                            .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+//                            .build())
+//                }
+//            }
+//
+            //自定义方法实现（方法名已经实现随机，其它自己实现随机）
+            //MethodSpec.Builder用法请参考(https://github.com/square/javapoet)
+//            methodGenerator = { methodBuilder ->
+//               //例
+//                methodBuilder.addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+//            }
+
+        }
+        variantConfig {
+            debug debugConfig
+            release releaseConfig
         }
 
-        variantConfig {
-            debug config
-            release partCustomConfig
-        }
     }
+
 }
 
 dependencies {
