@@ -78,6 +78,9 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("${str}")    // 方法名列表
+                        .addStatement("${otherClassNameList}")    // 方法名列表
+                        .addStatement("${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
                         .endControlFlow()
                 break
             case 1:
@@ -85,6 +88,9 @@ class JunkUtil {
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                         .addStatement("${str}")    // 方法名列表
+                        .addStatement("${otherClassNameList}")    // 方法名列表
+                        .addStatement("${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
 //                        .addStatement(otherClassNameList.toString())    // 缺少类名
 //                        .addStatement("${myList.toString()}")   // 不正确
 //                        .addStatement("${otherClassMethodsAccessList.toString()}") // 正确
@@ -96,6 +102,9 @@ class JunkUtil {
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
                         .addStatement("${str}")    // 方法名列表
+                        .addStatement("${otherClassNameList}")    // 方法名列表
+                        .addStatement("${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
                         .endControlFlow()
                 break
             case 3:
@@ -106,6 +115,9 @@ class JunkUtil {
                  */
                 methodBuilder
                         .addStatement("${str}")    // 方法名列表
+                        .addStatement("${otherClassNameList}")    // 方法名列表
+                        .addStatement("${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
@@ -118,6 +130,9 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("${str}")    // 方法名列表
+                        .addStatement("${otherClassNameList}")    // 方法名列表
+                        .addStatement("${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -132,16 +147,18 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("${str}")    // 方法名列表
+                        .addStatement("${otherClassNameList}")    // 方法名列表
+                        .addStatement("${otherClassNameList.class.name}")    // 方法名列表
+                        .addStatement("${otherClassNameList.metaClass.class.name}")    // 方法名列表
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
         }
     }
 
-    /**
-     * 生成颜色代码
-     * @return
-     */
+
+
+    // 生成颜色代码
     static String generateColor() {
         def sb = new StringBuilder()
         sb.append("#")
@@ -152,11 +169,7 @@ class JunkUtil {
     }
 
 
-
-    /**
-     * 生成id代码
-     * @return
-     */
+    // 生成id代码
     static String generateId() {
         def sb = new StringBuilder()
         for (i in 0..5) {
@@ -302,6 +315,7 @@ class JunkUtil {
                 className = generateName(i).capitalize()
             }
             def typeBuilder = TypeSpec.classBuilder(className)
+            otherClassNameList.add(0, className)
             if (config.typeGenerator) {
                 config.typeGenerator.execute(typeBuilder)
             } else {
@@ -329,7 +343,6 @@ class JunkUtil {
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
             otherClassNameList.add(0, javaFile.packageName)
-            otherClassNameList1.add(0, javaFile.fileComment)
             writeJavaToFile(javaDir, javaFile)
         }
     }
