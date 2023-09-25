@@ -83,7 +83,7 @@ class JunkUtil {
             def name = generateName(index)
             return name
         }
-        int randomIndex = Math.floor(Math.random() * strList.size())
+        int randomIndex = (int)Math.floor(Math.random() * strList.size())
         String randomStr = strList[randomIndex]
         strList.remove(randomIndex)
         return randomStr
@@ -260,9 +260,9 @@ class JunkUtil {
                 layoutName = layoutNameBuilder.toString()
                 writeStringToFile(new File(resDir, "layout/${layoutName}.xml"), layoutContentBuilder.toString())
             } else {
-//                def activityPreName = generateName(i)
+                def activityPreName = generateName(i)
                 // todo：从固有列表中随机获取任意一个 Activity 名称
-                def activityPreName = getRandomActivityName(i)
+//                def activityPreName = getRandomActivityName(i)
                 className = activityPreName.capitalize() + "Activity"
                 layoutName = "${config.resPrefix.toLowerCase()}${packageName.replace(".", "_")}_activity_${activityPreName}"
                 generateLayout(resDir, layoutName, config)
