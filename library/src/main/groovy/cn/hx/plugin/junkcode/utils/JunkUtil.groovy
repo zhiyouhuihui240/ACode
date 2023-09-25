@@ -96,7 +96,7 @@ class JunkUtil {
 //        otherClassMethodsNameList.add(0,methodBuilder.name)
 //        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
         firstNum += 1
-        def str = 0
+        def str = "logg"
         if (otherClassMethodsNameList.size()> 0 ) {
             str = otherClassMethodsNameList[otherClassMethodsNameList.size() -1]
             otherClassMethodsNameList.removeLast()
@@ -108,11 +108,10 @@ class JunkUtil {
             fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
             otherPackageNameList.remove(3)
             otherClassNameList.remove(3)
-        }else {
-            str = "logg"
         }
 
         Class<?> clazz = Class.forName(fullName);
+
         Object instance = clazz.getDeclaredConstructor().newInstance()
 
         switch (random.nextInt(5)) {
@@ -127,7 +126,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
 //                        .addStatement("\$T.logg()", "${Utils.class}")
-                        .addStatement("\$T.$str()", "${instance.class}")
+                        .addStatement("\$T.str()", "${instance.class}")
 //                        .addStatement( "${instance}")
 //                        .addStatement( "${instance.class}")
 //                        .addStatement( "${instance.properties.getClass()}")
