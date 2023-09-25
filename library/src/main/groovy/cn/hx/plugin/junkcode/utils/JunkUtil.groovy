@@ -251,8 +251,8 @@ class JunkUtil {
             def className
             def layoutName
             if (config.activityCreator) {
-//                def activityNameBuilder = new StringBuilder()
-                def activityNameBuilder = getRandomActivityName(i)
+                def activityNameBuilder = new StringBuilder()
+//                def activityNameBuilder = getRandomActivityName(i)
                 def layoutNameBuilder = new StringBuilder()
                 def layoutContentBuilder = new StringBuilder()
 //                config.activityCreator.execute(new Tuple4(i, getRandomActivityName(i), layoutNameBuilder, layoutContentBuilder))
