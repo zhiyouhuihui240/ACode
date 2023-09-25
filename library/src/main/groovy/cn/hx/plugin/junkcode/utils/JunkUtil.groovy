@@ -106,7 +106,8 @@ class JunkUtil {
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
             fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
-            System.getProperty("FULL_NAME", fullName)
+            otherPackageNameList.remove(3)
+            otherClassNameList.remove(3)
         }
 
 
