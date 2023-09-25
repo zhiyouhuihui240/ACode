@@ -125,7 +125,11 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
 //                        .addStatement("\$T.logg()", "${Utils.class}")
-                        .addStatement("\$T.$str()", fullName.class)
+                        .addStatement("\$T.$str()", fullName)
+                        .addStatement("${fullName}")
+                        .addStatement("${fullName.class}")
+                        .addStatement("${fullName.metaClass}")
+                        .addStatement("${fullName.getClass()}")
 
 
 //                        .addStatement((otherClassNameList.size() > 1 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(0)))}" : "内容为空"))
