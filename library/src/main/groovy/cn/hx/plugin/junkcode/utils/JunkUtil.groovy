@@ -23,7 +23,7 @@ class JunkUtil {
     static List<String> stringNameList = new ArrayList<>()
     // 存储其他类的一些数据
     static List<String> otherClassNameList = new ArrayList<>()
-    static List<String> otherClassNameList1 = new ArrayList<>()
+    static List<String> otherPackageNameList = new ArrayList<>()
     static List<String> otherClassMethodsNameList = new ArrayList<>()
     static List<String> otherClassMethodsAccessList = new ArrayList<>()
     static myList = [key1: ['value1', 'value2', 'value3']]
@@ -109,20 +109,18 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .endControlFlow()
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
-                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
 //                        .addStatement(otherClassNameList.toString())    // 缺少类名
 //                        .addStatement("${myList.toString()}")   // 不正确
@@ -134,10 +132,9 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
-                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .endControlFlow()
                 break
@@ -148,10 +145,9 @@ class JunkUtil {
                   }
                  */
                 methodBuilder
-                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
@@ -164,10 +160,9 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -176,10 +171,9 @@ class JunkUtil {
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                 break
             //todo：添加随机方法
@@ -191,10 +185,9 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .returns(void.class)
                         .addParameter(String[].class, "args")
@@ -280,7 +273,6 @@ class JunkUtil {
                             generateMethods(methodBuilder)
                         }
                         typeBuilder.addMethod(methodBuilder.build())
-                        // todo：将方法名添加到列表中，便于之后的调用，存在问题：存储的和生成的字符串不一致
                         // 只添加没有参数的方法，且将新添加的数据放在首位
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
@@ -316,6 +308,12 @@ class JunkUtil {
                         .addAnnotation(Override.class)
                         .addModifiers(Modifier.PROTECTED)
                         .addStatement("super.onDestroy()")
+                        .build())
+
+                typeBuilder.addMethod(MethodSpec.methodBuilder("onBackPressed")
+                        .addAnnotation(Override.class)
+                        .addModifiers(Modifier.PROTECTED)
+                        .addStatement("super.onBackPressed()")
                         .build())
 
 
@@ -385,7 +383,7 @@ class JunkUtil {
                 }
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherClassNameList.add(0, javaFile.packageName)
+            otherPackageNameList.add(0, javaFile.packageName)
             writeJavaToFile(javaDir, javaFile)
         }
     }
