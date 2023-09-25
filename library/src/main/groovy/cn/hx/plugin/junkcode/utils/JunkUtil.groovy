@@ -112,6 +112,8 @@ class JunkUtil {
             str = "logg"
 //        }
 
+        Class<?> clazz = Class.forName(fullName);
+        Object instance = clazz.getDeclaredConstructor().newInstance()
 
         switch (random.nextInt(5)) {
             case 0:
@@ -124,16 +126,16 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
-                        .addStatement("\$T.logg()", "${Utils.class}")
-//                        .addStatement("\$T.$str()", "${fullName}")
+//                        .addStatement("\$T.logg()", "${Utils.class}")
+                        .addStatement("\$T.$str()", "${instance}")
 //                        .addStatement("\$T.$str()", "${cn.hx.plugin.junkcode.utils.Utils.class}")
 //                        .addStatement("\$T.logg()", "${Class.forName(("${Utils.class}"))}")
-                        .addStatement("${fullName.class}")
-                        .addStatement("${fullName.metaClass}")
-                        .addStatement("${fullName.getClass()}")
-                        .addStatement("${Utils.class}")
-                        .addStatement("${Class.forName(("${Utils.class}"))}")
-                        .addStatement("${cn.hx.plugin.junkcode.utils.Utils.class}")
+//                        .addStatement("${fullName.class}")
+//                        .addStatement("${fullName.metaClass}")
+//                        .addStatement("${fullName.getClass()}")
+//                        .addStatement("${Utils.class}")
+//                        .addStatement("${Class.forName(("${Utils.class}"))}")
+//                        .addStatement("${cn.hx.plugin.junkcode.utils.Utils.class}")
 
 
 //                        .addStatement((otherClassNameList.size() > 1 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(0)))}" : "内容为空"))
