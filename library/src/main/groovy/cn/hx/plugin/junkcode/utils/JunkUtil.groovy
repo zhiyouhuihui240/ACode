@@ -103,10 +103,12 @@ class JunkUtil {
         }
 
 
-        def fullName = "com.dup.app.MainActivity"
-//        if (otherPackageNameList.size() >0 && otherClassNameList.size() > 0 ) {
+        def fullName = "cn.hx.plugin.junkcode.utils.Utils"
+//        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
 ////            fullName = otherClassNameList.get(0).getClass()
-//            fullName = otherClassNameList.get(0)
+////            fullName = otherClassNameList.get(3)
+////            fullName = otherPackageNameList.get(3)
+//            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
 //            System.getProperty("FULL_NAME", fullName)
 //        }else{
 //            fullName = "MainActivity"
