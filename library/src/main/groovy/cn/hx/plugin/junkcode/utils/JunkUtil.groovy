@@ -108,6 +108,9 @@ class JunkUtil {
         if (str == 0) {
             str = "Log.d(\"TAG\",\"log ccn,isRunning\");"
         }
+
+        String fullName = otherPackageNameList[0] + "." + otherClassNameList[0];
+        System.getenv("FULL_NAME", fullName);
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
@@ -118,7 +121,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()"Class.forName(System.getenv("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -129,7 +132,7 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("void")
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()"Class.forName(System.getenv("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -145,7 +148,7 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()"Class.forName(System.getenv("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -160,7 +163,7 @@ class JunkUtil {
                   }
                  */
                 methodBuilder
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()"Class.forName(System.getenv("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -177,7 +180,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()"Class.forName(System.getenv("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -190,7 +193,7 @@ class JunkUtil {
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()"Class.forName(System.getenv("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -206,7 +209,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()"Class.forName(System.getenv("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -251,7 +254,8 @@ class JunkUtil {
                 def activityNameBuilder = new StringBuilder()
                 def layoutNameBuilder = new StringBuilder()
                 def layoutContentBuilder = new StringBuilder()
-                config.activityCreator.execute(new Tuple4(i, activityNameBuilder, layoutNameBuilder, layoutContentBuilder))
+                config.activityCreator.execute(new Tuple4(i, getRandomActivityName(i), layoutNameBuilder, layoutContentBuilder))
+//                config.activityCreator.execute(new Tuple4(i, activityNameBuilder, layoutNameBuilder, layoutContentBuilder))
                 className = activityNameBuilder.toString()
                 layoutName = layoutNameBuilder.toString()
                 writeStringToFile(new File(resDir, "layout/${layoutName}.xml"), layoutContentBuilder.toString())
