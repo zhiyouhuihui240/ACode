@@ -128,7 +128,7 @@ class JunkUtil {
 
 
 //                        .addStatement((otherClassNameList.size() > 1 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(0)))}" : "内容为空"))
-                        .addStatement((otherClassNameList.size() > 5 ? "${str}AAAA(), ${Class.forName((otherClassNameList.last()))}" : "${str}()"))
+                        .addStatement((otherClassNameList.size() > 5 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(otherClassNameList.size()-2)))}" : "${str}()"))
 //                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 //                         .addStatement((otherClassNameList.size() > 0 ? "${str}AAAA(), ${Class.forName(System.getProperty( "FULL_NAME", fullName))}" : "内容为空")) // 方法名列表
 //
