@@ -124,7 +124,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${System.getProperty(otherClassNameList.get(0))}" : "内容为空")) // 方法名列表
-                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
+                        // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -138,7 +138,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${System.getProperty(otherClassNameList.get(0))}" : "内容为空")) // 方法名列表
-                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
+                        // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -152,7 +152,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${System.getProperty(otherClassNameList.get(0))}" : "内容为空")) // 方法名列表
-                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
+                        // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -164,7 +164,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${System.getProperty(otherClassNameList.get(0))}" : "内容为空")) // 方法名列表
-                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
+                        // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -178,7 +178,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${System.getProperty(otherClassNameList.get(0))}" : "内容为空")) // 方法名列表
-                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
+                        // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${Class.forName(System.getProperty(otherClassNameList.get(0)))}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
@@ -194,7 +194,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${System.getProperty(otherClassNameList.get(0))}" : "内容为空")) // 方法名列表
-                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
+                        // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
@@ -206,7 +206,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${System.getProperty(otherClassNameList.get(0))}" : "内容为空")) // 方法名列表
-                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
+                        // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
