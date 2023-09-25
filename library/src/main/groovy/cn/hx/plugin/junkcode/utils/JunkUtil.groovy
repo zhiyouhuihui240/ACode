@@ -105,9 +105,15 @@ class JunkUtil {
             str = "Log.d(\"TAG\",\"log ccn,isRunning\");"
         }
 
-//        String fullName = otherPackageNameList[0] + "." + otherClassNameList[0];
-        String fullName = otherPackageNameList.get(0) + "." + otherClassNameList.get(0)
-        System.getProperty("FULL_NAME", fullName);
+        def fullName = ""
+        if (otherPackageNameList.size() >0 && otherClassNameList.size() > 0 ) {
+
+            fullName = otherPackageNameList.get(0) + "." + otherClassNameList.get(0)
+
+            if (fullName.size() > 0) {
+                System.getProperty("FULL_NAME", fullName)
+            }
+        }
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
@@ -257,9 +263,9 @@ class JunkUtil {
                 layoutName = layoutNameBuilder.toString()
                 writeStringToFile(new File(resDir, "layout/${layoutName}.xml"), layoutContentBuilder.toString())
             } else {
-                def activityPreName = generateName(i)
+//                def activityPreName = generateName(i)
                 // todo：从固有列表中随机获取任意一个 Activity 名称
-//                def activityPreName = getRandomActivityName(i)
+                def activityPreName = getRandomActivityName(i)
                 className = activityPreName.capitalize() + "Activity"
                 layoutName = "${config.resPrefix.toLowerCase()}${packageName.replace(".", "_")}_activity_${activityPreName}"
                 generateLayout(resDir, layoutName, config)
@@ -286,8 +292,8 @@ class JunkUtil {
                             config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                             methodName = methodNameBuilder.toString()
                         } else {
-//                            methodName = generateRandomMethodsName(j)
-                            methodName = generateName(j)
+                            methodName = generateRandomMethodsName(j)
+//                            methodName = generateName(j)
                         }
 
                         stringNameList.add(methodName)
@@ -394,8 +400,8 @@ class JunkUtil {
                         config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                         methodName = methodNameBuilder.toString()
                     } else {
-//                        methodName = generateRandomMethodsName(j)
-                        methodName = generateName(j)
+                        methodName = generateRandomMethodsName(j)
+//                        methodName = generateName(j)
                     }
                     def methodBuilder = MethodSpec.methodBuilder(methodName)
                     if (config.methodGenerator) {
