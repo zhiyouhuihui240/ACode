@@ -32,7 +32,6 @@ class JunkUtil {
     // 随机生成一个activity名称
     static String generateName(int index) {
         def sb = new StringBuilder()
-
         for (i in 0..4) {
             sb.append(abc[random.nextInt(abc.size())])
         }
@@ -290,8 +289,8 @@ class JunkUtil {
                             config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                             methodName = methodNameBuilder.toString()
                         } else {
-                            methodName = generateRandomMethodsName(j)
-//                            methodName = generateName(j)
+//                            methodName = generateRandomMethodsName(j)
+                            methodName = generateName(j)
                         }
 
                         stringNameList.add(methodName)
@@ -398,8 +397,8 @@ class JunkUtil {
                         config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                         methodName = methodNameBuilder.toString()
                     } else {
-                        methodName = generateRandomMethodsName(j)
-//                        methodName = generateName(j)
+//                        methodName = generateRandomMethodsName(j)
+                        methodName = generateName(j)
                     }
                     def methodBuilder = MethodSpec.methodBuilder(methodName)
                     if (config.methodGenerator) {
