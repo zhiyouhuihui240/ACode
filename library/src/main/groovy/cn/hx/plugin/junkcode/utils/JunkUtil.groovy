@@ -74,9 +74,9 @@ class JunkUtil {
     static String generateRandomMethodsName(int index) {
         def strList = ['getCurrentTime', 'isLoading', 'initData', 'initView', 'pear','createFragment','getActivityCount',
                        'setPro', 'setPreview', 'startAct', 'setVip', 'getVip','getPro','setNumber','getNumber','setCertify','getCertify',
-                       'getNative', 'createTimer', 'getServers', 'internalRating', 'gotoMarket','saveString','startMainActivity','onBackPressed',
+                       'getNative', 'createTimer', 'getServers', 'internalRating', 'gotoMarket','saveString','startMainActivity','onBackAct',
                         'loadCertificate', 'aniNavHost', 'decryptBase64', 'decryptFile', 'aesEncrypt','aesDecrypt','crypt','xorDecode','xorEncodeData',
-                       'loadProfile', 'toAboutActivity', 'toPager', 'hasLoaded', 'isOpen','showSystemUI','hideSystemUI','uncompress','internalRating',]
+                       'loadProfile', 'toAboutActivity', 'toPager', 'hasLoaded', 'isOpen','showSystemUI','hideSystemUI','uncompress','internalRating']
         // 从列表中随机获取一个字符串
 //        def randomStr = strList[Math.floor(Math.random() * strList.size())]
         if (strList.size() == 0) {
