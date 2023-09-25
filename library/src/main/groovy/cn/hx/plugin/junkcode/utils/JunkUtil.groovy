@@ -90,10 +90,7 @@ class JunkUtil {
     }
 
 
-    /**
-     * 生成随机方法
-     * @param methodBuilder
-     */
+    // 生成随机方法
     static void generateMethods(MethodSpec.Builder methodBuilder) {
 
 //        otherClassMethodsNameList.add(0,methodBuilder.name)
@@ -120,7 +117,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+//                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -131,7 +128,7 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("void")
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+//                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -147,7 +144,7 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+//                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -162,7 +159,7 @@ class JunkUtil {
                   }
                  */
                 methodBuilder
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+//                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -179,7 +176,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+//                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -192,7 +189,7 @@ class JunkUtil {
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+//                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -208,7 +205,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+//                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -219,7 +216,6 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
         }
     }
-
 
 
     // 生成颜色代码
@@ -417,12 +413,8 @@ class JunkUtil {
         }
     }
 
-    /**
-     * 生成layout文件
-     * @param resDir
-     * @param layoutName
-     * @param config
-     */
+
+    // 生成 layout 文件
     static void generateLayout(File resDir, String layoutName, JunkCodeConfig config) {
         def layoutFile = new File(resDir, "layout/${layoutName}.xml")
         if (config.layoutGenerator) {
@@ -435,11 +427,8 @@ class JunkUtil {
         }
     }
 
-    /**
-     * 生成drawable
-     * @param resDir
-     * @param config
-     */
+
+    // 生成 drawable
     static void generateDrawableFiles(File resDir, JunkCodeConfig config) {
         if (config.drawableGenerator) {
             def contentBuilder = new StringBuilder()
@@ -467,11 +456,8 @@ class JunkUtil {
         }
     }
 
-    /**
-     * 生成strings.xml
-     * @param resDir
-     * @param config
-     */
+
+    // 生成 strings.xml
     static void generateStringsFile(File resDir, JunkCodeConfig config) {
         def stringFile = new File(resDir, "values/strings.xml")
         StringBuilder contentBuilder = new StringBuilder()
@@ -543,11 +529,7 @@ class JunkUtil {
     }
 
 
-    /**
-     * 生成AndroidManifest.xml
-     * @param manifestFile
-     * @param activityList
-     */
+    // 生成AndroidManifest.xml, todo: 顺序打乱, 读取 manifest文件,然后以数组的形式来将顺序打乱
     static void generateManifest(File manifestFile, List<String> activityList) {
         StringBuilder sb = new StringBuilder()
         sb.append("<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">\n")
