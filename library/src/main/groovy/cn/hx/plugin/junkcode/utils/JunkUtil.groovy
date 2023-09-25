@@ -110,7 +110,7 @@ class JunkUtil {
         }
 
         String fullName = otherPackageNameList[0] + "." + otherClassNameList[0];
-        System.getenv("FULL_NAME", fullName);
+        System.getProperty("FULL_NAME", fullName);
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
