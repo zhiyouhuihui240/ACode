@@ -104,13 +104,13 @@ class JunkUtil {
 
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
-        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
-            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
-            otherPackageNameList.remove(3)
-            otherClassNameList.remove(3)
-        }else {
+//        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
+//            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
+//            otherPackageNameList.remove(3)
+//            otherClassNameList.remove(3)
+//        }else {
             str = "logg"
-        }
+//        }
 
 
         switch (random.nextInt(5)) {
