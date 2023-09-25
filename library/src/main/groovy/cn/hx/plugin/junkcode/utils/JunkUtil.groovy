@@ -78,7 +78,16 @@ class JunkUtil {
                         'loadCertificate', 'aniNavHost', 'decryptBase64', 'decryptFile', 'aesEncrypt','aesDecrypt','crypt','xorDecode','xorEncodeData',
                        'loadProfile', 'toAboutActivity', 'toPager', 'hasLoaded', 'isOpen','showSystemUI','hideSystemUI','uncompress','internalRating',]
         // 从列表中随机获取一个字符串
-        def randomStr = strList[Math.floor(Math.random() * strList.size())]
+//        def randomStr = strList[Math.floor(Math.random() * strList.size())]
+        if (strList.size() == 0) {
+            // 若是不够，则自动生成随机字符串
+            def name = generateName(index)
+            return name
+        }
+        int randomIndex = Math.floor(Math.random() * strList.size())
+        String randomStr = strList[randomIndex]
+        strList.remove(randomIndex)
+        return randomStr
     }
 
 
@@ -112,6 +121,7 @@ class JunkUtil {
                         .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
+                        .addStatement("日志ii")    // 方法名列表
                         .endControlFlow()
                 break
             case 1:
@@ -121,6 +131,7 @@ class JunkUtil {
                         .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
+                        .addStatement("日志ii")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
 //                        .addStatement(otherClassNameList.toString())    // 缺少类名
 //                        .addStatement("${myList.toString()}")   // 不正确
@@ -135,6 +146,7 @@ class JunkUtil {
                         .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
+                        .addStatement("日志ii")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .endControlFlow()
                 break
@@ -148,6 +160,7 @@ class JunkUtil {
                         .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
+                        .addStatement("日志ii")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
@@ -163,6 +176,7 @@ class JunkUtil {
                         .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
+                        .addStatement("日志ii")    // 方法名列表
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -174,6 +188,7 @@ class JunkUtil {
                         .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
+                        .addStatement("日志ii")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                 break
             //todo：添加随机方法
@@ -188,6 +203,7 @@ class JunkUtil {
                         .addStatement("${str}()")    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
+                        .addStatement("日志ii")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .returns(void.class)
                         .addParameter(String[].class, "args")
