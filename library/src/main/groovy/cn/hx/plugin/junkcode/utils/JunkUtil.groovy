@@ -127,29 +127,13 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
 //                        .addStatement("\$T.logg()", "${Utils.class}")
-//                        .addStatement("\$T.$str()", "${instance}")
-                        .addStatement( "${instance}")
-                        .addStatement( "${instance.class}")
-                        .addStatement( "${instance.metaClass}")
-                        .addStatement( "${instance.properties}")
-                        .addStatement( "${instance.metaPropertyValues}")
+                        .addStatement("\$T.$str()", "${instance.class}")
+//                        .addStatement( "${instance}")
+//                        .addStatement( "${instance.class}")
+//                        .addStatement( "${instance.properties.getClass()}")
 //                        .addStatement("\$T.$str()", "${cn.hx.plugin.junkcode.utils.Utils.class}")
 //                        .addStatement("\$T.logg()", "${Class.forName(("${Utils.class}"))}")
-//                        .addStatement("${fullName.class}")
-//                        .addStatement("${fullName.metaClass}")
-//                        .addStatement("${fullName.getClass()}")
-//                        .addStatement("${Utils.class}")
-//                        .addStatement("${Class.forName(("${Utils.class}"))}")
-//                        .addStatement("${cn.hx.plugin.junkcode.utils.Utils.class}")
 
-
-//                        .addStatement((otherClassNameList.size() > 1 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(0)))}" : "内容为空"))
-//                        .addStatement((otherClassNameList.size() > 5 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(otherClassNameList.size()-2)))}" : "${str}()"))
-//                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
-//                         .addStatement((otherClassNameList.size() > 0 ? "${str}AAAA(), ${Class.forName(System.getProperty( "FULL_NAME", fullName))}" : "内容为空")) // 方法名列表
-//
-//                        .addStatement((otherClassNameList.size() > 1 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(1)))}" : "内容为空")) // 方法名列表
-//                        .addStatement((otherClassNameList.size() > 2 ? "${otherClassNameList.get(2)}" : "内容为空")) // 方法名列表
 
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
