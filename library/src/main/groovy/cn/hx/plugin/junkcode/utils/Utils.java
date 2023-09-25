@@ -1,5 +1,7 @@
 package cn.hx.plugin.junkcode.utils;
 
+import java.util.logging.Logger;
+
 /**
  * @author admin
  */
@@ -12,6 +14,14 @@ public class Utils {
 
         return 0;
     }
+
+
+
+    static void logg(){
+        Logger.getLogger("dsfsdf").info("dssdf");
+    }
+
+
 
 
 

@@ -7,7 +7,6 @@ import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeSpec
 import org.gradle.api.Project
-import sun.rmi.runtime.Log
 
 import javax.lang.model.element.Modifier
 import java.nio.file.Files
@@ -49,6 +48,39 @@ class JunkUtil {
         return sb.toString()
     }
 
+    static strList = ['GameActivity', 'PreActivity', 'LauncherActivity', 'HomeActivity', 'SplashActivity',
+                   'LoadActivity', 'DialogActivity', 'PrivacyActivity', 'BaseActivity', 'HistoryActivity','CameraActivity',
+                      'UserActivity', 'MenuActivity', 'VideoActivity', 'GuideActivity', 'AlarmActivity','RecordActivity',
+                      'ChallengeActivity', 'DownloadActivity', 'ShareActivity', 'FavoriteActivity', 'ProActivity','PlayActivity',
+                      'PayActivity', 'SaveActivity', 'ExitActivity', 'VipActivity', 'MusicActivity','ResultActivity','TimeActivity',
+                      'LoadingActivity', 'ReviewActivity', 'CreatorActivity', 'CountActivity', 'DataActivity','ReloadActivity','CertifyActivity',
+                      'SelectActivity', 'LoginActivity', 'FindActivity', 'PhotoActivity', 'MemberActivity','EditorActivity','CustomActivity']
+
+    // 生成activity名称 从strList中随机获取一个元素，并将该元素从列表中删除
+    static String getRandomActivityName(int index) {
+        if (strList.size() == 0) {
+            // 若是不够，则自动生成随机字符串
+            def name = generateName(index)
+            return name
+        }
+        int randomIndex = Math.floor(Math.random() * strList.size())
+        String randomStr = strList[randomIndex]
+        strList.remove(randomIndex)
+        return randomStr
+    }
+
+
+    // 随机生成一个方法名称
+    static String generateRandomMethodsName(int index) {
+        def strList = ['getCurrentTime', 'isLoading', 'initData', 'initView', 'pear','createFragment','getActivityCount',
+                       'setPro', 'setPreview', 'startAct', 'setVip', 'getVip','getPro','setNumber','getNumber','setCertify','getCertify',
+                       'getNative', 'createTimer', 'getServers', 'internalRating', 'gotoMarket','saveString','startMainActivity','onBackPressed',
+                        'loadCertificate', 'aniNavHost', 'decryptBase64', 'decryptFile', 'aesEncrypt','aesDecrypt','crypt','xorDecode','xorEncodeData',
+                       'loadProfile', 'toAboutActivity', 'toPager', 'hasLoaded', 'isOpen','showSystemUI','hideSystemUI','uncompress','internalRating',]
+        // 从列表中随机获取一个字符串
+        def randomStr = strList[Math.floor(Math.random() * strList.size())]
+    }
+
 
     /**
      * 生成随机方法
@@ -65,7 +97,7 @@ class JunkUtil {
             otherClassMethodsNameList.removeLast()
         }
         if (str == 0) {
-            str = "Log.d(\"TAG\",\"log ccn,werm\");"
+            str = "Log.d(\"TAG\",\"log ccn,isRunning\");"
         }
         switch (random.nextInt(5)) {
             case 0:
@@ -78,9 +110,9 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("${str}")    // 方法名列表
-                        .addStatement("${otherClassNameList}")    // 方法名列表
-                        .addStatement("${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
                         .endControlFlow()
                 break
             case 1:
@@ -88,9 +120,10 @@ class JunkUtil {
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                         .addStatement("${str}")    // 方法名列表
-                        .addStatement("${otherClassNameList}")    // 方法名列表
-                        .addStatement("${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
 //                        .addStatement(otherClassNameList.toString())    // 缺少类名
 //                        .addStatement("${myList.toString()}")   // 不正确
 //                        .addStatement("${otherClassMethodsAccessList.toString()}") // 正确
@@ -102,9 +135,10 @@ class JunkUtil {
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
                         .addStatement("${str}")    // 方法名列表
-                        .addStatement("${otherClassNameList}")    // 方法名列表
-                        .addStatement("${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .endControlFlow()
                 break
             case 3:
@@ -115,9 +149,10 @@ class JunkUtil {
                  */
                 methodBuilder
                         .addStatement("${str}")    // 方法名列表
-                        .addStatement("${otherClassNameList}")    // 方法名列表
-                        .addStatement("${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
@@ -130,12 +165,22 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("${str}")    // 方法名列表
-                        .addStatement("${otherClassNameList}")    // 方法名列表
-                        .addStatement("${otherClassNameList.class}")    // 方法名列表
-                        .addStatement("${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
+                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
+                break
+            case 5:
+                otherClassMethodsAccessList.add("public static void")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .addStatement("${str}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                 break
             //todo：添加随机方法
             default:
@@ -147,9 +192,10 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("${str}")    // 方法名列表
-                        .addStatement("${otherClassNameList}")    // 方法名列表
-                        .addStatement("${otherClassNameList.class.name}")    // 方法名列表
-                        .addStatement("${otherClassNameList.metaClass.class.name}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.class}")    // 方法名列表
+                        .addStatement("${str},${otherClassNameList.metaClass}")    // 方法名列表
+                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -178,12 +224,8 @@ class JunkUtil {
         return sb.toString()
     }
 
-    /**
-     * 生成Activity
-     * @param javaDir
-     * @param packageName
-     * @param config
-     */
+
+    // 生成activity
     static List<String> generateActivity(File javaDir, File resDir, String namespace, String packageName, JunkCodeConfig config) {
         def activityList = new ArrayList()
         for (int i = 0; i < config.activityCountPerPackage; i++) {
@@ -198,7 +240,9 @@ class JunkUtil {
                 layoutName = layoutNameBuilder.toString()
                 writeStringToFile(new File(resDir, "layout/${layoutName}.xml"), layoutContentBuilder.toString())
             } else {
-                def activityPreName = generateName(i)
+//                def activityPreName = generateName(i)
+                // todo：从固有列表中随机获取任意一个 Activity 名称
+                def activityPreName = getRandomActivityName(i)
                 className = activityPreName.capitalize() + "Activity"
                 layoutName = "${config.resPrefix.toLowerCase()}${packageName.replace(".", "_")}_activity_${activityPreName}"
                 generateLayout(resDir, layoutName, config)
@@ -237,7 +281,7 @@ class JunkUtil {
                         }
                         typeBuilder.addMethod(methodBuilder.build())
                         // todo：将方法名添加到列表中，便于之后的调用，存在问题：存储的和生成的字符串不一致
-                        // 只添加没有参数的方法
+                        // 只添加没有参数的方法，且将新添加的数据放在首位
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
                             otherClassMethodsNameList.add(0,methodBuilder.build().name)
@@ -267,7 +311,6 @@ class JunkUtil {
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
                         .build())
-
 
                 typeBuilder.addMethod(MethodSpec.methodBuilder("onDestroy")
                         .addAnnotation(Override.class)
@@ -487,7 +530,6 @@ class JunkUtil {
             sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
             sb.append("        <service android:name=\"${generateServiceName(i)}\"  android:exported=\"false\"/>\n")
 //            sb.append("        <meta-data android:name=\"${generateName(i)}\"   android:value=\"oynestszvybpftwwjphxe\"\n")
-
         }
         sb.append("    </application>\n")
         sb.append("</manifest>")
