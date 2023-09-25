@@ -104,15 +104,15 @@ class JunkUtil {
 
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
-//        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
-//            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
-//            otherPackageNameList.remove(3)
-//            otherClassNameList.remove(3)
-//        }
+        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
+            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
+            otherPackageNameList.remove(3)
+            otherClassNameList.remove(3)
+        }
 
-//        Class<?> clazz = Class.forName(fullName);
-//
-//        Object instance = clazz.getDeclaredConstructor().newInstance()
+        Class<?> clazz = Class.forName(fullName);
+
+        Object instance = clazz.getDeclaredConstructor().newInstance()
 
         switch (random.nextInt(5)) {
             case 0:
@@ -127,7 +127,11 @@ class JunkUtil {
 
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
 
-                        .addStatement("\$T.logg()", Utils.class)
+//                        .addStatement("\$T.logg()", Utils.class)
+                        .addStatement("\$T.logg()", instance.class)
+                /**
+                 * todo: 此处耗费时间特长,
+                 */
 
 //                        .addStatement("\$T.str()", "${instance.class}")
 //                        .addStatement( "${instance}")
