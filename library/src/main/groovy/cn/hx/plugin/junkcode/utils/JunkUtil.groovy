@@ -101,11 +101,9 @@ class JunkUtil {
             str = otherClassMethodsNameList[otherClassMethodsNameList.size() -1]
             otherClassMethodsNameList.removeLast()
         }
-        if (str == 0) {
-            str = "Log.d(\"TAG\",\"log ccn,isRunning\");"
-        }
 
-        def fullName = "Utils"
+
+        def fullName = "com.dup.app.MainActivity"
 //        if (otherPackageNameList.size() >0 && otherClassNameList.size() > 0 ) {
 ////            fullName = otherClassNameList.get(0).getClass()
 //            fullName = otherClassNameList.get(0)
@@ -124,11 +122,11 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}难啊()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}难啊()")) // 方法名列表
 
 
 //                        .addStatement((otherClassNameList.size() > 1 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(0)))}" : "内容为空"))
-                        .addStatement((otherClassNameList.size() > 5 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(otherClassNameList.size()-2)))}" : "${str}()"))
+//                        .addStatement((otherClassNameList.size() > 5 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(otherClassNameList.size()-2)))}" : "${str}()"))
 //                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 //                         .addStatement((otherClassNameList.size() > 0 ? "${str}AAAA(), ${Class.forName(System.getProperty( "FULL_NAME", fullName))}" : "内容为空")) // 方法名列表
 //
