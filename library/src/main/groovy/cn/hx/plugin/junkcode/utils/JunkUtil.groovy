@@ -299,7 +299,7 @@ class JunkUtil {
                         if (config.methodGenerator) {
                             config.methodGenerator.execute(methodBuilder)
                         } else {
-//                            generateMethods(methodBuilder)
+                            generateMethods(methodBuilder)
                         }
                         typeBuilder.addMethod(methodBuilder.build())
                         // 只添加没有参数的方法，且将新添加的数据放在首位
@@ -398,13 +398,14 @@ class JunkUtil {
                         config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                         methodName = methodNameBuilder.toString()
                     } else {
-                        methodName = generateName(j)
+                        methodName = generateRandomMethodsName(j)
+//                        methodName = generateName(j)
                     }
                     def methodBuilder = MethodSpec.methodBuilder(methodName)
                     if (config.methodGenerator) {
                         config.methodGenerator.execute(methodBuilder)
                     } else {
-//                        generateMethods(methodBuilder)
+                        generateMethods(methodBuilder)
                     }
                     typeBuilder.addMethod(methodBuilder.build())
                     otherClassMethodsNameList.add(0,methodBuilder.build().name)
