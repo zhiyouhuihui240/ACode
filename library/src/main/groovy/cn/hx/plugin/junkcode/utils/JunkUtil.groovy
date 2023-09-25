@@ -251,11 +251,12 @@ class JunkUtil {
             def className
             def layoutName
             if (config.activityCreator) {
-                def activityNameBuilder = new StringBuilder()
+//                def activityNameBuilder = new StringBuilder()
+                def activityNameBuilder = getRandomActivityName(i)
                 def layoutNameBuilder = new StringBuilder()
                 def layoutContentBuilder = new StringBuilder()
-                config.activityCreator.execute(new Tuple4(i, getRandomActivityName(i), layoutNameBuilder, layoutContentBuilder))
-//                config.activityCreator.execute(new Tuple4(i, activityNameBuilder, layoutNameBuilder, layoutContentBuilder))
+//                config.activityCreator.execute(new Tuple4(i, getRandomActivityName(i), layoutNameBuilder, layoutContentBuilder))
+                config.activityCreator.execute(new Tuple4(i, activityNameBuilder, layoutNameBuilder, layoutContentBuilder))
                 className = activityNameBuilder.toString()
                 layoutName = layoutNameBuilder.toString()
                 writeStringToFile(new File(resDir, "layout/${layoutName}.xml"), layoutContentBuilder.toString())
@@ -289,7 +290,8 @@ class JunkUtil {
                             config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                             methodName = methodNameBuilder.toString()
                         } else {
-                            methodName = generateName(j)
+                            methodName = generateRandomMethodsName(j)
+//                            methodName = generateName(j)
                         }
 
                         stringNameList.add(methodName)
