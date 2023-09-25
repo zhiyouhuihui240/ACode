@@ -124,7 +124,7 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
-//                        .addStatement("\$T.logg()", "${Utils.class}")
+                        .addStatement("\$T.logg()", "${Utils.class}")
 //                        .addStatement("\$T.$str()", "${fullName}")
 //                        .addStatement("\$T.$str()", "${cn.hx.plugin.junkcode.utils.Utils.class}")
 //                        .addStatement("\$T.logg()", "${Class.forName(("${Utils.class}"))}")
@@ -132,7 +132,8 @@ class JunkUtil {
                         .addStatement("${fullName.metaClass}")
                         .addStatement("${fullName.getClass()}")
                         .addStatement("${Utils.class}")
-                        .addStatement("${Utils.metaClass}")
+                        .addStatement("${Class.forName(("${Utils.class}"))}")
+                        .addStatement("${cn.hx.plugin.junkcode.utils.Utils.class}")
 
 
 //                        .addStatement((otherClassNameList.size() > 1 ? "${str}AAAA(), ${Class.forName((otherClassNameList.get(0)))}" : "内容为空"))
