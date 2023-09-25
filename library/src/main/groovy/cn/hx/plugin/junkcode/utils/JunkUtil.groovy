@@ -127,7 +127,7 @@ class JunkUtil {
 //                        .addStatement("\$T.logg()", "${Utils.class}")
 //                        .addStatement("\$T.$str()", "${fullName}")
 //                        .addStatement("\$T.$str()", "${cn.hx.plugin.junkcode.utils.Utils.class}")
-                        .addStatement("${fullName}")
+                        .addStatement("\$T.$str()", "${Class.forName((fullName))}")
                         .addStatement("${fullName.class}")
                         .addStatement("${fullName.metaClass}")
                         .addStatement("${fullName.getClass()}")
