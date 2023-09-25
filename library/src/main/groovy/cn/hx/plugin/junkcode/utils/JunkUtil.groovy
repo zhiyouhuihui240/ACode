@@ -120,8 +120,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
-                        .addStatement((fullName != "" ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
 //                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -133,8 +132,7 @@ class JunkUtil {
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
 //                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
-                        .addStatement((fullName != "" ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
-                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
 //                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -145,8 +143,7 @@ class JunkUtil {
                 methodBuilder.beginControlFlow("try")
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
-                        .addStatement((fullName != "" ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
-                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
 //                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -156,8 +153,7 @@ class JunkUtil {
                 break
             case 3:
                 methodBuilder
-                        .addStatement((fullName != "" ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
-                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
 //                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -168,8 +164,7 @@ class JunkUtil {
             case 4:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement((fullName != "" ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
-                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
 //                        .addStatement("${str},${otherClassNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -181,8 +176,7 @@ class JunkUtil {
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement((fullName != "" ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
-                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
@@ -191,8 +185,7 @@ class JunkUtil {
             default:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement((fullName != "" ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
-                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
+                        .addStatement((System.getProperty("FULL_NAME") != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME"))}" : "${str}()")) // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
                         .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
