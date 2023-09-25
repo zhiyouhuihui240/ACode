@@ -104,15 +104,11 @@ class JunkUtil {
 
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
-//        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
-////            fullName = otherClassNameList.get(0).getClass()
-////            fullName = otherClassNameList.get(3)
-////            fullName = otherPackageNameList.get(3)
-//            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
-//            System.getProperty("FULL_NAME", fullName)
-//        }else{
-//            fullName = "MainActivity"
-//        }
+        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
+            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
+            System.getProperty("FULL_NAME", fullName)
+        }
+
 
         switch (random.nextInt(5)) {
             case 0:
