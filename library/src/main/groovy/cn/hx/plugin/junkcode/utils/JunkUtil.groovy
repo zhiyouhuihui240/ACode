@@ -107,8 +107,9 @@ class JunkUtil {
 
         def fullName = ""
         if (otherPackageNameList.size() >0 && otherClassNameList.size() > 0 ) {
-            fullName = otherClassNameList.get(0).getClass()
-            System.getProperty("FULL_NAME", fullName)
+//            fullName = otherClassNameList.get(0).getClass()
+            fullName = otherClassNameList.get(0)
+//            System.getProperty("FULL_NAME", fullName)
         }
         switch (random.nextInt(5)) {
             case 0:
