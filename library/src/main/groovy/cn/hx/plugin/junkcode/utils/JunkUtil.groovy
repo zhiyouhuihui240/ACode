@@ -124,8 +124,11 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
+
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
-                        .addStatement("\$T.logg()", "${Utils.class}")
+
+                        .addStatement("\$T.logg()", Utils.class)
+
 //                        .addStatement("\$T.str()", "${instance.class}")
 //                        .addStatement( "${instance}")
 //                        .addStatement( "${instance.class}")
@@ -159,26 +162,26 @@ class JunkUtil {
                         .nextControlFlow("catch (\$T e)", Exception.class)
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
-                
+
 
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        
+
                         .endControlFlow()
                 break
             case 3:
                 methodBuilder
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
-                
-                        
+
+
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        
+
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
@@ -187,8 +190,8 @@ class JunkUtil {
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
-                
-                        
+
+
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${Class.forName(System.getProperty(otherClassNameList.get(0)))}")    // 方法名列表
@@ -197,18 +200,18 @@ class JunkUtil {
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
-                        
+
                 break
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
-                
+
 //                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        
+
                 break
             //todo：添加随机方法
             default:
