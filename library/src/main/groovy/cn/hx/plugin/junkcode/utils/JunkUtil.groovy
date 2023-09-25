@@ -110,6 +110,8 @@ class JunkUtil {
 //            fullName = otherClassNameList.get(0).getClass()
             fullName = otherClassNameList.get(0)
             System.getProperty("FULL_NAME", fullName)
+        }else{
+            fullName = "MainActivity"
         }
         println("今日,,, ${System.getProperty(otherClassNameList.get(0))}")
         switch (random.nextInt(5)) {
