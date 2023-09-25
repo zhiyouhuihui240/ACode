@@ -124,7 +124,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -135,7 +135,7 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("void")
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -151,7 +151,7 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -160,13 +160,8 @@ class JunkUtil {
                         .endControlFlow()
                 break
             case 3:
-                /*
-                  Date ZWLUL() {
-                    return new Date();
-                  }
-                 */
                 methodBuilder
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -176,14 +171,9 @@ class JunkUtil {
                         .addStatement("return new \$T()", Date.class)
                 break
             case 4:
-                /*
-                 public static void nsIbm(String[] args) {
-                    System.out.println("Hello");
-                 }
-                 */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -196,7 +186,7 @@ class JunkUtil {
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
@@ -205,14 +195,9 @@ class JunkUtil {
                 break
             //todo：添加随机方法
             default:
-                /*
-                    public static void vpWfW(String[] strArr) {
-                        System.out.println("Hello");
-                    }
-                 */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()"Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
+                        .addStatement("${str}(), "Class.forName(System.getProperty("FULL_NAME"))) // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
