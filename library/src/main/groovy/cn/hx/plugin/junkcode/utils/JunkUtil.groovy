@@ -113,7 +113,7 @@ class JunkUtil {
         }else{
             fullName = "MainActivity"
         }
-        println("今日,,, ${System.getProperty(otherClassNameList.get(0))}")
+
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
@@ -124,11 +124,12 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement((System.getProperty("FULL_NAME", fullName).size() > 0  ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}难啊()")) // 方法名列表
-//                        // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
+//                        .addStatement((System.getProperty("FULL_NAME", fullName).size() > 0  ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}难啊()")) // 方法名列表
+
+                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                 
-//                        .addStatement((otherClassNameList.size() > 1 ? "${otherClassNameList.get(1)}" : "内容为空")) // 方法名列表
-//                        .addStatement((otherClassNameList.size() > 2 ? "${otherClassNameList.get(2)}" : "内容为空")) // 方法名列表
+                        .addStatement((otherClassNameList.size() > 1 ? "${otherClassNameList.get(1)}" : "内容为空")) // 方法名列表
+                        .addStatement((otherClassNameList.size() > 2 ? "${otherClassNameList.get(2)}" : "内容为空")) // 方法名列表
 
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
