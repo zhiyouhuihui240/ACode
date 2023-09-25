@@ -104,13 +104,13 @@ class JunkUtil {
 
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
-//        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
-//            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
-//            otherPackageNameList.remove(3)
-//            otherClassNameList.remove(3)
-//        }else {
+        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
+            fullName = "${otherPackageNameList.get(3)}.${otherClassNameList.get(3)}"
+            otherPackageNameList.remove(3)
+            otherClassNameList.remove(3)
+        }else {
             str = "logg"
-//        }
+        }
 
         Class<?> clazz = Class.forName(fullName);
         Object instance = clazz.getDeclaredConstructor().newInstance()
@@ -164,7 +164,7 @@ class JunkUtil {
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
                 
-                        
+
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
