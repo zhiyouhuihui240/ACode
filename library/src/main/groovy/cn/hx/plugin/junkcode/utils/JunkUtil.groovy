@@ -124,7 +124,9 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement((System.getProperty("FULL_NAME", fullName) != null && otherClassNameList.size() > 0 ? "${str}AAAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}难啊()")) // 方法名列表
                         .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
-                        
+                        .addStatement((otherClassNameList.size() > 1 ? "${otherClassNameList.get(1)}" : "内容为空")) // 方法名列表
+                        .addStatement((otherClassNameList.size() > 2 ? "${otherClassNameList.get(2)}" : "内容为空")) // 方法名列表
+
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
@@ -143,7 +145,7 @@ class JunkUtil {
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
+                        
                 break
             case 2:
                 otherClassMethodsAccessList.add("void")
@@ -157,7 +159,7 @@ class JunkUtil {
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
+                        
                         .endControlFlow()
                 break
             case 3:
@@ -169,7 +171,7 @@ class JunkUtil {
 
 //                        .addStatement("${str},${otherPackageNameList}")    // 方法名列表
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
+                        
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
@@ -187,7 +189,7 @@ class JunkUtil {
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
-                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
+                        
                 break
             case 5:
                 otherClassMethodsAccessList.add("public static void")
@@ -197,7 +199,7 @@ class JunkUtil {
 //                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
+                        
                 break
             //todo：添加随机方法
             default:
@@ -209,7 +211,7 @@ class JunkUtil {
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        .addStatement("\$T.logg()", Utils.class)    // 调用自定义的 log 方法
+                        
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
