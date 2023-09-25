@@ -26,7 +26,6 @@ class JunkUtil {
     static List<String> otherPackageNameList = new ArrayList<>()
     static List<String> otherClassMethodsNameList = new ArrayList<>()
     static List<String> otherClassMethodsAccessList = new ArrayList<>()
-    static myList = [key1: ['value1', 'value2', 'value3']]
     static firstNum = -1
 
     // 随机生成一个activity名称
@@ -118,7 +117,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()",${otherPackageNameList+otherClassNameList})    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("日志ii")    // 方法名列表
@@ -128,7 +127,7 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("void")
                 methodBuilder
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()",${otherPackageNameList+otherClassNameList})    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("日志ii")    // 方法名列表
@@ -143,7 +142,7 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("throw new \$T(e)", RuntimeException.class)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()",${otherPackageNameList+otherClassNameList})    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("日志ii")    // 方法名列表
@@ -157,7 +156,7 @@ class JunkUtil {
                   }
                  */
                 methodBuilder
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()",${otherPackageNameList+otherClassNameList})    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("日志ii")    // 方法名列表
@@ -173,7 +172,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()",${otherPackageNameList+otherClassNameList})    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("日志ii")    // 方法名列表
@@ -185,7 +184,7 @@ class JunkUtil {
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()",${otherPackageNameList+otherClassNameList})    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("日志ii")    // 方法名列表
@@ -200,7 +199,7 @@ class JunkUtil {
                  */
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("${str}()")    // 方法名列表
+                        .addStatement("${str}()",${otherPackageNameList+otherClassNameList})    // 方法名列表
                         .addStatement("${str},${otherClassNameList}")    // 方法名列表
                         .addStatement("${str},${otherPackageNameList}")    // 方法名列表
                         .addStatement("日志ii")    // 方法名列表
