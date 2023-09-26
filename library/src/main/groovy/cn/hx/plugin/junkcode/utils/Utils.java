@@ -17,7 +17,7 @@ public class Utils {
 
 
 
-    static void logg(){
+    static public void logg(){
         Logger.getLogger("dsfsdf").info("dssdf");
     }
 

@@ -127,7 +127,7 @@ class JunkUtil {
 
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null  ? "${str}(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
 
-//                        .addStatement("\$T.logg()", Utils.class)
+                        .addStatement("\$T.logg()", Utils.class)
                         .addStatement("\$T.logg()", instance.class)
                 /**
                  * todo: 此处耗费时间特长,
