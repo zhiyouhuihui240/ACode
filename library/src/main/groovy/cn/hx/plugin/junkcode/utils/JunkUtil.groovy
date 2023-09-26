@@ -128,11 +128,14 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", instance.class)
-
-
-
                         .addStatement("$otherPackageNameList")
-                        .addStatement("$otherClassNameList")
+                        .addStatement("${otherClassNameList}")
+                        .addStatement("${otherClassNameList.get(0)}")
+                        .addStatement("${otherClassNameList.get(1)}")
+                        .addStatement("${otherClassNameList.get(2)}")
+                        .addStatement("${otherClassNameList.get(3)}")
+                        .addStatement("${otherClassNameList.get(4)}")
+                        .addStatement("${otherClassNameList.get(5)}")
                         .addStatement("$otherClassMethodsNameList")
                         .endControlFlow()
                 break
