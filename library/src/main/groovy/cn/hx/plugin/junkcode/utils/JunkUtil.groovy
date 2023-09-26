@@ -93,6 +93,7 @@ class JunkUtil {
 
 
 
+    static a1 = "All none"
     // 生成随机方法
     static void generateMethods(MethodSpec.Builder methodBuilder) {
         def str = "logg"
@@ -101,7 +102,6 @@ class JunkUtil {
         List  values = new ArrayList<>()
         def p1 = "P1 none"
         def c1 = "C1 none"
-        def a1 = "All none"
         if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
             // todo: 因为存在先后生成顺序，所以包名和类名可能对不上号
             fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
@@ -149,7 +149,7 @@ class JunkUtil {
                         .addStatement("$integrityName")
                         .addStatement("$a1")
                         .addStatement("$p1")
-                        .addStatement("$c1")
+                        .addStatement(integrityName.contains(a1) ? "是真的，存在": "是假的，不存在")
                         .endControlFlow()
                 break
             case 1:
