@@ -98,17 +98,19 @@ class JunkUtil {
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
-        if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
-            fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
-            if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
+        if (otherPackageNameList.size() > 5 && otherClassNameList.size() > 5 ) {
+            fullName = ClassName.get("${otherPackageNameList.get(3)}", "${otherClassNameList.get(3)}")
+            if (otherClassMethodsAccessMap.get(otherClassNameList.get(3))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(3)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
-                values = otherClassMethodsAccessMap.get(otherClassNameList.get(1))
+                values = otherClassMethodsAccessMap.get(otherClassNameList.get(3))
                 if (values != null && !values.isEmpty() && values.size() > 0) {
                     String firstValue = values.get(0)
                     values.remove(0)
                     str = firstValue
                 }
             }
+            // 检查一遍  otherClassMethodsAccessMap
+
         }else {
             fullName = ClassName.get(Utils.class)
         }
