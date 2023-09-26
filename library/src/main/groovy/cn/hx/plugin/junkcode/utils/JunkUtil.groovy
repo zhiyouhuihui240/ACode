@@ -105,7 +105,6 @@ class JunkUtil {
 
         if (otherPackageNameList.size() >2 && otherClassNameList.size() > 2 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
-
             fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
 //            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
@@ -131,7 +130,8 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("\$T.$str()", fullName)
+//                        .addStatement("\$T.$str()", fullName)
+                        .addStatement( "$fullName")
                         .addStatement("$otherPackageNameList")
                         .addStatement("${otherClassNameList}")
                         .addStatement("${otherClassNameList.last()}")
