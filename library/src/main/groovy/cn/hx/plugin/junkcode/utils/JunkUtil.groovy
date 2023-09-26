@@ -101,7 +101,9 @@ class JunkUtil {
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         if (otherPackageNameList.size() >2 && otherClassNameList.size() > 2 ) {
-            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
+//            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
+//            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
+            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
 //            otherPackageNameList.remove(0)
 //            otherClassNameList.remove(0)
         }
@@ -126,6 +128,9 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", instance.class)
+
+
+
                         .addStatement("$otherPackageNameList")
                         .addStatement("$otherClassNameList")
                         .addStatement("$otherClassMethodsNameList")
