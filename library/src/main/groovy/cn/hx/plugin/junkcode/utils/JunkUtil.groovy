@@ -113,12 +113,15 @@ class JunkUtil {
                 }
             }
             // 检查一遍  otherClassMethodsAccessMap
-            if (oneTime || oneTime1 < 3) {
-                oneTime1 += oneTime1
-                oneTime = false
-                fullName = ClassName.get(Utils.class)
-                str == "logg"
-            }
+
+            oneTime1 += oneTime1
+            oneTime = false
+//            if (oneTime || oneTime1 < 3) {
+//                oneTime1 += oneTime1
+//                oneTime = false
+//                fullName = ClassName.get(Utils.class)
+//                str == "logg"
+//            }
 
         }else {
             fullName = ClassName.get(Utils.class)
@@ -129,6 +132,14 @@ class JunkUtil {
         if (fullName == ClassName.get(Utils.class)) {
             str == "logg"
         }
+
+        if (oneTime || oneTime1 < 3) {
+            oneTime1 += oneTime1
+            oneTime = false
+            fullName = ClassName.get(Utils.class)
+            str == "logg"
+        }
+
 
 
         switch (random.nextInt(5)) {
