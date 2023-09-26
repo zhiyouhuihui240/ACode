@@ -101,7 +101,7 @@ class JunkUtil {
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
-        if (otherPackageNameList.size() > 1 && otherClassNameList.size() > 1 ) {
+        if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
             fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
             if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
@@ -133,13 +133,12 @@ class JunkUtil {
             str == "logg"
         }
 
-        if (oneTime || oneTime1 < 3) {
+        if (oneTime || oneTime1 < 4) {
             oneTime1 += oneTime1
             oneTime = false
             fullName = ClassName.get(Utils.class)
             str == "logg"
         }
-
 
 
         switch (random.nextInt(5)) {
