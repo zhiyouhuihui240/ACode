@@ -300,6 +300,8 @@ class JunkUtil {
                 // todo：从固有列表中随机获取任意一个 Activity 名称
                 def activityPreName = getRandomActivityName(i)
                 className = activityPreName.capitalize() + "Activity"
+                // todo: 保存activity的类名
+                otherClassNameList.add(0, className)
                 layoutName = "${config.resPrefix.toLowerCase()}${packageName.replace(".", "_")}_activity_${activityPreName}"
                 generateLayout(resDir, layoutName, config)
             }
@@ -392,11 +394,10 @@ class JunkUtil {
                         .addStatement("super.onBackPressed()")
                         .build())
 
-
                 def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
+                otherPackageNameList.add(0, packageName)
                 writeJavaToFile(javaDir, javaFile)
                 // todo：保存activity的包名
-                otherPackageNameList.add(0, javaFile.packageName)
                 activityList.add(packageName + "." + className)
             }
         }
