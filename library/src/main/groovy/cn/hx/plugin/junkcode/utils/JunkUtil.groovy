@@ -110,6 +110,8 @@ class JunkUtil {
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
             otherPackageNameList.removeLast()
             otherClassNameList.removeLast()
+        }else {
+            fullName = ClassName.get(Utils.class)
         }
 
         if (otherClassMethodsNameList.size()> 2 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
@@ -132,6 +134,7 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.123", fullName)
+//                        .addStatement(fullName != "cn.hx.plugin.junkcode.utils.Utils" ? "${str}(),$fullName": "${str}(),${Utils.class}")
 //                        .addStatement( "$fullName")
                         .addStatement("$otherPackageNameList")
                         .addStatement("${otherClassNameList}")
