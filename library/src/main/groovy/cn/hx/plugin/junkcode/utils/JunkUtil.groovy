@@ -470,6 +470,7 @@ class JunkUtil {
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
             otherPackageNameList.add(0, javaFile.packageName)
+            integrityName.add(packageName + "." + className)
             writeJavaToFile(javaDir, javaFile)
         }
     }
