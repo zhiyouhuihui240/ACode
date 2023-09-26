@@ -140,6 +140,9 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement(" $otherClassMethodsAccessMap")
+                        .addStatement(" $otherClassNameList")
+                        .addStatement(" $otherClassMethodsNameList")
                         .endControlFlow()
                 break
             case 1:
