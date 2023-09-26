@@ -145,8 +145,7 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherPackageNameList")
-                        .addStatement("$otherClassNameList")
+                        .addStatement("$integrityName")
                         .endControlFlow()
                 break
             case 1:
