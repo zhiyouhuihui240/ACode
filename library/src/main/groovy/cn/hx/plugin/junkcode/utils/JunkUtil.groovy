@@ -120,10 +120,12 @@ class JunkUtil {
             // 检查一遍  otherClassMethodsAccessMap
             def aa = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
             a1 = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-            if (!integrityName.contains(aa)) {
+            if (integrityName.contains(a1)) {
                 str = "logg"
                 fullName = ClassName.get(Utils.class)
             }
+
+
         }else {
             fullName = ClassName.get(Utils.class)
         }
@@ -149,7 +151,6 @@ class JunkUtil {
                         .addStatement("$integrityName")
                         .addStatement("$a1")
                         .addStatement("$p1")
-                        .addStatement(integrityName.contains(a1) ? "是真的，存在": "是假的，不存在")
                         .endControlFlow()
                 break
             case 1:
@@ -273,7 +274,7 @@ class JunkUtil {
     }
 
 
-    static List integrityName = new ArrayList()
+    static List integrityName = new ArrayList<String>()
     // 生成activity
     static List<String> generateActivity(File javaDir, File resDir, String namespace, String packageName, JunkCodeConfig config) {
         def activityList = new ArrayList()
