@@ -126,6 +126,8 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.logg()", Utils.class)
                         .addStatement("\$T.$str()", instance.class)
+                        .addStatement("$fullName")
+                        .addStatement("$str")
                         .endControlFlow()
                 break
             case 1:
