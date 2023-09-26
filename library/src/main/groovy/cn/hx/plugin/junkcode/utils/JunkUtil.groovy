@@ -134,8 +134,7 @@ class JunkUtil {
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
-                methodBuilder
-                        .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+                methodBuilder.addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                 break
             case 2:
                 otherClassMethodsAccessList.add("void")
@@ -201,7 +200,7 @@ class JunkUtil {
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-                        
+
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -244,6 +243,8 @@ class JunkUtil {
 //                config.activityCreator.execute(new Tuple4(i, getRandomActivityName(i), layoutNameBuilder, layoutContentBuilder))
                 config.activityCreator.execute(new Tuple4(i, activityNameBuilder, layoutNameBuilder, layoutContentBuilder))
                 className = activityNameBuilder.toString()
+                // todo: 保存activity的类名
+                otherClassNameList.add(0, className)
                 layoutName = layoutNameBuilder.toString()
                 writeStringToFile(new File(resDir, "layout/${layoutName}.xml"), layoutContentBuilder.toString())
             } else {
@@ -334,6 +335,8 @@ class JunkUtil {
 
                 def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
                 writeJavaToFile(javaDir, javaFile)
+                // todo：保存activity的包名
+                otherPackageNameList.add(0, javaFile.packageName)
                 activityList.add(packageName + "." + className)
             }
         }
