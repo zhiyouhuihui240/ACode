@@ -123,6 +123,7 @@ class JunkUtil {
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
+
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
                         .addStatement("\$T.out.println(\$S)", System.class, "Time travelling, woo hoo!")
@@ -130,8 +131,8 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-//                        .addStatement("\$T.$str()", fullName)
-                        .addStatement( "$fullName")
+                        .addStatement("\$T.123", fullName)
+//                        .addStatement( "$fullName")
                         .addStatement("$otherPackageNameList")
                         .addStatement("${otherClassNameList}")
                         .addStatement("${otherClassNameList.last()}")
