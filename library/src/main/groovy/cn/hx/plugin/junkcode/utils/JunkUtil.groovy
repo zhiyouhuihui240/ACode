@@ -100,13 +100,13 @@ class JunkUtil {
 
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
-        if (otherPackageNameList.size() >0 && otherClassNameList.size() > 0 ) {
+        if (otherPackageNameList.size() >2 && otherClassNameList.size() > 2 ) {
             fullName = "${otherPackageNameList.get(0)}.${otherClassNameList.get(0)}"
 //            otherPackageNameList.remove(0)
 //            otherClassNameList.remove(0)
         }
 
-        if (otherClassMethodsNameList.size()> 0 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
+        if (otherClassMethodsNameList.size()> 2 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
             str = otherClassMethodsNameList[otherClassMethodsNameList.size() -1]
             otherClassMethodsNameList.removeLast()
         }
