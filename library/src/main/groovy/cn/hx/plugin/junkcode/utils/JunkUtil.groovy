@@ -99,8 +99,6 @@ class JunkUtil {
 
         def str = "logg"
 
-
-
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
 
         if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
@@ -109,6 +107,12 @@ class JunkUtil {
             fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
 
 
+
+
+
+            if (str == "logg") {
+                fullName = ClassName.get(Utils.class)
+            }
 
 
 //            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
@@ -408,8 +412,13 @@ class JunkUtil {
                         generateMethods(methodBuilder)
                     }
                     typeBuilder.addMethod(methodBuilder.build())
-                    otherClassMethodsNameList.add(0,methodBuilder.build().name)
-                    otherClassMethodsAccessMap.put(packageName, methodBuilder.build().name)
+
+                    // 只添加没有参数的方法，且将新添加的数据放在首位
+                    if (methodBuilder.build().parameters.size() == 0) {
+                        otherClassMethodsNameList.add(0,methodBuilder.build().name)
+                        otherClassMethodsAccessMap.put(packageName, methodBuilder.build().name)
+                    }
+
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
