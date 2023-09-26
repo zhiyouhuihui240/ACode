@@ -109,10 +109,12 @@ class JunkUtil {
             fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
 
 
+
+
 //            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-            otherPackageNameList.removeLast()
-            otherClassNameList.removeLast()
+//            otherPackageNameList.removeLast()
+//            otherClassNameList.removeLast()
         }else {
             fullName = ClassName.get(Utils.class)
 //            fullName = ClassName.get("cn.hx.plugin.junkcode.utils","Utils")
