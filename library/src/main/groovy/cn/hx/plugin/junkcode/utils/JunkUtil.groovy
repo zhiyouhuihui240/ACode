@@ -28,6 +28,7 @@ class JunkUtil {
     static List<String> otherClassMethodsAccessList = new ArrayList<String>()
 //    static Map<String, String> otherClassMethodsAccessMap = new HashMap<String, String>();
     static Map<String, List<String>> otherClassMethodsAccessMap = new HashMap<String, List<String>>();
+    static Map<String, List<String>> otherPackageClassMap = new HashMap<String, List<String>>();
 
 
     // 随机生成一个activity名称
@@ -98,14 +99,14 @@ class JunkUtil {
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
-        if (otherPackageNameList.size() > 5 && otherClassNameList.size() > 5 ) {
-            fullName = ClassName.get("${otherPackageNameList.get(3)}", "${otherClassNameList.get(3)}")
-            if (otherClassMethodsAccessMap.get(otherClassNameList.get(3))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(3)).size() >0) {
+        if (otherPackageNameList.size() > 1 && otherClassNameList.size() > 1 ) {
+            fullName = ClassName.get("${otherPackageNameList.get(0)}", "${otherClassNameList.get(0)}")
+            if (otherClassMethodsAccessMap.get(otherClassNameList.get(0))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(0)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
-                values = otherClassMethodsAccessMap.get(otherClassNameList.get(3))
+                values = otherClassMethodsAccessMap.get(otherClassNameList.get(0))
                 if (values != null && !values.isEmpty() && values.size() > 0) {
                     String firstValue = values.get(0)
-                    values.remove(0)
+//                    values.remove(0)
                     str = firstValue
                 }
             }
@@ -120,6 +121,7 @@ class JunkUtil {
         if (fullName == ClassName.get(Utils.class)) {
             str == "logg"
         }
+
 
         switch (random.nextInt(5)) {
             case 0:
