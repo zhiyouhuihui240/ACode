@@ -99,7 +99,8 @@ class JunkUtil {
 
         def str = "logg"
         def aaa = "sdfsdf"
-        List<String> values = ""
+//        List<String> values = ""
+        List  values = new ArrayList<>()
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
 
         if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
