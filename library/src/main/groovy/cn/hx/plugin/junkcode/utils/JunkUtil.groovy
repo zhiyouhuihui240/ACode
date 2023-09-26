@@ -154,12 +154,16 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherClassNameList")
+                        .addStatement("$otherPackageNameList")
                         .endControlFlow()
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherClassNameList")
+                        .addStatement("$otherPackageNameList")
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                 break
             case 2:
@@ -168,11 +172,15 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherClassNameList")
+                        .addStatement("$otherPackageNameList")
                         .endControlFlow()
                 break
             case 3:
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherClassNameList")
+                        .addStatement("$otherPackageNameList")
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
@@ -180,6 +188,8 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherClassNameList")
+                        .addStatement("$otherPackageNameList")
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -188,12 +198,16 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherClassNameList")
+                        .addStatement("$otherPackageNameList")
                 break
             //todo：添加随机方法
             default:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherClassNameList")
+                        .addStatement("$otherPackageNameList")
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -310,9 +324,7 @@ class JunkUtil {
                 // todo:   activity的继承父类更改为AppCompatActivity
 //                typeBuilder.superclass(ClassName.get("android.app", "Activity"))
                 typeBuilder.superclass(ClassName.get("androidx.appcompat.app", "AppCompatActivity"))
-
                 typeBuilder.addModifiers(Modifier.PUBLIC)
-
                 if (config.typeGenerator) {
                     config.typeGenerator.execute(typeBuilder)
                 } else {
