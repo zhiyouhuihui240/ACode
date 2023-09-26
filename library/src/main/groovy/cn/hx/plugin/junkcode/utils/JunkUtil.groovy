@@ -98,7 +98,7 @@ class JunkUtil {
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
-        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
+        if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
 //            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
             fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
@@ -363,12 +363,9 @@ class JunkUtil {
                                 values.add(methodBuilder.build().name);
                                 otherClassMethodsAccessMap.put(className, values);
                             }
-
-
                         }
                     }
                 }
-
                 //onCreate方法
                 def bundleClassName = ClassName.get("android.os", "Bundle")
 
