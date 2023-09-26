@@ -104,10 +104,10 @@ class JunkUtil {
 
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
-        if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
+        if (otherPackageNameList.size() >0 && otherClassNameList.size() > 0 ) {
             fullName = "${otherPackageNameList.get(0)}.${otherClassNameList.get(0)}"
-            otherPackageNameList.remove(0)
-            otherClassNameList.remove(0)
+//            otherPackageNameList.remove(0)
+//            otherClassNameList.remove(0)
         }
 
         Class<?> clazz = Class.forName(fullName)
@@ -127,7 +127,7 @@ class JunkUtil {
                         .addStatement("\$T.logg()", Utils.class)
                         .addStatement("\$T.$str()", instance.class)
                         .addStatement("$fullName")
-                        .addStatement("$str")
+                        .addStatement("$str()")
                         .endControlFlow()
                 break
             case 1:
@@ -330,7 +330,7 @@ class JunkUtil {
 
                 typeBuilder.addMethod(MethodSpec.methodBuilder("onBackPressed")
                         .addAnnotation(Override.class)
-                        .addModifiers(Modifier.PROTECTED)
+                        .addModifiers(Modifier.PUBLIC)
                         .addStatement("super.onBackPressed()")
                         .build())
 
