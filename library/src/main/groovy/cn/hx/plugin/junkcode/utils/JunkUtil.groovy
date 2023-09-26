@@ -122,6 +122,7 @@ class JunkUtil {
             str = otherClassMethodsNameList.last()
             otherClassMethodsNameList.removeLast()
         }
+
 //        Class<?> clazz = Class.forName(fullName)
 //
 //        Object instance = clazz.getDeclaredConstructor().newInstance()
@@ -136,7 +137,7 @@ class JunkUtil {
             case 0:
                 otherClassMethodsAccessList.add("void")
 
-                methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
                         .addStatement("\$T.out.println(\$S)", System.class, "Time travelling, woo hoo!")
                         .nextControlFlow("else if (\$T.currentTimeMillis() == now)", System.class)
@@ -146,16 +147,17 @@ class JunkUtil {
                         .addStatement("\$T.$str()", fullName)
                         .addStatement(" $otherClassMethodsAccessMap")
                         .addStatement(" $otherClassNameList")
+                        .addStatement(" ${otherClassMethodsAccessMap.get(otherClassNameList.first())}")
                         .addStatement(" $otherClassMethodsNameList")
                         .endControlFlow()
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
-                methodBuilder.addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                 break
             case 2:
                 otherClassMethodsAccessList.add("void")
-                methodBuilder.beginControlFlow("try")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).beginControlFlow("try")
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
@@ -168,7 +170,7 @@ class JunkUtil {
                         .endControlFlow()
                 break
             case 3:
-                methodBuilder
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
 //                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 
@@ -307,7 +309,7 @@ class JunkUtil {
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
                             otherClassMethodsNameList.add(0,methodBuilder.build().name)
-                            otherClassMethodsAccessMap.put(packageName, methodBuilder.build().name)
+                            otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
                         }
                     }
                 }
@@ -416,7 +418,7 @@ class JunkUtil {
                     // 只添加没有参数的方法，且将新添加的数据放在首位
                     if (methodBuilder.build().parameters.size() == 0) {
                         otherClassMethodsNameList.add(0,methodBuilder.build().name)
-                        otherClassMethodsAccessMap.put(packageName, methodBuilder.build().name)
+                        otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
                     }
 
 //                    otherClassMethodsNameList.removeLast()
