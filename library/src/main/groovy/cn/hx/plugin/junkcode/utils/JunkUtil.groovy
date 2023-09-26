@@ -93,6 +93,7 @@ class JunkUtil {
 
 
     static oneTime = true
+    static oneTime1 = 0
     // 生成随机方法
     static void generateMethods(MethodSpec.Builder methodBuilder) {
         def str = "logg"
@@ -112,7 +113,8 @@ class JunkUtil {
                 }
             }
             // 检查一遍  otherClassMethodsAccessMap
-            if (oneTime) {
+            if (oneTime || oneTime1 < 3) {
+                oneTime1 += oneTime1
                 oneTime = false
                 fullName = ClassName.get(Utils.class)
                 str == "logg"
