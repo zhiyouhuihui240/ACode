@@ -94,12 +94,9 @@ class JunkUtil {
 
 //        otherClassMethodsNameList.add(0,methodBuilder.name)
 //        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
-        firstNum += 1
+
         def str = "logg"
-        if (otherClassMethodsNameList.size()> 0 ) {
-            str = otherClassMethodsNameList[otherClassMethodsNameList.size() -1]
-            otherClassMethodsNameList.removeLast()
-        }
+
 
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
@@ -107,6 +104,11 @@ class JunkUtil {
             fullName = "${otherPackageNameList.get(0)}.${otherClassNameList.get(0)}"
 //            otherPackageNameList.remove(0)
 //            otherClassNameList.remove(0)
+        }
+
+        if (otherClassMethodsNameList.size()> 0 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
+            str = otherClassMethodsNameList[otherClassMethodsNameList.size() -1]
+            otherClassMethodsNameList.removeLast()
         }
 
         Class<?> clazz = Class.forName(fullName)
@@ -123,13 +125,10 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("\$T.logg()", Utils.class)
                         .addStatement("\$T.$str()", instance.class)
-                        .addStatement("$fullName")
                         .addStatement("$otherPackageNameList")
                         .addStatement("$otherClassNameList")
                         .addStatement("$otherClassMethodsNameList")
-                        .addStatement("$str()")
                         .endControlFlow()
                 break
             case 1:
