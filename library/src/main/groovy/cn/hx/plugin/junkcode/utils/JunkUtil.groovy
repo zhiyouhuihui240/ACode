@@ -92,17 +92,15 @@ class JunkUtil {
     }
 
 
-    static oneTime = true
-    static oneTime1 = 0
+
     // 生成随机方法
     static void generateMethods(MethodSpec.Builder methodBuilder) {
         def str = "logg"
-        def aaa = "sdfsdf"
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
         if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
-            fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+            fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(0)}")
             if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
                 values = otherClassMethodsAccessMap.get(otherClassNameList.get(1))
@@ -114,14 +112,6 @@ class JunkUtil {
             }
             // 检查一遍  otherClassMethodsAccessMap
 
-            oneTime1 += oneTime1
-            oneTime = false
-//            if (oneTime || oneTime1 < 3) {
-//                oneTime1 += oneTime1
-//                oneTime = false
-//                fullName = ClassName.get(Utils.class)
-//                str == "logg"
-//            }
 
         }else {
             fullName = ClassName.get(Utils.class)
@@ -132,14 +122,6 @@ class JunkUtil {
         if (fullName == ClassName.get(Utils.class)) {
             str == "logg"
         }
-
-//        if (oneTime || oneTime1 < 4) {
-//            oneTime1 += oneTime1
-//            oneTime = false
-//            fullName = ClassName.get(Utils.class)
-//            str == "logg"
-//        }
-
 
         switch (random.nextInt(5)) {
             case 0:
@@ -154,16 +136,12 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherPackageNameList")
                         .endControlFlow()
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherPackageNameList")
                         .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                 break
             case 2:
@@ -172,15 +150,11 @@ class JunkUtil {
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherPackageNameList")
                         .endControlFlow()
                 break
             case 3:
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherPackageNameList")
                         .returns(Date.class)
                         .addStatement("return new \$T()", Date.class)
                 break
@@ -188,8 +162,6 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherPackageNameList")
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
@@ -198,16 +170,12 @@ class JunkUtil {
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherPackageNameList")
                 break
             //todo：添加随机方法
             default:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherPackageNameList")
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
