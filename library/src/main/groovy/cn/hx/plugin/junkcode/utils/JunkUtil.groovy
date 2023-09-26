@@ -26,8 +26,8 @@ class JunkUtil {
     static List<String> otherPackageNameList = new ArrayList<>()
     static List<String> otherClassMethodsNameList = new ArrayList<>()
     static List<String> otherClassMethodsAccessList = new ArrayList<String>()
-    static Map<String, String> otherClassMethodsAccessMap = new HashMap<String, String>();
-
+//    static Map<String, String> otherClassMethodsAccessMap = new HashMap<String, String>();
+    static Map<String, List<String>> otherClassMethodsAccessMap = new HashMap<String, List<String>>();
 
 
     // 随机生成一个activity名称
@@ -98,7 +98,7 @@ class JunkUtil {
 //        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
 
         def str = "logg"
-
+        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
 
         if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
@@ -108,6 +108,11 @@ class JunkUtil {
 
 
 
+            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null) {
+                str = otherClassMethodsAccessMap.get(otherClassNameList.first())
+                values = otherClassMethodsAccessMap.get(otherClassNameList.first())
+//                values.get(0)
+            }
 
 //            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
@@ -132,7 +137,6 @@ class JunkUtil {
             fullName = ClassName.get(Utils.class)
         }
 
-
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
@@ -147,6 +151,7 @@ class JunkUtil {
                         .addStatement("\$T.$str()", fullName)
                         .addStatement(" $otherClassMethodsAccessMap")
                         .addStatement(" $otherClassNameList")
+                        .addStatement(" $values")
                         .addStatement(" ${otherClassMethodsAccessMap.get(otherClassNameList.first())}")
                         .addStatement(" $otherClassMethodsNameList")
                         .endControlFlow()
@@ -309,7 +314,18 @@ class JunkUtil {
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
                             otherClassMethodsNameList.add(0,methodBuilder.build().name)
-                            otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
+//                            otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
+
+
+                            if (otherClassMethodsAccessMap.containsKey(className)) {
+                                otherClassMethodsAccessMap.get(className).add(methodBuilder.build().name);
+                            } else {
+                                List<String> values = new ArrayList<String>();
+                                values.add(methodBuilder.build().name);
+                                otherClassMethodsAccessMap.put(className, values);
+                            }
+
+
                         }
                     }
                 }
@@ -418,7 +434,15 @@ class JunkUtil {
                     // 只添加没有参数的方法，且将新添加的数据放在首位
                     if (methodBuilder.build().parameters.size() == 0) {
                         otherClassMethodsNameList.add(0,methodBuilder.build().name)
-                        otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
+//                        otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
+
+                        if (otherClassMethodsAccessMap.containsKey(className)) {
+                            otherClassMethodsAccessMap.get(className).add(methodBuilder.build().name);
+                        } else {
+                            List<String> values = new ArrayList<String>();
+                            values.add(methodBuilder.build().name);
+                            otherClassMethodsAccessMap.put(className, values);
+                        }
                     }
 
 //                    otherClassMethodsNameList.removeLast()
