@@ -105,7 +105,9 @@ class JunkUtil {
 
         if (otherPackageNameList.size() >2 && otherClassNameList.size() > 2 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
-            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
+
+            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
+//            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
             otherPackageNameList.removeLast()
             otherClassNameList.removeLast()
@@ -115,7 +117,6 @@ class JunkUtil {
             str = otherClassMethodsNameList.last()
             otherClassMethodsNameList.removeLast()
         }
-
         Class<?> clazz = Class.forName(fullName)
 
         Object instance = clazz.getDeclaredConstructor().newInstance()
