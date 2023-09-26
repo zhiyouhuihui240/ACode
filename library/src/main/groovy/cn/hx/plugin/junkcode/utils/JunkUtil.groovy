@@ -109,12 +109,6 @@ class JunkUtil {
 
 
 
-
-            if (str == "logg") {
-                fullName = ClassName.get(Utils.class)
-            }
-
-
 //            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
 //            otherPackageNameList.removeLast()
@@ -131,6 +125,12 @@ class JunkUtil {
 //        Class<?> clazz = Class.forName(fullName)
 //
 //        Object instance = clazz.getDeclaredConstructor().newInstance()
+
+
+        if (str == "logg") {
+            fullName = ClassName.get(Utils.class)
+        }
+
 
         switch (random.nextInt(5)) {
             case 0:
