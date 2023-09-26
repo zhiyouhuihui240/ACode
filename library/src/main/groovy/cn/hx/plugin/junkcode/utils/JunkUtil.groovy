@@ -93,14 +93,12 @@ class JunkUtil {
 
     // 生成随机方法
     static void generateMethods(MethodSpec.Builder methodBuilder) {
-//        otherClassMethodsNameList.add(0,methodBuilder.name)
-//        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
         def str = "logg"
         def aaa = "sdfsdf"
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
-        if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
+        if (otherPackageNameList.size() >5 && otherClassNameList.size() > 5 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
 //            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
             fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
@@ -112,26 +110,9 @@ class JunkUtil {
                     str = firstValue
                 }
             }
-
-//            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
-//            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-//            otherPackageNameList.removeLast()
-//            otherClassNameList.removeLast()
         }else {
             fullName = ClassName.get(Utils.class)
-//            fullName = ClassName.get("cn.hx.plugin.junkcode.utils","Utils")
         }
-
-//        if (otherClassMethodsNameList.size()> 2 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
-//            str = otherClassMethodsNameList.last()
-//            otherClassMethodsNameList.removeLast()
-//        }
-
-//        Class<?> clazz = Class.forName(fullName)
-//
-//        Object instance = clazz.getDeclaredConstructor().newInstance()
-
-
         if (str == "logg") {
             fullName = ClassName.get(Utils.class)
         }
@@ -233,7 +214,7 @@ class JunkUtil {
 
 
 
-    // 生成随机方法
+    // 生成 Activity 随机方法
     static void generateActivityMethods(MethodSpec.Builder methodBuilder) {
         switch (random.nextInt(5)) {
             case 0:
@@ -371,7 +352,7 @@ class JunkUtil {
                         // 只添加没有参数的方法，且将新添加的数据放在首位
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
-                            otherClassMethodsNameList.add(0,methodBuilder.build().name)
+                            otherClassMethodsNameList.add(methodBuilder.build().name)
 //                            otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
 
 
@@ -427,7 +408,7 @@ class JunkUtil {
                 def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
                 writeJavaToFile(javaDir, javaFile)
                 // todo：保存activity的包名
-                otherPackageNameList.add(0, javaFile.packageName)
+                otherPackageNameList.add( javaFile.packageName)
                 activityList.add(packageName + "." + className)
             }
         }
@@ -491,7 +472,7 @@ class JunkUtil {
 
                     // 只添加没有参数的方法，且将新添加的数据放在首位
                     if (methodBuilder.build().parameters.size() == 0) {
-                        otherClassMethodsNameList.add(0,methodBuilder.build().name)
+                        otherClassMethodsNameList.add(methodBuilder.build().name)
 //                        otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
 
                         if (otherClassMethodsAccessMap.containsKey(className)) {
@@ -507,7 +488,7 @@ class JunkUtil {
                 }
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherPackageNameList.add(0, javaFile.packageName)
+            otherPackageNameList.add( javaFile.packageName)
             writeJavaToFile(javaDir, javaFile)
         }
     }
