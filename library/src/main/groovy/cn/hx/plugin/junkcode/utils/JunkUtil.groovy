@@ -93,25 +93,17 @@ class JunkUtil {
 
     // 生成随机方法
     static void generateMethods(MethodSpec.Builder methodBuilder) {
-
 //        otherClassMethodsNameList.add(0,methodBuilder.name)
 //        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
-
         def str = "logg"
         def aaa = "sdfsdf"
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
-
         List  values = new ArrayList<>()
-
-        Boolean isInner = false
-
         if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
 //            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
             fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
-
-
             if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
                 values = otherClassMethodsAccessMap.get(otherClassNameList.first())
                 if (values != null && !values.isEmpty() && values.size() > 0) {
@@ -240,6 +232,61 @@ class JunkUtil {
     }
 
 
+
+    // 生成随机方法
+    static void generateActivityMethods(MethodSpec.Builder methodBuilder) {
+        switch (random.nextInt(5)) {
+            case 0:
+                otherClassMethodsAccessList.add("void")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .addStatement("long now = \$T.currentTimeMillis()", System.class)
+                        .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
+                        .addStatement("\$T.out.println(\$S)", System.class, "Time travelling, woo hoo!")
+                        .nextControlFlow("else if (\$T.currentTimeMillis() == now)", System.class)
+                        .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
+                        .nextControlFlow("else")
+                        .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
+                        .endControlFlow()
+                break
+            case 1:
+                otherClassMethodsAccessList.add("void")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+                break
+            case 2:
+                otherClassMethodsAccessList.add("void")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).beginControlFlow("try")
+                        .addStatement("throw new Exception(\$S)", "Failed")
+                        .nextControlFlow("catch (\$T e)", Exception.class)
+                        .endControlFlow()
+                break
+            case 3:
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(Date.class)
+                        .addStatement("return new \$T()", Date.class)
+                break
+            case 4:
+                otherClassMethodsAccessList.add("public static void")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(void.class)
+                        .addParameter(String[].class, "args")
+                        .addStatement("\$T.out.println(\$S)", System.class, "Hello")
+                break
+            case 5:
+                otherClassMethodsAccessList.add("public static void")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                break
+                //todo：添加随机方法
+            default:
+                otherClassMethodsAccessList.add("public static void")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(void.class)
+                        .addParameter(String[].class, "args")
+                        .addStatement("\$T.out.println(\$S)", System.class, "Hello")
+        }
+    }
+
+
+
     // 生成颜色代码
     static String generateColor() {
         def sb = new StringBuilder()
@@ -318,7 +365,7 @@ class JunkUtil {
                         if (config.methodGenerator) {
                             config.methodGenerator.execute(methodBuilder)
                         } else {
-                            generateMethods(methodBuilder)
+                            generateActivityMethods(methodBuilder)
                         }
                         typeBuilder.addMethod(methodBuilder.build())
                         // 只添加没有参数的方法，且将新添加的数据放在首位
