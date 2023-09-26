@@ -25,8 +25,10 @@ class JunkUtil {
     static List<String> otherClassNameList = new ArrayList<>()
     static List<String> otherPackageNameList = new ArrayList<>()
     static List<String> otherClassMethodsNameList = new ArrayList<>()
-    static List<String> otherClassMethodsAccessList = new ArrayList<>()
-    static firstNum = -1
+    static List<String> otherClassMethodsAccessList = new ArrayList<String>()
+    static Map<String, String> otherClassMethodsAccessMap = new HashMap<String, String>();
+
+
 
     // 随机生成一个activity名称
     static String generateName(int index) {
@@ -134,6 +136,7 @@ class JunkUtil {
                         .addStatement("${otherClassNameList.last()}")
                         .addStatement("${otherClassNameList.first()}")
                         .addStatement("$otherClassMethodsNameList")
+                        .addStatement("$otherClassMethodsAccessMap")
                         .endControlFlow()
                 break
             case 1:
@@ -294,6 +297,7 @@ class JunkUtil {
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
                             otherClassMethodsNameList.add(0,methodBuilder.build().name)
+                            otherClassMethodsAccessMap.add(packageName, methodBuilder.build().name)
                         }
                     }
                 }
@@ -399,6 +403,7 @@ class JunkUtil {
                     }
                     typeBuilder.addMethod(methodBuilder.build())
                     otherClassMethodsNameList.add(0,methodBuilder.build().name)
+                    otherClassMethodsAccessMap.add(packageName, methodBuilder.build().name)
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
