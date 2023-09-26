@@ -105,14 +105,14 @@ class JunkUtil {
 
         if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
-            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
-//            fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
+//            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
+            fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
 
 
 //            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-//            otherPackageNameList.removeLast()
-//            otherClassNameList.removeLast()
+            otherPackageNameList.removeLast()
+            otherClassNameList.removeLast()
         }else {
             fullName = ClassName.get(Utils.class)
 //            fullName = ClassName.get("cn.hx.plugin.junkcode.utils","Utils")
