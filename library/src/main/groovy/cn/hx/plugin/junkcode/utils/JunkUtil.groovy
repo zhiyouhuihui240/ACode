@@ -131,7 +131,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("\$T.$str()", instance.class)
+                        .addStatement("\$T.$str()", fullName)
                         .addStatement("$otherPackageNameList")
                         .addStatement("${otherClassNameList}")
                         .addStatement("${otherClassNameList.last()}")
