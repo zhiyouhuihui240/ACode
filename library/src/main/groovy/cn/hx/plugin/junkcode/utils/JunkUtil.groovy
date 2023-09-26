@@ -117,7 +117,7 @@ class JunkUtil {
                 if (values != null && !values.isEmpty()) {
                     String firstValue = values.get(0)
                     values.remove(0)
-                    aaa = firstValue
+                    str = firstValue
                 }
                 if (values.get(0) == otherClassNameList.first()) {
                     isInner = true
@@ -133,10 +133,10 @@ class JunkUtil {
 //            fullName = ClassName.get("cn.hx.plugin.junkcode.utils","Utils")
         }
 
-        if (otherClassMethodsNameList.size()> 2 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
-            str = otherClassMethodsNameList.last()
-            otherClassMethodsNameList.removeLast()
-        }
+//        if (otherClassMethodsNameList.size()> 2 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
+//            str = otherClassMethodsNameList.last()
+//            otherClassMethodsNameList.removeLast()
+//        }
 
 //        Class<?> clazz = Class.forName(fullName)
 //
@@ -154,14 +154,15 @@ class JunkUtil {
             case 0:
                 otherClassMethodsAccessList.add("void")
 
-                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).addStatement("long now = \$T.currentTimeMillis()", System.class)
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
                         .addStatement("\$T.out.println(\$S)", System.class, "Time travelling, woo hoo!")
                         .nextControlFlow("else if (\$T.currentTimeMillis() == now)", System.class)
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("\$T.$aaa()", fullName)
+                        .addStatement("\$T.$str()", fullName)
                         .endControlFlow()
                 break
             case 1:
