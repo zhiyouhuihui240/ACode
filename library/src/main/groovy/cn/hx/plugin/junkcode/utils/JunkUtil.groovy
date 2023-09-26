@@ -98,6 +98,7 @@ class JunkUtil {
 //        myList["${otherClassMethodsAccessList}"] = ["${methodBuilder.name}"]
 
         def str = "logg"
+        def aaa = "sdfsdf"
         List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
 
@@ -111,6 +112,11 @@ class JunkUtil {
             if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null) {
                 str = otherClassMethodsAccessMap.get(otherClassNameList.first())
                 values = otherClassMethodsAccessMap.get(otherClassNameList.first())
+                if (values != null && !values.isEmpty()) {
+                    String firstValue = values.get(0);
+                    values.remove(0);
+                    aaa = firstValue
+                }
 //                values.get(0)
             }
 
@@ -152,6 +158,7 @@ class JunkUtil {
                         .addStatement(" $otherClassMethodsAccessMap")
                         .addStatement(" $otherClassNameList")
                         .addStatement(" $values")
+                        .addStatement(" $aaa")
                         .addStatement(" ${otherClassMethodsAccessMap.get(otherClassNameList.first())}")
                         .addStatement(" $otherClassMethodsNameList")
                         .endControlFlow()
