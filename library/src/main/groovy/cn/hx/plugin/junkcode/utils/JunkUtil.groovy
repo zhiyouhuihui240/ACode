@@ -114,6 +114,7 @@ class JunkUtil {
             // 检查一遍  otherClassMethodsAccessMap
 
 
+
         }else {
             fullName = ClassName.get(Utils.class)
         }
@@ -122,6 +123,11 @@ class JunkUtil {
         }
         if (fullName == ClassName.get(Utils.class)) {
             str == "logg"
+        }
+
+        if (!integrityName.contains(fullName)) {
+            str == "logg"
+            fullName = ClassName.get(Utils.class)
         }
 
         switch (random.nextInt(5)) {
@@ -262,6 +268,7 @@ class JunkUtil {
     }
 
 
+    static List integrityName = new ArrayList()
     // 生成activity
     static List<String> generateActivity(File javaDir, File resDir, String namespace, String packageName, JunkCodeConfig config) {
         def activityList = new ArrayList()
@@ -296,10 +303,6 @@ class JunkUtil {
 //                typeBuilder.superclass(ClassName.get("android.app", "Activity"))
                 typeBuilder.superclass(ClassName.get("androidx.appcompat.app", "AppCompatActivity"))
                 typeBuilder.addModifiers(Modifier.PUBLIC)
-
-                def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-                otherPackageNameList.add(0, packageName)
-
                 if (config.typeGenerator) {
                     config.typeGenerator.execute(typeBuilder)
                 } else {
@@ -355,7 +358,7 @@ class JunkUtil {
                         .addParameter(bundleClassName, "savedInstanceState")
                         .addStatement("super.onCreate(savedInstanceState)")
                         .addStatement("setContentView(\$T.layout.${layoutName})", ClassName.get(namespace, "R"))
-                // todo: 添加调用方法
+                        // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
@@ -381,11 +384,12 @@ class JunkUtil {
                         .addStatement("super.onBackPressed()")
                         .build())
 
-
-
+                def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
+                otherPackageNameList.add(0, packageName)
                 writeJavaToFile(javaDir, javaFile)
                 // todo：保存activity的包名
                 activityList.add(packageName + "." + className)
+                integrityName.add(packageName + "." + className)
             }
         }
         return activityList
@@ -423,10 +427,6 @@ class JunkUtil {
             }
             def typeBuilder = TypeSpec.classBuilder(className)
             otherClassNameList.add(0, className)
-
-            def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherPackageNameList.add(0, javaFile.packageName)
-
             if (config.typeGenerator) {
                 config.typeGenerator.execute(typeBuilder)
             } else {
@@ -467,7 +467,8 @@ class JunkUtil {
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
-
+            def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
+            otherPackageNameList.add(0, javaFile.packageName)
             writeJavaToFile(javaDir, javaFile)
         }
     }
