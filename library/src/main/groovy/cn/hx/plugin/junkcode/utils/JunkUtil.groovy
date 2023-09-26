@@ -98,12 +98,12 @@ class JunkUtil {
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
-        if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
+        if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
 //            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
             fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
-            if (otherClassMethodsAccessMap.get(otherClassNameList.last())!= null && otherClassMethodsAccessMap.get(otherClassNameList.last()).size() >0) {
-                values = otherClassMethodsAccessMap.get(otherClassNameList.last())
+            if (otherClassMethodsAccessMap.get(otherClassNameList.first()+1)!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()+1).size() >0) {
+                values = otherClassMethodsAccessMap.get(otherClassNameList.first()+1)
                 if (values != null && !values.isEmpty() && values.size() > 0) {
                     String firstValue = values.get(0)
                     values.remove(0)
@@ -137,7 +137,9 @@ class JunkUtil {
                 break
             case 1:
                 otherClassMethodsAccessList.add("void")
-                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .addStatement("\$T.$str()", fullName)
+                        .addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                 break
             case 2:
                 otherClassMethodsAccessList.add("void")
@@ -352,7 +354,7 @@ class JunkUtil {
                         // 只添加没有参数的方法，且将新添加的数据放在首位
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
-                            otherClassMethodsNameList.add(methodBuilder.build().name)
+                            otherClassMethodsNameList.add(0,methodBuilder.build().name)
 //                            otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
 
 
@@ -363,9 +365,12 @@ class JunkUtil {
                                 values.add(methodBuilder.build().name);
                                 otherClassMethodsAccessMap.put(className, values);
                             }
+
+
                         }
                     }
                 }
+
                 //onCreate方法
                 def bundleClassName = ClassName.get("android.os", "Bundle")
 
@@ -405,7 +410,7 @@ class JunkUtil {
                 def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
                 writeJavaToFile(javaDir, javaFile)
                 // todo：保存activity的包名
-                otherPackageNameList.add( javaFile.packageName)
+                otherPackageNameList.add(0, javaFile.packageName)
                 activityList.add(packageName + "." + className)
             }
         }
@@ -469,7 +474,7 @@ class JunkUtil {
 
                     // 只添加没有参数的方法，且将新添加的数据放在首位
                     if (methodBuilder.build().parameters.size() == 0) {
-                        otherClassMethodsNameList.add(methodBuilder.build().name)
+                        otherClassMethodsNameList.add(0,methodBuilder.build().name)
 //                        otherClassMethodsAccessMap.put(className, methodBuilder.build().name)
 
                         if (otherClassMethodsAccessMap.containsKey(className)) {
@@ -485,7 +490,7 @@ class JunkUtil {
                 }
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherPackageNameList.add( javaFile.packageName)
+            otherPackageNameList.add(0, javaFile.packageName)
             writeJavaToFile(javaDir, javaFile)
         }
     }
