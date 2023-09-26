@@ -297,7 +297,7 @@ class JunkUtil {
                         if (methodBuilder.build().parameters.size() == 0) {
                             stringList.add(methodBuilder.build().name)
                             otherClassMethodsNameList.add(0,methodBuilder.build().name)
-                            otherClassMethodsAccessMap.add(packageName, methodBuilder.build().name)
+                            otherClassMethodsAccessMap.put(packageName, methodBuilder.build().name)
                         }
                     }
                 }
@@ -403,7 +403,7 @@ class JunkUtil {
                     }
                     typeBuilder.addMethod(methodBuilder.build())
                     otherClassMethodsNameList.add(0,methodBuilder.build().name)
-                    otherClassMethodsAccessMap.add(packageName, methodBuilder.build().name)
+                    otherClassMethodsAccessMap.put(packageName, methodBuilder.build().name)
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
