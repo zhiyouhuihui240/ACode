@@ -120,10 +120,13 @@ class JunkUtil {
             // 检查一遍  otherClassMethodsAccessMap
             def aa = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
             a1 = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-            if (!integrityName.contains(a1)) {
-                str = "logg"
-                fullName = ClassName.get(Utils.class)
-            }
+
+
+
+//            if (!integrityName.contains(a1)) {
+//                str = "logg"
+//                fullName = ClassName.get(Utils.class)
+//            }
 
 
         }else {
@@ -148,7 +151,7 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
-//                        .addStatement("$integrityName")
+                        .addStatement("$integrityName")
                         .addStatement("$otherPackageNameList")
                         .addStatement("$otherClassNameList")
                         .endControlFlow()
@@ -277,7 +280,6 @@ class JunkUtil {
     static List integrityName = new ArrayList<String>()
     // 生成activity
     static List<String> generateActivity(File javaDir, File resDir, String namespace, String packageName, JunkCodeConfig config) {
-
         otherPackageNameList.add(0, packageName)
         def activityList = new ArrayList()
         for (int i = 0; i < config.activityCountPerPackage; i++) {
