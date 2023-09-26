@@ -112,7 +112,7 @@ class JunkUtil {
             fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
 
 
-            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null) {
+            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
                 values = otherClassMethodsAccessMap.get(otherClassNameList.first())
                 if (values != null && !values.isEmpty() && values.size() > 0) {
                     String firstValue = values.get(0)
