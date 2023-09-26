@@ -120,7 +120,7 @@ class JunkUtil {
             // 检查一遍  otherClassMethodsAccessMap
             def aa = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
             a1 = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-            if (integrityName.contains(a1)) {
+            if (!integrityName.contains(a1)) {
                 str = "logg"
                 fullName = ClassName.get(Utils.class)
             }
@@ -277,6 +277,8 @@ class JunkUtil {
     static List integrityName = new ArrayList<String>()
     // 生成activity
     static List<String> generateActivity(File javaDir, File resDir, String namespace, String packageName, JunkCodeConfig config) {
+
+        otherPackageNameList.add(0, packageName)
         def activityList = new ArrayList()
         for (int i = 0; i < config.activityCountPerPackage; i++) {
             def className
@@ -391,7 +393,6 @@ class JunkUtil {
                         .build())
 
                 def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-                otherPackageNameList.add(0, packageName)
                 writeJavaToFile(javaDir, javaFile)
                 // todo：保存activity的包名
                 activityList.add(packageName + "." + className)
@@ -420,8 +421,7 @@ class JunkUtil {
 
     // 生成其他类文件
     static void generateJava(File javaDir, String packageName, JunkCodeConfig config) {
-//        otherClassNameList.clear()
-        // config.otherCountPerPackage 获取设置的类数目大小
+        otherPackageNameList.add(0, packageName)
         for (int i = 0; i < config.otherCountPerPackage; i++) {
             def className
             if (config.classNameCreator) {
@@ -473,8 +473,6 @@ class JunkUtil {
                 }
             }
             def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherPackageNameList.add(0, javaFile.packageName)
-            integrityName.add(packageName + "." + className)
             writeJavaToFile(javaDir, javaFile)
         }
     }
