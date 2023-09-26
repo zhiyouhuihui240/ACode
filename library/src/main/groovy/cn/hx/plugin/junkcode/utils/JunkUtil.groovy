@@ -114,13 +114,10 @@ class JunkUtil {
 
             if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null) {
                 values = otherClassMethodsAccessMap.get(otherClassNameList.first())
-                if (values != null && !values.isEmpty()) {
+                if (values != null && !values.isEmpty() && values.size() > 0) {
                     String firstValue = values.get(0)
                     values.remove(0)
                     str = firstValue
-                }
-                if (values.get(0) == otherClassNameList.first()) {
-                    isInner = true
                 }
             }
 
@@ -174,8 +171,8 @@ class JunkUtil {
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).beginControlFlow("try")
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
-                        .addStatement("\$T.$aaa()", fullName)
-//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
+                        .addStatement("\$T.$str()", fullName)
+//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}str(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
@@ -186,8 +183,8 @@ class JunkUtil {
                 break
             case 3:
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("\$T.$aaa()", fullName)
-//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
+                        .addStatement("\$T.$str()", fullName)
+//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}str(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
@@ -201,8 +198,8 @@ class JunkUtil {
             case 4:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("\$T.$aaa()", fullName)
-//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
+                        .addStatement("\$T.$str()", fullName)
+//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}str(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
@@ -217,8 +214,8 @@ class JunkUtil {
             case 5:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("\$T.$aaa()", fullName)
-//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
+                        .addStatement("\$T.$str()", fullName)
+//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}str(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 
 //                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
@@ -229,8 +226,8 @@ class JunkUtil {
             default:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addStatement("\$T.$aaa()", fullName)
-//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}AAA(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
+                        .addStatement("\$T.$str()", fullName)
+//                        .addStatement((System.getProperty("FULL_NAME", fullName) != null ? "${str}str(), ${Class.forName(System.getProperty("FULL_NAME", fullName))}" : "${str}()")) // 方法名列表
                         // .addStatement((otherClassNameList.size() > 0 ? "${otherClassNameList.get(0)}" : "内容为空")) // 方法名列表
 
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
