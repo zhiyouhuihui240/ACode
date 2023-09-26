@@ -112,6 +112,11 @@ class JunkUtil {
                 }
             }
             // 检查一遍  otherClassMethodsAccessMap
+            def aa = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
+            if (!integrityName.contains(aa)) {
+                str == "logg"
+                fullName = ClassName.get(Utils.class)
+            }
 
 
 
@@ -125,10 +130,7 @@ class JunkUtil {
             str == "logg"
         }
 
-        if (!integrityName.contains(fullName)) {
-            str == "logg"
-            fullName = ClassName.get(Utils.class)
-        }
+
 
         switch (random.nextInt(5)) {
             case 0:
