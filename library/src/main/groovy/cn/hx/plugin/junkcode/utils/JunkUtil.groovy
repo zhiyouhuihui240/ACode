@@ -117,9 +117,6 @@ class JunkUtil {
                 str = "logg"
                 fullName = ClassName.get(Utils.class)
             }
-
-
-
         }else {
             fullName = ClassName.get(Utils.class)
         }
@@ -129,8 +126,6 @@ class JunkUtil {
         if (fullName == ClassName.get(Utils.class)) {
             str = "logg"
         }
-
-
 
         switch (random.nextInt(5)) {
             case 0:
@@ -146,6 +141,8 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
                         .addStatement("$integrityName")
+                        .addStatement("${otherPackageNameList.get(1)}")
+                        .addStatement("${otherClassNameList.get(1)}")
                         .endControlFlow()
                 break
             case 1:
@@ -464,7 +461,6 @@ class JunkUtil {
                             otherClassMethodsAccessMap.put(className, values);
                         }
                     }
-
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
