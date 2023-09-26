@@ -114,7 +114,7 @@ class JunkUtil {
             // 检查一遍  otherClassMethodsAccessMap
             def aa = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
             if (!integrityName.contains(aa)) {
-                str == "logg"
+                str = "logg"
                 fullName = ClassName.get(Utils.class)
             }
 
@@ -127,7 +127,7 @@ class JunkUtil {
             fullName = ClassName.get(Utils.class)
         }
         if (fullName == ClassName.get(Utils.class)) {
-            str == "logg"
+            str = "logg"
         }
 
 
