@@ -28,7 +28,6 @@ class JunkUtil {
     static List<String> otherClassMethodsAccessList = new ArrayList<String>()
 //    static Map<String, String> otherClassMethodsAccessMap = new HashMap<String, String>();
     static Map<String, List<String>> otherClassMethodsAccessMap = new HashMap<String, List<String>>();
-    static List  values = new ArrayList<>()
 
 
     // 随机生成一个activity名称
@@ -103,6 +102,8 @@ class JunkUtil {
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
 
+        List  values = new ArrayList<>()
+
         if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
 //            fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
@@ -111,6 +112,7 @@ class JunkUtil {
 
             if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null) {
 //                str = otherClassMethodsAccessMap.get(otherClassNameList.first())
+
                 values = otherClassMethodsAccessMap.get(otherClassNameList.first())
                 if (values != null && !values.isEmpty()) {
                     String firstValue = values.get(0)
