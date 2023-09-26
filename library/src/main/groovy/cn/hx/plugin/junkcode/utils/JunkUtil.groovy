@@ -133,12 +133,12 @@ class JunkUtil {
             str == "logg"
         }
 
-        if (oneTime || oneTime1 < 4) {
-            oneTime1 += oneTime1
-            oneTime = false
-            fullName = ClassName.get(Utils.class)
-            str == "logg"
-        }
+//        if (oneTime || oneTime1 < 4) {
+//            oneTime1 += oneTime1
+//            oneTime = false
+//            fullName = ClassName.get(Utils.class)
+//            str == "logg"
+//        }
 
 
         switch (random.nextInt(5)) {
