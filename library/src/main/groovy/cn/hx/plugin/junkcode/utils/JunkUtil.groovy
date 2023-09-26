@@ -110,7 +110,7 @@ class JunkUtil {
 
 
             if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null) {
-                str = otherClassMethodsAccessMap.get(otherClassNameList.first())
+//                str = otherClassMethodsAccessMap.get(otherClassNameList.first())
                 values = otherClassMethodsAccessMap.get(otherClassNameList.first())
                 if (values != null && !values.isEmpty()) {
                     String firstValue = values.get(0);
