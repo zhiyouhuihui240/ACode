@@ -103,16 +103,19 @@ class JunkUtil {
 
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
 
-        if (otherPackageNameList.size() >2 && otherClassNameList.size() > 2 ) {
+        if (otherPackageNameList.size() >1 && otherClassNameList.size() > 1 ) {
 //            fullName = "${otherPackageNameList.first()}.${otherClassNameList.first()}"
             fullName = ClassName.get("${otherPackageNameList.last()}", "${otherClassNameList.last()}")
+//            fullName = ClassName.get("${otherPackageNameList.first()}", "${otherClassNameList.first()}")
+
+
 //            fullName = "${otherPackageNameList.last()}.${otherClassNameList.last()}"
 //            fullName = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-            otherPackageNameList.removeLast()
-            otherClassNameList.removeLast()
+//            otherPackageNameList.removeLast()
+//            otherClassNameList.removeLast()
         }else {
-//            fullName = ClassName.get(Utils.class)
-            fullName = ClassName.get("cn.hx.plugin.junkcode.utils","Utils")
+            fullName = ClassName.get(Utils.class)
+//            fullName = ClassName.get("cn.hx.plugin.junkcode.utils","Utils")
         }
 
         if (otherClassMethodsNameList.size()> 2 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
@@ -134,15 +137,7 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
-                        .addStatement("\$T.123", fullName)
-//                        .addStatement(fullName != "cn.hx.plugin.junkcode.utils.Utils" ? "${str}(),$fullName": "${str}(),${Utils.class}")
-//                        .addStatement( "$fullName")
-                        .addStatement("$otherPackageNameList")
-                        .addStatement("${otherClassNameList}")
-                        .addStatement("${otherClassNameList.last()}")
-                        .addStatement("${otherClassNameList.first()}")
-                        .addStatement("$otherClassMethodsNameList")
-                        .addStatement("$otherClassMethodsAccessMap")
+                        .addStatement("\$T.$str()", fullName)
                         .endControlFlow()
                 break
             case 1:
