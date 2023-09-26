@@ -99,6 +99,9 @@ class JunkUtil {
 //        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
+        def p1 = "P1 none"
+        def c1 = "C1 none"
+        def a1 = "All none"
         if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
             // todo: 因为存在先后生成顺序，所以包名和类名可能对不上号
             fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
@@ -110,9 +113,13 @@ class JunkUtil {
 //                    values.remove(0)
                     str = firstValue
                 }
+
             }
+            p1 = "${otherPackageNameList.get(1)}"
+            c1 = "${otherClassNameList.get(1)}"
             // 检查一遍  otherClassMethodsAccessMap
             def aa = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
+            a1 = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
             if (!integrityName.contains(aa)) {
                 str = "logg"
                 fullName = ClassName.get(Utils.class)
@@ -130,7 +137,6 @@ class JunkUtil {
         switch (random.nextInt(5)) {
             case 0:
                 otherClassMethodsAccessList.add("void")
-
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
@@ -141,8 +147,9 @@ class JunkUtil {
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
                         .addStatement("$integrityName")
-                        .addStatement("${otherPackageNameList.get(1)}")
-                        .addStatement("${otherClassNameList.get(1)}")
+                        .addStatement("$a1")
+                        .addStatement("$p1")
+                        .addStatement("$c1")
                         .endControlFlow()
                 break
             case 1:
