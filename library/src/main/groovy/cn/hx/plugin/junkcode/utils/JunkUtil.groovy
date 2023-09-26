@@ -111,7 +111,8 @@ class JunkUtil {
             otherPackageNameList.removeLast()
             otherClassNameList.removeLast()
         }else {
-            fullName = ClassName.get(Utils.class)
+//            fullName = ClassName.get(Utils.class)
+            fullName = ClassName.get("cn.hx.plugin.junkcode.utils","Utils")
         }
 
         if (otherClassMethodsNameList.size()> 2 && fullName != "cn.hx.plugin.junkcode.utils.Utils") {
