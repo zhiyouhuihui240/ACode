@@ -116,9 +116,9 @@ class JunkUtil {
             str = otherClassMethodsNameList.last()
             otherClassMethodsNameList.removeLast()
         }
-        Class<?> clazz = Class.forName(fullName)
-
-        Object instance = clazz.getDeclaredConstructor().newInstance()
+//        Class<?> clazz = Class.forName(fullName)
+//
+//        Object instance = clazz.getDeclaredConstructor().newInstance()
 
         switch (random.nextInt(5)) {
             case 0:
