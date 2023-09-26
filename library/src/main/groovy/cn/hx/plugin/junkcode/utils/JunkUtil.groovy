@@ -126,9 +126,9 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", instance.class)
-                        .addStatement("$otherPackageNameList")
-                        .addStatement("$otherClassNameList")
-                        .addStatement("$otherClassMethodsNameList")
+//                        .addStatement("$otherPackageNameList")
+//                        .addStatement("$otherClassNameList")
+//                        .addStatement("$otherClassMethodsNameList")
                         .endControlFlow()
                 break
             case 1:
@@ -176,7 +176,6 @@ class JunkUtil {
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
-
                 break
             case 5:
                 otherClassMethodsAccessList.add("public static void")
@@ -187,7 +186,6 @@ class JunkUtil {
 //                        .addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-
                 break
             //todo：添加随机方法
             default:
@@ -199,7 +197,6 @@ class JunkUtil {
                         // otherClassNameList.size() > 0.addStatement((otherClassNameList.size() > 0 ? "${Class.forName(System.getProperty(otherClassNameList.get(0)))}" : "内容为空")) // 方法名列表
 
 //                        .addStatement("${str},${otherPackageNameList}.${otherClassNameList}")    // 方法名列表
-
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
