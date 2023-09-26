@@ -101,10 +101,10 @@ class JunkUtil {
         List  values = new ArrayList<>()
         if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
             // todo: 因为存在先后生成顺序，所以包名和类名可能对不上号
-            fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(0)}")
+            fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
             if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
-                values = otherClassMethodsAccessMap.get(otherClassNameList.get(0))
+                values = otherClassMethodsAccessMap.get(otherClassNameList.get(1))
                 if (values != null && !values.isEmpty() && values.size() > 0) {
                     String firstValue = values.get(0)
 //                    values.remove(0)
@@ -137,6 +137,8 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("$otherPackageNameList")
+                        .addStatement("$otherClassNameList")
                         .endControlFlow()
                 break
             case 1:
@@ -294,6 +296,10 @@ class JunkUtil {
 //                typeBuilder.superclass(ClassName.get("android.app", "Activity"))
                 typeBuilder.superclass(ClassName.get("androidx.appcompat.app", "AppCompatActivity"))
                 typeBuilder.addModifiers(Modifier.PUBLIC)
+
+                def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
+                otherPackageNameList.add(0, packageName)
+
                 if (config.typeGenerator) {
                     config.typeGenerator.execute(typeBuilder)
                 } else {
@@ -349,7 +355,7 @@ class JunkUtil {
                         .addParameter(bundleClassName, "savedInstanceState")
                         .addStatement("super.onCreate(savedInstanceState)")
                         .addStatement("setContentView(\$T.layout.${layoutName})", ClassName.get(namespace, "R"))
-                        // todo: 添加调用方法
+                // todo: 添加调用方法
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
                         .addStatement(getRandomMethod())
@@ -375,8 +381,8 @@ class JunkUtil {
                         .addStatement("super.onBackPressed()")
                         .build())
 
-                def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-                otherPackageNameList.add(0, packageName)
+
+
                 writeJavaToFile(javaDir, javaFile)
                 // todo：保存activity的包名
                 activityList.add(packageName + "." + className)
@@ -417,6 +423,10 @@ class JunkUtil {
             }
             def typeBuilder = TypeSpec.classBuilder(className)
             otherClassNameList.add(0, className)
+
+            def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
+            otherPackageNameList.add(0, javaFile.packageName)
+
             if (config.typeGenerator) {
                 config.typeGenerator.execute(typeBuilder)
             } else {
@@ -457,8 +467,7 @@ class JunkUtil {
 //                    otherClassMethodsNameList.removeLast()
                 }
             }
-            def javaFile = JavaFile.builder(packageName, typeBuilder.build()).build()
-            otherPackageNameList.add(0, javaFile.packageName)
+
             writeJavaToFile(javaDir, javaFile)
         }
     }
