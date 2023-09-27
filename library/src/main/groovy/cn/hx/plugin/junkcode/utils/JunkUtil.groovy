@@ -102,11 +102,11 @@ class JunkUtil {
             // todo: ClassName.get() 可以导入尚未存在的类
             fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
             isSDK = fetchSDK()
-
             if (isSDK) {
                 sdk = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+            }else {
+                sdk = ClassName.get(Utils.class)
             }
-
             if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
                 values = otherClassMethodsAccessMap.get(otherClassNameList.get(1))
@@ -132,8 +132,6 @@ class JunkUtil {
             str = "logg"
         }
 
-
-        sdk = ClassName.get("com.bytedance.sdk.component.utils")
 
         switch (random.nextInt(5)) {
             case 0:
