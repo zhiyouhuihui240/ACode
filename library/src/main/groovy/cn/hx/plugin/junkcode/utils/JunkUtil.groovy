@@ -26,9 +26,7 @@ class JunkUtil {
     static List<String> otherPackageNameList = new ArrayList<>()
     static List<String> otherClassMethodsNameList = new ArrayList<>()
     static List<String> otherClassMethodsAccessList = new ArrayList<String>()
-//    static Map<String, String> otherClassMethodsAccessMap = new HashMap<String, String>();
     static Map<String, List<String>> otherClassMethodsAccessMap = new HashMap<String, List<String>>();
-    static Map<String, List<String>> otherPackageClassMap = new HashMap<String, List<String>>();
 
 
     // 随机生成一个名称
@@ -98,7 +96,7 @@ class JunkUtil {
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
         def sdk = ""
-        if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
+        if (otherPackageNameList.size() > 1 && otherClassNameList.size() > 1 ) {
             // todo: ClassName.get() 可以导入尚未存在的类
             fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
             if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
@@ -274,6 +272,7 @@ class JunkUtil {
 //                def activityPreName = generateName(i)
                 // todo：从固有列表中随机获取任意一个 Activity 名称
                 def activityPreName = getRandomActivityName(i)
+                // activityPreName.capitalize() 将首字母大写  再拼接 Activity
                 className = activityPreName.capitalize() + "Activity"
                 // todo: 保存activity的类名
                 otherClassNameList.add(0, className)
