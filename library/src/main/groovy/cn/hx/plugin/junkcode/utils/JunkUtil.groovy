@@ -96,9 +96,11 @@ class JunkUtil {
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
         def sdk = ""
+        def sdkStr = "logg"
         if (otherPackageNameList.size() > 1 && otherClassNameList.size() > 1 ) {
             // todo: ClassName.get() 可以导入尚未存在的类
             fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+            sdk = fetchSDK()
             if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
                 values = otherClassMethodsAccessMap.get(otherClassNameList.get(1))
@@ -106,18 +108,27 @@ class JunkUtil {
                     String firstValue = values.get(0)
 //                    values.remove(0)
                     str = firstValue
+                    if (sdk == ClassName.get(Utils.class)) {
+                        sdkStr = "logg"
+                    }else {
+                        sdkStr = firstValue
+                    }
                 }
             }
 
         }else {
             fullName = ClassName.get(Utils.class)
         }
+
         if (str == "logg") {
             fullName = ClassName.get(Utils.class)
         }
         if (fullName == ClassName.get(Utils.class)) {
             str = "logg"
         }
+
+
+        sdk = ClassName.get("com.bytedance.sdk.component.utils")
 
         switch (random.nextInt(5)) {
             case 0:
@@ -131,6 +142,7 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
+                        .addStatement("\$T.$sdkStr()", sdk)
                         .endControlFlow()
                 break
             case 1:
@@ -175,6 +187,36 @@ class JunkUtil {
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
         }
+    }
+
+
+    // todo: 判断是否是 SDK 路径下生成的文件
+    static ClassName fetchSDK(){
+        def sdk = "cn.hx.plugin.junkcode.utils.Utils"
+        if (otherPackageNameList.size() > 1 && otherClassNameList.size() > 1 ) {
+            sdk = otherPackageNameList.get(1)
+            switch (sdk) {
+                case "com.bytedance.sdk.component.utils":
+                    sdk = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+                    break
+                case "com.google.android.gms.ads.identifier":
+                    sdk = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+                    break
+                case "com.iab.omid.library.applovin":
+                    sdk = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+                    break
+                case "com.anythink.core.activity":
+                    sdk = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+                    break
+                case "com.bytedance":
+                    sdk = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+                    break
+                default:
+                    sdk = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
+            }
+
+        }
+        return sdk
     }
 
 
