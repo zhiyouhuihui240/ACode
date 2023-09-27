@@ -7,6 +7,7 @@ import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeSpec
 import org.gradle.api.Project
+import cn.hx.plugin.junkcode.utils.GenerateUtil
 
 import javax.lang.model.element.Modifier
 import java.nio.file.Files
@@ -191,7 +192,10 @@ class JunkUtil {
                 break
             //todo：添加随机方法
             case 6:
+
+
                 GenerateUtil.generateRandomMethods(methodBuilder)
+
 //                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
 //                        .addParameter(int.class, "year")
 //                        .addParameter(int.class, "month")
