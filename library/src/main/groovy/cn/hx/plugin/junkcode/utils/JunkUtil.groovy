@@ -112,7 +112,15 @@ class JunkUtil {
                 values = otherClassMethodsAccessMap.get(otherClassNameList.get(1))
                 if (values != null && !values.isEmpty() && values.size() > 0) {
                     String firstValue = values.get(0)
-//                    values.remove(0)
+                    values.remove(0)
+                    str = firstValue
+                    if (!isSDK) {
+                        sdkStr = "logg"
+                    } else {
+                        sdkStr = firstValue
+                    }
+                }else {
+                    String firstValue = values.get(0)
                     str = firstValue
                     if (!isSDK) {
                         sdkStr = "logg"
@@ -182,6 +190,15 @@ class JunkUtil {
                         .addStatement("\$T.$str()", fullName)
                 break
             //todo：添加随机方法
+            case 6:
+                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .addParameter(int.class, "year")
+                        .addParameter(int.class, "month")
+                        .addParameter(int.class, "day")
+                        .returns(Date.class)
+                        .addStatement("return new \$T(year - 1900, month - 1, day)", Date.class)
+                break
+            case 7:
             default:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
