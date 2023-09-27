@@ -153,7 +153,7 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
-                        .addStatement("\$T.$sdkStr()", sdk)
+//                        .addStatement("\$T.$sdkStr()", sdk)
                         .endControlFlow()
                 break
             case 1:
