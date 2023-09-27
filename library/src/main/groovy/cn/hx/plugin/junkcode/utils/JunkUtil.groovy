@@ -7,7 +7,7 @@ import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeSpec
 import org.gradle.api.Project
-import cn.hx.plugin.junkcode.utils.GenerateUtil
+
 
 import javax.lang.model.element.Modifier
 import java.nio.file.Files
