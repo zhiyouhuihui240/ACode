@@ -194,7 +194,7 @@ class JunkUtil {
             case 6:
 
 
-                GenerateUtil.generateRandomMethods(methodBuilder)
+                MethodsUtil.generateRandomMethods(methodBuilder)
 
 //                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
 //                        .addParameter(int.class, "year")

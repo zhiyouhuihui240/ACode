@@ -38,7 +38,6 @@ class CoonUtil {
     }
 
 
-
     static String generateRandomabcABC123(int index){
         def sb = new StringBuilder()
         for (i in 0..4) {
@@ -57,7 +56,6 @@ class CoonUtil {
     }
 
 
-
     static String generateRandomStr(int index){
         def sb = new StringBuilder()
         for (i in 0..4) {
@@ -74,8 +72,6 @@ class CoonUtil {
         sb.append(index.toString())
         return sb.toString()
     }
-
-
 
 
 }
