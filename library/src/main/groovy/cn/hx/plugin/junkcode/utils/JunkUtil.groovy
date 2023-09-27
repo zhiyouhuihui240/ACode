@@ -559,7 +559,7 @@ class JunkUtil {
         for (i in 0..<activityList.size()) {
             sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
                 sb.append("        <service android:name=\"${CoonUtil.generateServiceName(i)}\"  android:exported=\"false\"/>\n")
-            sb.append("        <meta-data android:name=\"${CoonUtil.generateMetaDataName(i)}\"   android:value=\"${CoonUtil.generateRandomabcABC123(i)}\"\n")
+            sb.append("        <meta-data android:name=\"${CoonUtil.generateMetaDataName(i)}\"   android:value=\"${CoonUtil.generateRandomabcABC123(i)}\"/>\n")
         }
         sb.append("    </application>\n")
         sb.append("</manifest>")
