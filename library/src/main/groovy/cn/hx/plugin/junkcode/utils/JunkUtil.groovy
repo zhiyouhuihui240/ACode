@@ -191,14 +191,15 @@ class JunkUtil {
                 break
             //todo：添加随机方法
             case 6:
-                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .addParameter(int.class, "year")
-                        .addParameter(int.class, "month")
-                        .addParameter(int.class, "day")
-                        .returns(Date.class)
-                        .addStatement("return new \$T(year - 1900, month - 1, day)", Date.class)
+                GenerateUtil.generateRandomMethods(methodBuilder)
+//                methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+//                        .addParameter(int.class, "year")
+//                        .addParameter(int.class, "month")
+//                        .addParameter(int.class, "day")
+//                        .returns(Date.class)
+//                        .addStatement("return new \$T(year - 1900, month - 1, day)", Date.class)
                 break
-            case 7:
+
             default:
                 otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
