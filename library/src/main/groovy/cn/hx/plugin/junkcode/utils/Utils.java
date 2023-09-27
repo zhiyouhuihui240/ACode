@@ -8,18 +8,32 @@ import java.util.logging.Logger;
 public class Utils {
 
 
-
-    static Integer randomInt(int index) {
-
-
-        return 0;
-    }
-
-
-
     static public void logg(){
-        Logger.getLogger("dsfsdf").info("dssdf");
+        Logger.getLogger("TAG").info("dssdf----");
     }
+
+
+
+    static public String generateActivityName(){
+
+        return "f";
+    }
+
+
+    static public String generateLayoutName(){
+
+        return "f";
+    }
+
+
+
+
+
+    static public String generateStringName(){
+
+        return "f";
+    }
+
 
 
 

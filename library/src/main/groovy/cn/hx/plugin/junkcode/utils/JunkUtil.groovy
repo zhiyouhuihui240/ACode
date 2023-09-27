@@ -31,7 +31,7 @@ class JunkUtil {
     static Map<String, List<String>> otherPackageClassMap = new HashMap<String, List<String>>();
 
 
-    // 随机生成一个activity名称
+    // 随机生成一个名称
     static String generateName(int index) {
         def sb = new StringBuilder()
         for (i in 0..4) {
@@ -73,12 +73,12 @@ class JunkUtil {
 
     // 随机生成一个方法名称
     static String generateRandomMethodsName(int index) {
-        def strList = ['getCurrentTime', 'isLoading', 'initData', 'initView', 'pear','createFragment','getActivityCount',
-                       'setPro', 'setPreview', 'startAct', 'setVip', 'getVip','getPro','setNumber','getNumber','setCertify','getCertify',
-                       'getNative', 'createTimer', 'getServers', 'internalRating', 'gotoMarket','saveString','startMainActivity','onBackAct',
-                        'loadCertificate', 'aniNavHost', 'decryptBase64', 'decryptFile', 'aesEncrypt','aesDecrypt','crypt','xorDecode','xorEncodeData',
-                       'loadProfile', 'toAboutActivity', 'toPager', 'hasLoaded', 'isOpen','showSystemUI','hideSystemUI','uncompress','internalRating']
-        // 从列表中随机获取一个字符串
+        def strList = ['getCurrentTime', 'isLoading', 'initData', 'initView', 'pear', 'createFragment', 'getActivityCount',
+                       'setPro', 'setPreview', 'startAct', 'setVip', 'getVip', 'getProvy', 'setNumber', 'getNumber', 'setCertify', 'getCertify',
+                       'getNative', 'createTimer', 'getServers', 'internalDialog', 'gotoMarket', 'saveString', 'startMainActivity', 'onBackAct',
+                       'loadCertificate', 'aniNavHost', 'decryptBase64', 'decryptFile', 'aesEncrypt', 'aesDecrypt', 'crypt', 'xorDecode', 'xorEncodeData',
+                       'loadProfile', 'toAboutActivity', 'toPager', 'hasLoaded', 'isOpen', 'showSystemUI', 'hideSystemUI', 'uncompress', 'internalRating']
+// 从列表中随机获取一个字符串
 //        def randomStr = strList[Math.floor(Math.random() * strList.size())]
         if (strList.size() == 0) {
             // 若是不够，则自动生成随机字符串
@@ -92,18 +92,14 @@ class JunkUtil {
     }
 
 
-
-    static a1 = "All none"
     // 生成随机方法
     static void generateMethods(MethodSpec.Builder methodBuilder) {
         def str = "logg"
-//        List<String> values = ""
         def fullName = "cn.hx.plugin.junkcode.utils.Utils"
         List  values = new ArrayList<>()
-        def p1 = "P1 none"
-        def c1 = "C1 none"
+        def sdk = ""
         if (otherPackageNameList.size() > 3 && otherClassNameList.size() > 3 ) {
-            // todo: 因为存在先后生成顺序，所以包名和类名可能对不上号
+            // todo: ClassName.get() 可以导入尚未存在的类
             fullName = ClassName.get("${otherPackageNameList.get(1)}", "${otherClassNameList.get(1)}")
             if (otherClassMethodsAccessMap.get(otherClassNameList.get(1))!= null && otherClassMethodsAccessMap.get(otherClassNameList.get(1)).size() >0) {
 //            if (otherClassMethodsAccessMap.get(otherClassNameList.first())!= null && otherClassMethodsAccessMap.get(otherClassNameList.first()).size() >0) {
@@ -113,21 +109,7 @@ class JunkUtil {
 //                    values.remove(0)
                     str = firstValue
                 }
-
             }
-            p1 = "${otherPackageNameList.get(1)}"
-            c1 = "${otherClassNameList.get(1)}"
-            // 检查一遍  otherClassMethodsAccessMap
-            def aa = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-            a1 = "${otherPackageNameList.get(1)}.${otherClassNameList.get(1)}"
-
-
-
-//            if (!integrityName.contains(a1)) {
-//                str = "logg"
-//                fullName = ClassName.get(Utils.class)
-//            }
-
 
         }else {
             fullName = ClassName.get(Utils.class)
@@ -151,9 +133,6 @@ class JunkUtil {
                         .nextControlFlow("else")
                         .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
                         .addStatement("\$T.$str()", fullName)
-//                        .addStatement("$integrityName")
-//                        .addStatement("$otherPackageNameList")
-//                        .addStatement("$otherClassNameList")
                         .endControlFlow()
                 break
             case 1:
@@ -206,7 +185,6 @@ class JunkUtil {
     static void generateActivityMethods(MethodSpec.Builder methodBuilder) {
         switch (random.nextInt(5)) {
             case 0:
-                otherClassMethodsAccessList.add("void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
@@ -218,11 +196,9 @@ class JunkUtil {
                         .endControlFlow()
                 break
             case 1:
-                otherClassMethodsAccessList.add("void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).addCode("" + "int total = 0;\n" + "for (int i = 0; i < 10; i++) {\n" + "  total += i;\n" + "}\n")
                 break
             case 2:
-                otherClassMethodsAccessList.add("void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC).beginControlFlow("try")
                         .addStatement("throw new Exception(\$S)", "Failed")
                         .nextControlFlow("catch (\$T e)", Exception.class)
@@ -234,19 +210,16 @@ class JunkUtil {
                         .addStatement("return new \$T()", Date.class)
                 break
             case 4:
-                otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
                         .addStatement("\$T.out.println(\$S)", System.class, "Hello")
                 break
             case 5:
-                otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 break
                 //todo：添加随机方法
             default:
-                otherClassMethodsAccessList.add("public static void")
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
@@ -327,8 +300,8 @@ class JunkUtil {
                             config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                             methodName = methodNameBuilder.toString()
                         } else {
-                            methodName = generateRandomMethodsName(j)
-//                            methodName = generateName(j)
+//                            methodName = generateRandomMethodsName(j)
+                            methodName = generateName(j)
                         }
 
                         stringNameList.add(methodName)
@@ -447,8 +420,8 @@ class JunkUtil {
                         config.methodNameCreator.execute(new Tuple2(j, methodNameBuilder))
                         methodName = methodNameBuilder.toString()
                     } else {
-                        methodName = generateRandomMethodsName(j)
-//                        methodName = generateName(j)
+//                        methodName = generateRandomMethodsName(j)
+                        methodName = generateName(j)
                     }
                     def methodBuilder = MethodSpec.methodBuilder(methodName)
                     if (config.methodGenerator) {
@@ -576,24 +549,6 @@ class JunkUtil {
     }
 
 
-    // 随机生成一个Service名称
-    static String generateServiceName(int index) {
-        def sb = new StringBuilder()
-        for (i in 0..4) {
-            sb.append(abc[random.nextInt(abc.size())])
-        }
-        int temp = index
-        while (temp >= 0) {
-            sb.append(abc[temp % abc.size()])
-            temp = temp / abc.size()
-            if (temp == 0) {
-                temp = -1
-            }
-        }
-        sb.append(index.toString())
-        return sb.toString()
-    }
-
 
     // 生成AndroidManifest.xml, todo: 顺序打乱, 读取 manifest文件,然后以数组的形式来将顺序打乱
     static void generateManifest(File manifestFile, List<String> activityList) {
@@ -603,8 +558,8 @@ class JunkUtil {
         sb.append("    <application>\n")
         for (i in 0..<activityList.size()) {
             sb.append("        <activity android:name=\"${activityList.get(i)}\"  android:exported=\"false\"/>\n")
-            sb.append("        <service android:name=\"${generateServiceName(i)}\"  android:exported=\"false\"/>\n")
-//            sb.append("        <meta-data android:name=\"${generateName(i)}\"   android:value=\"oynestszvybpftwwjphxe\"\n")
+                sb.append("        <service android:name=\"${CoonUtil.generateServiceName(i)}\"  android:exported=\"false\"/>\n")
+            sb.append("        <meta-data android:name=\"${CoonUtil.generateMetaDataName(i)}\"   android:value=\"${CoonUtil.generateRandomabcABC123(i)}\"\n")
         }
         sb.append("    </application>\n")
         sb.append("</manifest>")
